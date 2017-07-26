@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Asir boomshakalaka
-subtitle:
-description: Algorithm emgineer in JD.COM, master degree in BUAA.
+title: superAsir's Notes
+subtitle: Just 4 fun!
+description: Algorithm engineer in JD.COM, master degree in Beihang University.
 author: Joe Asir
 language: zh-Hans
 timezone:
@@ -71,10 +71,17 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
+## Themes: https://hexo.io/next/
 theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: rsync
+  host: 45.32.83.91
+  user: root
+  root: /data/wwwroot/asir.unbelievable9.info
+  port: 22
+  delete: true
+  verbose: true
+  ignore_errors: false
