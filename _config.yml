@@ -54,7 +54,9 @@ index_generator:
   
 # Category & Tag
 default_category: uncategorized
-category_map:
+category_map: 
+    杂: life
+    machine-learning: machine-learning
 tag_map:
 
 # Date / Time format
