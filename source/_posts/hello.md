@@ -1,9 +1,18 @@
 ---
-title: Hello Buddy
-date: 2017-07-21 17:40:40
-tags:
+title: Hello World
+date: 2017-07-26 17:40:40
+tags: 抒情一把
+categories: 杂
 ---
+**我终于把blog搭建起来了!**
 
-### It is just a test
-* Hi, guys. It's nice to see ya here!
-* have fun!
+这是一个属于*Asir* 自己的博客,在这里我会写一些技术分享,记录自己平时学到的东西,也会整点吐槽或者鸡汤.总之,有了一个真正的属于自己的天地,可以随便整,这种感觉非常棒.
+
+其实自己在博客园也尝试过一次,可是体验并不是很理想,在这里我并没有抨击的意思,因为自己搭建起来的成就感那不是一点两点.希望后面可以趁热打铁,开启blog之旅.
+***
+
+在这里感谢下[亲铁](https://www.unbelievable9.info/)为我提供的完美设备和深夜技术支持,非常棒!
+
+最后,作为一个coding man, 在所有事情的最开始,都不应该缺少这句话
+
+**Hello world!!!**

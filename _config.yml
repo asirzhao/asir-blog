@@ -58,6 +58,7 @@ category_map:
     杂: life
     machine-learning: machine-learning
 tag_map:
+    抒情一把: emotion
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
