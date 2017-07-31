@@ -296,7 +296,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/28/convex-opt/" itemprop="url">给你解惑凸优化、梯度下降和牛顿法</a></h1>
+                <a class="post-title-link" href="/2017/07/28/convex-opt/" itemprop="url">从凸函数到梯度下降和牛顿法</a></h1>
         
 
         <div class="post-meta">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T15:53:55+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T15:53:55-07:00">
                 2017-07-28
               </time>
             
@@ -367,14 +367,24 @@
       
         
           
-            <p>记得我在和优男一起学习Logistic Regression的时候，他问我几个非常尖锐的问题，让我哑口无言：</p>
+            <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>记得我在和优男一起研究Logistic Regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言</p>
 <ul>
 <li>为什么Logistic Regression可以使用通过gradient optimization找到局部最优</li>
-<li>为什么Logistic Regression还可以用Newton’s method呢</li>
-<li>Newton’s method中Hessian matrix必须positive有什么意义呢，Logistic cost function能保证吗？</li>
+<li>为什么Logistic Regression还可以用Newton’s method呢？</li>
+<li>Newton’s method中Hessian matrix必须positive definite有什么意义呢，Logistic cost function能保证吗？</li>
 </ul>
 <p>这些细节问题，说实话我也没有认真的想过。在夸奖他之余，我们也一起开始了研究，希望从中学习到一些更深层的东西，趁着现在有个blog分享给大家</p>
-<h3 id="凸优化-Convex-optimization"><a href="#凸优化-Convex-optimization" class="headerlink" title="凸优化(Convex optimization)"></a>凸优化(Convex optimization)</h3><h3 id="梯度下降法-Gradient-descent"><a href="#梯度下降法-Gradient-descent" class="headerlink" title="梯度下降法(Gradient descent)"></a>梯度下降法(Gradient descent)</h3><h3 id="牛顿法-Newton’s-method"><a href="#牛顿法-Newton’s-method" class="headerlink" title="牛顿法(Newton’s method)"></a>牛顿法(Newton’s method)</h3>
+<h2 id="凸函数-Convex-function"><a href="#凸函数-Convex-function" class="headerlink" title="凸函数(Convex function)"></a>凸函数(Convex function)</h2><p>在开始之前，我有一个关于术语的建议。中文中的凸函数，实际上是看上去是凹下去的，对应的，中文中的凹函数确实看上去突起来的，amazing吧？这是有一定历史原因的，感兴趣的朋友可以去查阅下资料，这里我们不再复述。所以为了避免让大家产生误解，我鼓励大家使用英文，convex function和convcave function.这样会避免很多不必要的麻烦。</p>
+<p>OK，我们来一起看看，convex optimization    </p>
+<p>对于一维函数 \(f(x)\)来说，在定义域内的任意变量\(a\)和\(b\)，对于任意的 \( 0 \leq \theta \leq 1\)，如果满足以下条件，则称为convex function<br>$$f(\theta a+(1-\theta b)) \leq \theta f(a) + (1- \theta)f(b)$$<br>我们再用图片直观的感受一下</p>
+<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png" alt=""> </p>
+<p>显而易见的是，当公式中等号去掉的时候，函数就是strictly convex function，等号存在的时候，函数是convex function，或者no-concave function.</p>
+<p>Convex function具有一定的性质，我们简单的描述一下，不做详细的推倒</p>
+<h3 id="First-order-condition"><a href="#First-order-condition" class="headerlink" title="First order condition"></a>First order condition</h3><p>对于convex function \(f\)，在定义域内一阶可导，且倒数为<br>$$     \nabla f=( \frac{\partial f(x)}{x_1}, \frac{\partial f(x)}{x_2},…,  \frac{\partial f(x)}{x_n})$$<br>那么 \(f\) 的first order condition就是对于定义域内任意 \(x\) 和 \(y\)<br>$$ f(y) \geq f(x) + \nabla f(x)^T (y - x)$$<br>OK，再来张图片直观感受一下</p>
+<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png" alt=""> </p>
+<p>其实简单的来讲，就是对于convex function \(f\)，他的函数值永远大于等于切线上的值</p>
+<h3 id="Second-order-condition"><a href="#Second-order-condition" class="headerlink" title="Second order condition"></a>Second order condition</h3><p>对于function \(f\)，在定义域内二阶可导，且 \(n\) 维方阵Hessian matrix为<br>$$ \nabla ^2 f(x) = \frac{ \partial ^2 f(x)}{ \partial x_i \partial x_j}, \quad i,j = 1,2,…,n$$<br>当且仅当Hessian matrix中所有元素大于等于零是，\(f\) 是convex function。这里的证明我不想展开讲，在后面我会给出reference链接</p>
+<h3 id="梯度下降法-Gradient-descent"><a href="#梯度下降法-Gradient-descent" class="headerlink" title="梯度下降法(Gradient descent)"></a>梯度下降法(Gradient descent)</h3><h3 id="牛顿法-Newton’s-method"><a href="#牛顿法-Newton’s-method" class="headerlink" title="牛顿法(Newton’s method)"></a>牛顿法(Newton’s method)</h3>
           
         
       
@@ -448,7 +458,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T17:40:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T17:40:40-07:00">
                 2017-07-26
               </time>
             
@@ -642,6 +652,12 @@
         </div>
 
         
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
         
 
         
