@@ -62,7 +62,7 @@ $$ \nabla ^2 f(x) = \frac{ \partial ^2 f(x)}{ \partial x_i \partial x_j}, \quad 
 
 Liner regression算法的实质是least square method，他的cost function是
 $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad h_ \theta (x)= \theta ^Tx $$
-对于liner regression来说，算法的实质就是获得 \\(J( \theta)\\)以 \\(\theta\\)为参数的minimum，gradient descent就是实现了这么一个过程，类似的，我在这里不详细的讲解gradient descent，作为基础内容，详见reference. 
+对于liner regression来说，算法的实质就是获得\\( J( \theta) \\)以\\( \theta\\)为参数的minimum，gradient descent就是实现了这么一个过程，类似的，我在这里不详细的讲解gradient descent，作为基础内容，详见reference. 
 
 那么针对cost function，gradient descent是如何保证收敛的呢，我们一起来看看
 
@@ -78,4 +78,4 @@ $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad 
 Newton's method 这块内容，我们将会用logistic regression作为例子，同样，关于logistic regression相关的基础知识详见reference
 
 同样，我们先来关注下log cost function
-$$J( \theta)=- \frac{1}{m} \sum_{i=1} ^{m} (y^{(i)} logh_{ \theta}(x^{(i)}) + (1-y^{(i)})log(1-h_{ \theta}(x^{(i)}))) , \quad h_{ \theta}(x)= \frac{1}{1+e^{- \theta^Tx}}$$
+$$J( \theta)=- \frac{1}{m} \sum_{i=1} ^{m} (y^{(i)} logh_{ \theta}(x^{(i)}) + (1-y^{(i)})log(1-h_{ \theta}(x^{(i)}))) \quad h_{ \theta}(x)= \frac{1}{1+e^{- \theta^Tx}}$$
