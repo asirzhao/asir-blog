@@ -85,7 +85,7 @@ $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad 
 Newton's method 这块内容，我们将会用logistic regression作为例子，同样，关于logistic regression相关的基础知识详见reference
 
 同样，我们先来关注下log cost function，这里，我们认为label是-1和+1，因为这样得到的cost function比0,1下的计算更加简单
-$$J( \omega)= \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})$$
+$$J( \omega)= - \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})$$
 这里我们采用了正负一作为标签值，和大多数教材中不一样，大家可以下来自己推导一下\\(J( \omega)\\)，并不复杂。
 
 此处我们对原始的likehood function加上了 \\(- \frac{1}{m}\\)的系数，同样，当我们把 \\(J( \omega)\\)带入到convex function的定义中，可以验证上式为convex function，值得注意的是，\\(J( \omega)\\)是\\( \omega\\)的函数。
