@@ -4,7 +4,6 @@ date: 2017-08-02 15:53:55
 tags: [convex optimization,gradient descent,newton's method]
 categories: machine learning
 ---
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 记得我在和优男一起研究logistic Regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言
 * 怎么保证logistic Regression通过gradient optimization找到的是最优解
 * 为什么logistic Regression还可以用Newton's method呢？
