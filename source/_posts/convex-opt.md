@@ -1,14 +1,14 @@
 ---
 title: 从凸函数到梯度下降和牛顿法
-date: 2017-07-28 15:53:55
+date: 2017-08-02 15:53:55
 tags: [convex optimization,gradient descent,newton's method]
 categories: machine learning
 ---
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-记得我在和优男一起研究Logistic Regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言
-* 为什么Logistic Regression可以使用通过gradient optimization找到局部最优
-* 为什么Logistic Regression还可以用Newton's method呢？
-* Newton's method中Hessian matrix必须positive definite有什么意义呢，Logistic cost function能保证吗？
+记得我在和优男一起研究logistic Regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言
+* 怎么保证logistic Regression通过gradient optimization找到的是最优解
+* 为什么logistic Regression还可以用Newton's method呢？
+* Newton's method中Hessian matrix必须positive definite有什么意义呢，log cost function能保证吗？
 
 这些细节问题，说实话我也没有认真的想过。在夸奖他之余，我们也一起开始了研究，希望从中学习到一些更深层的东西，趁着现在有个blog分享给大家
 <!--more-->
@@ -24,7 +24,7 @@ $$f(\theta a+(1-\theta b)) \leq \theta f(a) + (1- \theta)f(b)$$
 
 ![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png) 
 
-显而易见的是，当公式中等号去掉的时候，函数就是strictly convex function，等号存在的时候，函数是convex function，或者no-concave function.
+显而易见的是，当公式中等号去掉的时候，函数就是strictly convex function.
 
 Convex function具有一定的性质，我们简单的描述一下，不做详细的推导
 
@@ -33,6 +33,8 @@ Convex function具有一定的性质，我们简单的描述一下，不做详�
 $$ 	\nabla f=( \frac{\partial f(x)}{x_1}, \frac{\partial f(x)}{x_2},...,  \frac{\partial f(x)}{x_n})$$
 那么 \\(f\\) 的first order condition就是对于定义域内任意 \\(x\\) 和 \\(y\\)
 $$ f(y) \geq f(x) + \nabla f(x)^T (y - x)$$
+以上互为充要条件。
+
 OK，再来张图片直观感受一下
 
 ![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png) 
@@ -42,7 +44,7 @@ OK，再来张图片直观感受一下
 ### Second order condition
 对于function \\(f\\)，在定义域内二阶可导，且 \\(n\\) 维方阵Hessian matrix的元素为
 $$ \nabla ^2 f(x) = \frac{ \partial ^2 f(x)}{ \partial x_i \partial x_j}, \quad i,j = 1,2,...,n$$
-当且仅当Hessian matrix semi-positive defnite的时候，\\(f\\) 是convex function。这里的证明我不想展开讲，在后面我会给出reference链接。
+当且仅当Hessian matrix positive semi-defnite的时候，\\(f\\) 是convex function。以上互为充要条件。这里的证明我不想展开讲，在后面我会给出reference链接。
 
 下面给出一些 \\(\Bbb R\\) 空间下常见的convex function
 * 线性函数：\\(f(x) = ax+b\\)
@@ -72,10 +74,42 @@ $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad 
 
 > Gradien descent算法本身并不能保证可以获得全局最小值，只有在objective function是convex function的时候才可以保证
 
+下图可以看出，右边的object function不是convex function，因而很容易陷入到局部最小值无法自拔，而左边的objective function是一个标准的convex function，在gradient descent参数合理的前提下，可以获得全局最优。
+
+![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-3.png) 
+
+当然，gradien descent的一些改进方法，例如stochastic gradient descent在解决局部最优上有一些帮助，但是我们在这里不做讨论，后面有时间我会专门再写。
+
 由此，我们可以得出，gradient descent是liner regression的一个很好的optimization 方法
 
 ## 牛顿法(Newton's method)
 Newton's method 这块内容，我们将会用logistic regression作为例子，同样，关于logistic regression相关的基础知识详见reference
 
-同样，我们先来关注下log cost function
-$$J( \theta)=- \frac{1}{m} \sum_{i=1} ^{m} (y^{(i)} logh_{ \theta}(x^{(i)}) + (1-y^{(i)})log(1-h_{ \theta}(x^{(i)}))) \quad h_{ \theta}(x)= \frac{1}{1+e^{- \theta^Tx}}$$
+同样，我们先来关注下log cost function，这里，我们认为label是-1和+1，因为这样得到的cost function比0,1下的计算更加简单
+$$J( \omega)= \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})$$
+这里我们采用了正负一作为标签值，和大多数教材中不一样，大家可以下来自己推导一下\\(J( \omega)\\)，并不复杂。
+
+此处我们对原始的likehood function加上了 \\(- \frac{1}{m}\\)的系数，同样，当我们把 \\(J( \omega)\\)带入到convex function的定义中，可以验证上式为convex function，值得注意的是，\\(J( \omega)\\)是\\( \omega\\)的函数。
+
+其实，我们也可以将log cost function展开后，利用最基本的函数convex和concave性质来获得上式是convex function的结论，碍于公式实在太难打，就留给大家去证明吧。
+
+OK，既然log cost function是convex function，我们一定是可以用gradient descent去求解的。如果我们用newton's method呢
+
+Newton's method的基本原理详见reference，这里我们可以发现，既然log cost function是convex function，那么根据second order condition可以知道，她得Hessian matrix一定是positive semi-definite的。如果我们加上了L2 regularizer，那么log cost function就一定是strict convex function了。
+
+## Sum up
+OK，我们说到这里也确实讲了不少，这篇blog有些冗长，希望朋友们不要焦虑。总体来说，我想表达的是以下几个观点：
+* Machine learning中我们寻求的其实就是objective function一个全局最优值，这些问题是通过gradient descent等方法解决的；
+* Gradient descent和newton's method都是convex optimization的好方法，他们可以对于convex function获得全局最优，对于no-convex optimization问题，stochastic gradient descent也很有效果，我们后续再慢慢学习。
+
+好了，核心思想就这两点，今天先说这么多！
+
+## Reference
+* [EE364, Convex Optimization Stanford University](https://see.stanford.edu/materials/lsocoee364a/03ConvexFunctions.pdf)
+* [Regularized Logistic Regression is Strictly Convex](http://qwone.com/~jason/writing/convexLR.pdf)
+* [XinyiLI大神的blog](https://www.yangzhou301.com/2016/03/14/826442654/)
+* [Liner regression](https://en.wikipedia.org/wiki/Linear_regression)
+* [Logsitc regression](https://en.wikipedia.org/wiki/Logistic_regression)
+* [Gradient descent](https://en.wikipedia.org/wiki/Gradient_descent)
+* [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method)
+
