@@ -13,7 +13,7 @@ categories: machine learning
 <!--more-->
 
 ## 凸函数(Convex function)
-在开始之前，我有一个关于术语的倡议。中文里的“凸函数”，看上去是凹下去的，对应的，中文里的“凹函数”看上去凸起来的，amazing吧？这是有一定历史原因的，感兴趣的朋友可以去查阅下资料，这里我们不再复述。所以为了避免让大家产生误解，我鼓励大家使用英文，convex function和convcave function.这样会避免很多不必要的麻烦。
+在开始之前，我有一个关于术语的倡议。中文里的“凸函数”，看上去是凹下去的，对应的，中文里的“凹函数”看上去凸起来的，amazing吧？这是有一定历史原因的，感兴趣的朋友可以去查阅下资料，这里我们不再复述。所以为了避免让大家产生误解，我鼓励大家使用英文，**convex function**和**convcave function**.这样会避免很多不必要的麻烦。
 
 OK，我们来一起看看，convex function
 
@@ -23,25 +23,25 @@ $$f(\theta a+(1-\theta b)) \leq \theta f(a) + (1- \theta)f(b)$$
 
 ![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png) 
 
-显而易见的是，当公式中等号去掉的时候，函数就是strictly convex function.
+显而易见的是，当公式中等号去掉的时候，函数就是**strictly convex function**.
 
 Convex function具有一定的性质，我们简单的描述一下。
 
 ### First order condition
-对于 function \\(f\\)，在定义域内一阶可导，且导数为
+对于 function \\(f\\)，在定义域内**一阶可导**，且导数为
 $$ 	\nabla f=( \frac{\partial f(x)}{x_1}, \frac{\partial f(x)}{x_2},...,  \frac{\partial f(x)}{x_n})$$
-那么 \\(f\\)是convex function的充要条件是：对于定义域内任意 \\(x\\) 和 \\(y\\)
+那么 \\(f\\)是convex function的**充要条件**是：对于定义域内任意 \\(x\\) 和 \\(y\\)
 $$ f(y) \geq f(x) + \nabla f(x)^T (y - x)$$
 OK，再来张图片直观感受一下：
 
 ![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png) 
 
-其实简单的来讲，就是对于convex function \\(f\\)，他的函数值永远大于等于切线上的值！
+其实简单的来讲，就是对于convex function \\(f\\)，它的函数值永远大于等于切线上的值！
 
 ### Second order condition
-对于 function \\(f\\)，在定义域内二阶可导，且 \\(n\\) 维方阵Hessian matrix的元素为
+对于 function \\(f\\)，在定义域内**二阶可导**，且 \\(n\\) 维方阵Hessian matrix的元素为
 $$ \nabla ^2 f(x) = \frac{ \partial ^2 f(x)}{ \partial x_i \partial x_j}, \quad i,j = 1,2,...,n$$
-当且仅当Hessian matrix positive semi-defnite的时候，\\(f\\) 是convex function。以上互为充要条件。这里的证明我不想展开讲，在后面我会给出reference链接。
+当且仅当Hessian matrix positive semi-defnite的时候，\\(f\\) 是convex function。以上互为**充要条件**。这里的证明我不想展开讲，在后面我会给出reference链接。
 
 ---
 下面给出一些 \\(\Bbb R\\) 空间下常见的convex function：
@@ -60,7 +60,7 @@ $$ \nabla ^2 f(x) = \frac{ \partial ^2 f(x)}{ \partial x_i \partial x_j}, \quad 
 ## 梯度下降法(Gradient descent)
 关于gradient descent，我们使用liner regression作为例子来讨论。Liner regression算法的实质是least square method，他的cost function是
 $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad h_ \theta (x)= \theta ^Tx $$
-对于liner regression来说，算法的实质就是去求出\\( J( \theta) \\)以\\( \theta\\)为参数的minimum，gradient descent算法的作用就是去实现了这个过程，gradient descent的基础知识详见reference. 
+对于liner regression来说，算法的实质就是去求出\\( J( \theta) \\) **以\\( \theta\\)为参数**的minimum，gradient descent算法的作用就是去实现了这个过程，gradient descent的基础知识详见reference. 
 
 那么针对cost function，gradient descent是如何保证收敛的呢，我们一起来看看
 
@@ -79,26 +79,26 @@ $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad 
 由此，我们可以得出，gradient descent不仅仅是minimize liner regression的一个很好的方法，也是convex optimization的一种理想方法
 
 ## 牛顿法(Newton's method)
-Newton's method 这块内容，我们将会用logistic regression作为例子，同样，关于logistic regression相关的基础知识详见reference
-
-同样，我们先来关注下log cost function，这里，我们认为label是-1和+1，因为这样得到的cost function比0,1下的计算更加简单
+Newton's method 这块内容，我们将会用logistic regression作为例子。同样，我们先来关注下log cost function，这里，**我们取label为-1和+1**，因为这样得到的cost function比0,1下的计算更加简单
 $$J( \omega)= - \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})$$
-这里我们采用了正负一作为标签值，和大多数教材中不一样，大家可以下来自己推导一下\\(J( \omega)\\)，并不复杂。
+这里我们采用了-1和+1作为标签值，和大多数教材中不一样，大家可以下来自己推导一下\\(J( \omega)\\)，这种写法广泛的应用在了比较logistic regression和SVM两大分类器的文献中，希望大家熟知。
 
 此处我们对原始的likehood function加上了 \\(- \frac{1}{m}\\)的系数，同样，当我们把 \\(J( \omega)\\)带入到convex function的定义中，可以验证上式为convex function，值得注意的是，\\(J( \omega)\\)是\\( \omega\\)的函数。
 
 其实，我们也可以将log cost function展开后，利用最基本的函数convex和concave性质来获得上式是convex function的结论，碍于公式实在太难打，就留给大家去证明吧。
 
-OK，既然log cost function是convex function，我们一定是可以用gradient descent去求解的。如果我们用newton's method呢
+OK，既然log cost function是convex function，我们一定是可以用gradient descent去求解的。问题是，如果我们用newton's method呢？
 
-Newton's method的基本原理详见reference，这里我们可以发现，既然log cost function是convex function，那么根据second order condition可以知道，她得Hessian matrix一定是positive semi-definite的。如果我们加上了L2 regularizer，那么log cost function就一定是strict convex function了。
-
+Newton's method的基本原理详见reference，这里我们可以发现，既然log cost function是convex function，那么根据second order condition可以知道，它的Hessian matrix一定是positive semi-definite的。如果我们加上了L2 regularizer，**由于L2 regularizer本身就是一个strict convex function**，那么log cost function就一定是strict convex function了，也就是：
+$$J( \omega)= - \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})+ \frac{1}{2}|| \omega||^2$$
+因此，在log cost function中，**Hessian matrix是positive definite的**，完全满足newton's method 的要求。同样，类似于上一部分，newton's method也可以找到log cost function的全局最优。
 ## Sum up
 OK，我们说到这里也确实讲了不少，这篇blog有些冗长，希望朋友们不要焦虑。总体来说，我想表达的是以下几个观点：
 * Machine learning中我们寻求的其实就是objective function一个全局最优值，这些问题是通过gradient descent等方法解决的；
-* Gradient descent和newton's method都是convex optimization的好方法，他们可以对于convex function获得全局最优，对于no-convex optimization问题，stochastic gradient descent也很有效果，我们后续再慢慢学习。
+* Gradient descent和newton's method都是convex optimization的好方法，他们都可以对于convex function获得全局最优；
+* 对于no-convex optimization问题，stochastic gradient descent也很有效果，我们后续再慢慢学习。
 
-好了，核心思想就这两点，今天先说这么多！
+好了，核心思想就这三点，今天先说这么多！
 
 ## Reference
 * [EE364, Convex Optimization Stanford University](https://see.stanford.edu/materials/lsocoee364a/03ConvexFunctions.pdf)
