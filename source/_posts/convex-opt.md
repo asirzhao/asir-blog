@@ -70,11 +70,11 @@ $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad 
 
 > Gradien descent算法本身并不能保证获得全局最小值，只有在objective function是convex function的时候才可以保证
 
-下图可以看出，右边的object function是no-convex function，因而很容易陷入到局部最小值无法自拔，而左边的objective function是一个标准的convex function，在gradient descent参数合理的前提下，可以逼近全局最优。
+下图可以看出，右边的object function是non-convex function，因而很容易陷入到局部最小值无法自拔，而左边的objective function是一个标准的convex function，在gradient descent参数合理的前提下，可以逼近全局最优。
 
 ![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-3.png) 
 
-当然，gradien descent的一些改进方法，例如stochastic gradient descent在解决no-convex optimization上有一些帮助，但是我们在这里不做讨论，后面有时间我会专门再写。
+当然，gradien descent的一些改进方法，例如stochastic gradient descent在解决non-convex optimization上有一些帮助，但是我们在这里不做讨论，后面有时间我会专门再写。
 
 由此，我们可以得出，gradient descent不仅仅是minimize liner regression的一个很好的方法，也是convex optimization的一种理想方法
 
@@ -96,7 +96,7 @@ $$J( \omega)= - \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})
 OK，我们说到这里也确实讲了不少，这篇blog有些冗长，希望朋友们不要焦虑。总体来说，我想表达的是以下几个观点：
 * Machine learning中我们寻求的其实就是objective function一个全局最优值，这些问题是通过gradient descent等方法解决的；
 * Gradient descent和newton's method都是convex optimization的好方法，他们都可以对于convex function获得全局最优；
-* 对于no-convex optimization问题，stochastic gradient descent也很有效果，我们后续再慢慢学习。
+* 对于non-convex optimization问题，stochastic gradient descent也很有效果，我们后续再慢慢学习。
 
 好了，核心思想就这三点，今天先说这么多！
 
