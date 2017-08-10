@@ -38,3 +38,17 @@ $$x-x_k=- \alpha \nabla f(x_k)$$
 $$x:=x_k- \alpha \nabla f(x_k)$$
 到这一步，是不是看到了熟悉的gradient descent呢，yeah mate！We make it!
 ## 2nd order Taylor series & newton's method
+和上面的gradient descent相似，假设\\(x_k\\)是第k次newton's method迭代后的\\(x\\)取值，那我们在此处的2nd order Taylor series 是
+$$f(x)=f(x_k)+ \nabla f(x_k)(x-x_k) + \frac{1}{2}(x-x_k)^T \nabla^2 f(x_k)(x-x_k) $$
+我们对等号两边同时对\\(x\\)求导，并令其为零
+$$ \nabla f(x) = \nabla f(x_k) + (x-x_k) \nabla^2 f(x_k)=0$$
+由于newton's method的原理就是通过\\(\nabla f(x)=0\\)来寻找最小值，故上式为零的解其实就是newton's method本次迭代后的结果。其中\\(\nabla f(x_k)\\)是\\(x_k\\)处的一阶导数，\\( \nabla^2 f(x_k)\\)是\\(x_k\\)处的二阶导数Hessian矩阵元素
+
+我们令\\(\nabla f(x_k)=g\\)，\\(\nabla f(x_k)=H\\)，则上式变成
+$$g+H(x-x_k)=0$$
+进一步的
+$$x=x_k-H^{-1}g$$
+由于\\(-g H^{-1} \\) 是优化的前进方向，在寻找最小值的过程中，这个方向一定是和梯度方向\\(g\\)相反，那么就有\\( g^T H^{-1} g > 0\\)，这不就是positive definite的定义吗？也就是说，**Hessian矩阵是positive definite的**。
+
+想象一下，如果Hessian是negtive definite的话，参数更新的方向就成了和\\(g\\)相同的方向，newton's method将会发散，这一点，也是newton's method的命门。在迭代过程中，如果第\\(k\\)次迭代获得的\\(x_k\\)Hessian不正定，那么newton's method将会发散，从而迭代失败。当然，为了解决这种问题，后续有改进的BFGS等方法，我们在这里暂时不详细讨论
+## Sum up
