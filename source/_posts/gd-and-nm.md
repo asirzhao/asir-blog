@@ -1,11 +1,10 @@
 ---
 title: 再深入聊聊梯度下降和牛顿法
-date: 2017-08-04 17:26:56
+date: 2017-08-11 17:26:56
 tags: [gradient descent,newton's method]
 categories: machine learning
 ---
 上次我们一起从convex function引出了gradient descent和newton's method，而且我们已经知道了gradient descent和newton's method都是convex optimization的好方法,这次我们就专门来讲一讲这两个方法。
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 用过这两种方法的朋友们都知道，newton's method只需要很少的迭代次数，就可以获得gradient descent上百次乃至上千次迭代的效果。那么，造成这一点的原因又是什么呢?
 
@@ -14,41 +13,60 @@ categories: machine learning
 * 既然我们要寻找最小值，那我们可以顺着一条\\(f(x)\\)逐渐减小的路径，顺着这条路径一直走下去，直到不再变小，这就是**gradient descent**的思想
 
 OK，简单的叙述之后，我们开始正题！
+<!--more-->
 
 ## 泰勒级数(Taylor series)
-首先我们需要回忆一下高等数学中重要的Taylor series，如果\\( f(x)\\)在点\\( x_0\\)的领域内具有\\(n+1\\)阶导数，那么，在该领域内，\\( f(x)\\)可展开成\\(n\\)阶梯Taylor series
+首先我们需要回忆一下高等数学中重要的Taylor series，如果\\( f(x)\\)在点\\( x_0\\)的领域内具有\\(n+1\\)阶导数，那么，在该领域内，\\( f(x)\\)可展开成\\(n\\)阶Taylor series
 $$f(x)=f(x_0)+ \nabla f(x_0)(x-x_0) + \frac{ \nabla ^2 f(x_0)}{2!}(x-x_0)^2 +...+\frac{ \nabla ^n f(x_0)}{n!}(x-x_0)^n $$
 其实在高等数学中学到Taylor series的时候，我本人是十分无感的，我并不知道这个东西到底有什么用处，相信很多人和我有相似的经历。
 
 事实上，Taylor series所表现的是，对于\\( f(x)\\)在点\\( x_0\\)附近的一个估计，而且，这个附近十分小，无限接近于点\\(x_0\\)。如果我们使用0阶Taylor series来估计的话，那我们就粗暴的认为，\\( f(x)\\)在点\\( x_0\\)附近的值就是\\(x_0\\)，这当然太粗暴直接了，哈哈。
 
-既然这太粗暴了，那么我们就用1阶Taylor series来做一个逼近和估计，这就是gradient descent的思想；如果我们用2阶来估计呢，那就成了newton's method了
+既然这太粗暴了，那么我们就用1st order Taylor series来做一个逼近和估计，这就是gradient descent的思想；如果我们用2nd order Taylor series来估计呢，那就成了newton's method了
 
 OK，我们继续娓娓道来。
 
 ## 1st order Taylor series & gradient descent
-对于objective function \\(f(x)\\)，假设\\(x_k\\)是第k次gradient descent迭代后的\\(x\\)取值，那我们在此处的1st order Taylor series 就是
+假设\\(x_k\\)是第k次gradient descent迭代后的\\(x\\)取值，那我们在此处的1st order Taylor series 就是
 $$f(x)=f(x_k)+ \nabla f(x_k)(x-x_k)$$
 其中\\(x\\)是迭代的下一个方向，gradient descent的目标就是让\\(f(x)\\)达到局部甚至全局最小值，那么每一次迭代，也需要尽可能的减小更多以达到这个目的，那么
 $$f(x_k)-f(x)=- \nabla f(x_k)(x-x_k)$$
-显然，上式应该尽可能的大，即]\\(- \nabla f(x_k)(x-x_k)\\)越大越好，我们现在把\\((x-x_k)\\)做一个替换，用单位向量\\(g\\)和标量\\( \alpha\\)分别代表方向和大小，现在的任务就变成了
-$$min \nabla f(x_k)(x-x_k) = min \alpha \nabla f(x_k)⋅g$$
-我们都知道，对于两个向量来说，当他们方向相反时，他们的内积是最小的，因此当\\(g\\)的方向是\\( \nabla f(x_k)\\)的反方向时，上式可以取到最小值，于是就有
+显然，上式应该尽可能的大，即**\\(- \nabla f(x_k)(x-x_k)\\)越大越好**，我们现在把\\((x-x_k)\\)做一个替换，用单位向量\\(g\\)和标量\\( \alpha\\)分别代表方向和大小，现在的任务就变成了
+$$min \nabla f(x_k)(x-x_k) = min( \alpha \nabla f(x_k)⋅g)$$
+我们都知道，**对于两个向量来说，当他们方向相反时，他们的内积是最小的**，因此当\\(g\\)的方向是\\( \nabla f(x_k)\\)的反方向时，上式可以取到最小值，于是就有
 $$x-x_k=- \alpha \nabla f(x_k)$$
 $$x:=x_k- \alpha \nabla f(x_k)$$
 到这一步，是不是看到了熟悉的gradient descent呢，yeah mate！We make it!
 ## 2nd order Taylor series & newton's method
-和上面的gradient descent相似，假设\\(x_k\\)是第k次newton's method迭代后的\\(x\\)取值，那我们在此处的2nd order Taylor series 是
+和上面的gradient descent相似，假设\\(x_k\\)是第\\(k\\)次newton's method迭代后的\\(x\\)取值，那我们在此处的2nd order Taylor series 是
 $$f(x)=f(x_k)+ \nabla f(x_k)(x-x_k) + \frac{1}{2}(x-x_k)^T \nabla^2 f(x_k)(x-x_k) $$
 我们对等号两边同时对\\(x\\)求导，并令其为零
 $$ \nabla f(x) = \nabla f(x_k) + (x-x_k) \nabla^2 f(x_k)=0$$
-由于newton's method的原理就是通过\\(\nabla f(x)=0\\)来寻找最小值，故上式为零的解其实就是newton's method本次迭代后的结果。其中\\(\nabla f(x_k)\\)是\\(x_k\\)处的一阶导数，\\( \nabla^2 f(x_k)\\)是\\(x_k\\)处的二阶导数Hessian矩阵元素
+由于newton's method的原理就是通过\\(\nabla f(x)=0\\)来寻找最小值，**故上式为零的解\\(x\\)其实就是newton's method在\\(k+1\\)次迭代后的新的\\(x\\)值**。其中\\(\nabla f(x_k)\\)是\\(x_k\\)处的一阶导数，\\( \nabla^2 f(x_k)\\)是\\(x_k\\)处的二阶导数Hessian矩阵元素
 
 我们令\\(\nabla f(x_k)=g\\)，\\(\nabla f(x_k)=H\\)，则上式变成
 $$g+H(x-x_k)=0$$
 进一步的
 $$x=x_k-H^{-1}g$$
-由于\\(-g H^{-1} \\) 是优化的前进方向，在寻找最小值的过程中，这个方向一定是和梯度方向\\(g\\)相反，那么就有\\( g^T H^{-1} g > 0\\)，这不就是positive definite的定义吗？也就是说，**Hessian矩阵是positive definite的**。
+由于\\(-g H^{-1} \\) 是优化的前进方向，在寻找最小值的过程中，这个方向一定是和梯度方向\\(g\\)相反才可以更快的下降，那么就有\\( g^T H^{-1} g > 0\\)，这不就是positive definite的定义吗？也就是说，**Hessian矩阵是positive definite的**。
 
-想象一下，如果Hessian是negtive definite的话，参数更新的方向就成了和\\(g\\)相同的方向，newton's method将会发散，这一点，也是newton's method的命门。在迭代过程中，如果第\\(k\\)次迭代获得的\\(x_k\\)Hessian不正定，那么newton's method将会发散，从而迭代失败。当然，为了解决这种问题，后续有改进的BFGS等方法，我们在这里暂时不详细讨论
+想象一下，如果Hessian是negative definite的话，参数更新的方向就成了和\\(g\\)相同的方向，newton's method将会发散，这一点，也是newton's method的命门。在迭代过程中，如果第\\(k\\)次迭代获得的\\(x_k\\)处的Hessian matrix negative definite，那么newton's method将会发散，从而导致不收敛。当然，为了解决这种问题，后续有改进的BFGS等方法，我们在这里暂时不详细讨论。
 ## Sum up
+下面我们再来总结性质的对比一下两种方法，来看一张图
+![](http://otmy7guvn.bkt.clouddn.com/blog/2/2-1.png) 
+事实上，这两种方法都采用了一种逼近和拟合的思想。假设现在处于迭代\\(k\\)次之后的\\(x_k\\)点，对于objective function，我们用\\(x_k\\)点的Taylor series \\(f(x)\\)来逼近和拟合，当然了，上图我们看到，gradient descent是用一次function而newton's method采用的是二次function，这是二者之间最显著的区别。
+
+对于new's method，在拟合之后，我们对于求\\( \nabla f(x)=0\\)的\\(x\\)点作为此次迭代的结果，下次迭代时候，又在objective function的此点再次进行二次function的拟合，如此迭代下去。
+
+newton's method采用二次function来拟合，我们可以感性的理解为，newton's method在寻找下降的方向时候，关注的不仅仅是此处objective function value是不是减小，还关注此处value下降的趋势如何，而gradient descent只关心此处function value是不是减小，因此newton's method可以迭代更少次数获得最优解。对于二次型的objective function，newton's method甚至可以一次迭代就找到全局最小值，但是对于一般的objective function，是很不稳定的，因而我们也会加入步长\\(\lambda\\)限制，防止其一次迭代过分长而带来迭代后Hessian不正定的情况，即
+$$x:=x- \lambda H^{-1} g$$
+最后总结一下：
+* Gradient descent 和 newton's method都是利用Taylor series对objective function进行拟合来实现迭代的
+* Gradient descent 采用一次型function拟合而 newton's method采用的是二次型function，因此newton's method迭代更迅速
+* Newton's method鲁棒性比较差，对于拟合点Hessian matrix positive definite or not很敏感，因此在non-convex optimization中很困难
+
+好了，先写这么多，这其中的知识量还是很深奥的，也不知道自己有没有叙述明白，欢迎大家一起来讨论！
+## Reference
+* [UCLA courseware](http://www.math.ucla.edu/~biskup/164.2.14f/PDFs/recursions.pdf)
+* [CCU courseware](https://www.cs.ccu.edu.tw/~wtchu/courses/2014s_OPT/Lectures/Chapter%209%20Newton%27s%20Method.pdf)
+* [Taylor series](https://en.wikipedia.org/wiki/Taylor_series)
