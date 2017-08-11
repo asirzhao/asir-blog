@@ -1,12 +1,13 @@
 ---
 title: 再深入聊聊梯度下降和牛顿法
 date: 2017-08-11 17:26:56
-tags: [gradient descent,newton's method]
+tags: 
+	- unconstrained optimization
+	- gradient descent
+	- newton's method
 categories: machine learning
 ---
-上次我们一起从convex function引出了gradient descent和newton's method，而且我们已经知道了gradient descent和newton's method都是convex optimization的好方法,这次我们就专门来讲一讲这两个方法。
-
-用过这两种方法的朋友们都知道，newton's method只需要很少的迭代次数，就可以获得gradient descent上百次乃至上千次迭代的效果。那么，造成这一点的原因又是什么呢?
+上次我们一起聊到了gradient descent和newton's method，而且我们已经知道了gradient descent和newton's method都是convex optimization的好方法，这次我们就跳出convex optimization，从更大的unconstrained optimization角度来探讨下这两种方法之间的关联和区别。
 
 假设我们现有一个的optimization task，要求objective function \\(f(x)\\)的最小值，我们一般有两种方案：
 * 考虑到\\(f(x)\\)的最小值很有可能是全局最小值，那么我们可以通过寻找\\( \nabla f(x)=0\\)的点来确定最小值，这就是**newton's method**的思想
@@ -50,22 +51,31 @@ $$g+H(x-x_k)=0$$
 $$x=x_k-H^{-1}g$$
 由于\\(-g H^{-1} \\) 是优化的前进方向，在寻找最小值的过程中，这个方向一定是和梯度方向\\(g\\)相反才可以更快的下降，那么就有\\( g^T H^{-1} g > 0\\)，这不就是positive definite的定义吗？也就是说，**Hessian矩阵是positive definite的**。
 
-想象一下，如果Hessian是negative definite的话，参数更新的方向就成了和\\(g\\)相同的方向，newton's method将会发散，这一点，也是newton's method的命门。在迭代过程中，如果第\\(k\\)次迭代获得的\\(x_k\\)处的Hessian matrix negative definite，那么newton's method将会发散，从而导致不收敛。当然，为了解决这种问题，后续有改进的BFGS等方法，我们在这里暂时不详细讨论。
+想象一下，如果Hessian是negative definite的话，参数更新的方向就成了和\\(g\\)相同的方向，newton's method将会发散，这一点，也是newton's method的缺点。在objective function是non-convex function的情况下，如果第\\(k\\)次迭代获得的\\(x_k\\)处的Hessian matrix negative definite，那么newton's method将会发散，从而导致不收敛。当然，为了解决这种问题，后续有改进的BFGS等方法，我们在这里暂时不详细讨论。
 ## Sum up
 下面我们再来总结性质的对比一下两种方法，来看一张图
 ![](http://otmy7guvn.bkt.clouddn.com/blog/2/2-1.png) 
 事实上，这两种方法都采用了一种逼近和拟合的思想。假设现在处于迭代\\(k\\)次之后的\\(x_k\\)点，对于objective function，我们用\\(x_k\\)点的Taylor series \\(f(x)\\)来逼近和拟合，当然了，上图我们看到，gradient descent是用一次function而newton's method采用的是二次function，这是二者之间最显著的区别。
 
-对于new's method，在拟合之后，我们对于求\\( \nabla f(x)=0\\)的\\(x\\)点作为此次迭代的结果，下次迭代时候，又在objective function的此点再次进行二次function的拟合，如此迭代下去。
+对于new's method，在拟合之后，我们通过\\( \nabla f(x)=0\\)求得的\\(x_k\\)点作为此次迭代的结果，下次迭代时候，又在\\(x_k\\)处次进行二次function的拟合，并如此迭代下去。
 
-newton's method采用二次function来拟合，我们可以感性的理解为，newton's method在寻找下降的方向时候，关注的不仅仅是此处objective function value是不是减小，还关注此处value下降的趋势如何，而gradient descent只关心此处function value是不是减小，因此newton's method可以迭代更少次数获得最优解。对于二次型的objective function，newton's method甚至可以一次迭代就找到全局最小值，但是对于一般的objective function，是很不稳定的，因而我们也会加入步长\\(\lambda\\)限制，防止其一次迭代过分长而带来迭代后Hessian不正定的情况，即
+Newton's method采用二次function来拟合，我们可以感性的理解为，newton's method在寻找下降的方向时候，关注的不仅仅是此处objective function value是不是减小，还关注此处value下降的趋势如何，而gradient descent只关心此处function value是不是减小，因此newton's method可以迭代更少次数获得最优解。对于标准二次型的objective function，newton's method甚至可以一次迭代就找到全局最小值。
+
+但是值得注意的是，上面所说的标准二次型function，实质上是convex function，在一般的unconstrained optimization中，更多的情况则是non-convex optimization，对于一般的non-convex optimization，newton's method是相对不稳定的，因为我们很难保证Hessian matrix的positive definite。鉴于此，我们会加入步长\\(\lambda\\)限制，防止其一次迭代过大而带来迭代后Hessian matrix negative definite的情况，即
 $$x:=x- \lambda H^{-1} g$$
-最后总结一下：
-* Gradient descent 和 newton's method都是利用Taylor series对objective function进行拟合来实现迭代的
-* Gradient descent 采用一次型function拟合而 newton's method采用的是二次型function，因此newton's method迭代更迅速
-* Newton's method鲁棒性比较差，对于拟合点Hessian matrix positive definite or not很敏感，因此在non-convex optimization中很困难
+对于这种思想，我个人认为，是在整体non-convex function中寻找一个局部的convex function，通过步长将newton's method限制在这个局部中，最后收敛到局部最优中。由此可见，newton's mtehod在non-convex中受限制比较大。
+
+相比之下，由于gradient descent采用的一次function做拟合，只需要考虑沿着梯度反方向寻找最小值，因此gradient descent适用于各种场景，甚至是non-convex optimization，虽然不能保证是全局最优，但至少gradient descent是可以值得一试的方法。
+
+下面来总结一下：
+* Gradient descent 和 newton's method都是利用Taylor series对objective function进行拟合来实现迭代的；
+* Gradient descent 采用一次型function拟合而 newton's method采用的是二次型function，因此newton's method迭代更迅速；
+* Newton's method每次迭代都会计算Hessian matrix的逆，在高维feature情况下，这使得每次迭代会比较慢；
+* Newton's method在non-convex optimization中很受限制，而gradient descent则不受影响。
 
 好了，先写这么多，这其中的知识量还是很深奥的，也不知道自己有没有叙述明白，欢迎大家一起来讨论！
+
+**最后感谢优男的宝贵意见！**
 ## Reference
 * [UCLA courseware](http://www.math.ucla.edu/~biskup/164.2.14f/PDFs/recursions.pdf)
 * [CCU courseware](https://www.cs.ccu.edu.tw/~wtchu/courses/2014s_OPT/Lectures/Chapter%209%20Newton%27s%20Method.pdf)

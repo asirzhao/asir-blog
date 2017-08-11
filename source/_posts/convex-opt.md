@@ -1,7 +1,10 @@
 ---
 title: 从凸函数到梯度下降和牛顿法
 date: 2017-08-02 15:53:55
-tags: [convex optimization,gradient descent,newton's method]
+tags: 
+    - convex optimization
+    - gradient descent
+    - newton's method
 categories: machine learning
 ---
 记得我在和优男一起研究logistic regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言
