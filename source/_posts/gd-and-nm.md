@@ -17,11 +17,13 @@ OK，简单的叙述之后，我们开始正题！
 <!--more-->
 
 ## 泰勒级数(Taylor series)
-首先我们需要回忆一下高等数学中重要的Taylor series，如果\\( f(x)\\)在点\\( x_0\\)的领域内具有\\(n+1\\)阶导数，那么，在该领域内，\\( f(x)\\)可展开成\\(n\\)阶Taylor series
+首先我们需要回忆一下高等数学中重要的Taylor series，如果\\( f(x)\\)在点\\( x_0\\)的领域内具有\\(n+1\\)阶导数，那么，在该领域内，\\( f(x)\\)可展开成\\(n\\)阶Taylor series，忽略无限大次项的形式就是
 $$f(x)=f(x_0)+ \nabla f(x_0)(x-x_0) + \frac{ \nabla ^2 f(x_0)}{2!}(x-x_0)^2 +...+\frac{ \nabla ^n f(x_0)}{n!}(x-x_0)^n $$
 其实在高等数学中学到Taylor series的时候，我本人是十分无感的，我并不知道这个东西到底有什么用处，相信很多人和我有相似的经历。
 
-事实上，Taylor series所表现的是，对于\\( f(x)\\)在点\\( x_0\\)附近的一个估计，而且，这个附近十分小，无限接近于点\\(x_0\\)。如果我们使用0阶Taylor series来估计的话，那我们就粗暴的认为，\\( f(x)\\)在点\\( x_0\\)附近的值就是\\(x_0\\)，这当然太粗暴直接了，哈哈。
+> In mathematics, a Taylor series is a representation of a function as an infinite sum of terms that are calculated from the values of the function's derivatives at a single point.
+
+事实上，Taylor series所表现的是，对于\\( f(x)\\)在点\\( x_0\\)附近的一个估计，也可以理解为，根据\\( x_0\\)点处的各阶derivatives之和构成一个新的function，这个function就是对\\(f(x)\\)的逼近和拟合，而且这种逼近和拟合，随着Taylor series阶数增加而更接近于真实的]\\(f(x)\\)。如果我们使用0阶Taylor series来逼近的话，那我们就粗暴的认为，\\( f(x)\\)在点\\( x_0\\)附近的值就都是\\(x_0\\)，这当然太粗暴直接了，哈哈。
 
 既然这太粗暴了，那么我们就用1st order Taylor series来做一个逼近和估计，这就是gradient descent的思想；如果我们用2nd order Taylor series来估计呢，那就成了newton's method了
 
@@ -32,9 +34,9 @@ OK，我们继续娓娓道来。
 $$f(x)=f(x_k)+ \nabla f(x_k)(x-x_k)$$
 其中\\(x\\)是迭代的下一个方向，gradient descent的目标就是让\\(f(x)\\)达到局部甚至全局最小值，那么每一次迭代，也需要尽可能的减小更多以达到这个目的，那么
 $$f(x_k)-f(x)=- \nabla f(x_k)(x-x_k)$$
-显然，上式应该尽可能的大，即**\\(- \nabla f(x_k)(x-x_k)\\)越大越好**，我们现在把\\((x-x_k)\\)做一个替换，用单位向量\\(g\\)和标量\\( \alpha\\)分别代表方向和大小，现在的任务就变成了
-$$min \nabla f(x_k)(x-x_k) = min( \alpha \nabla f(x_k)⋅g)$$
-我们都知道，**对于两个向量来说，当他们方向相反时，他们的内积是最小的**，因此当\\(g\\)的方向是\\( \nabla f(x_k)\\)的反方向时，上式可以取到最小值，于是就有
+显然，上式应该尽可能的大，即**\\(- \nabla f(x_k)(x-x_k)\\)越大越好**，我们现在把\\((x-x_k)\\)做一个替换，用单位向量\\(\vec g\\)和标量\\( \alpha\\)分别代表方向和大小，现在的任务就变成了
+$$ \min \nabla f(x_k)(x-x_k) = \min( \alpha \vec{\nabla f(x_k)}⋅ \vec g)$$
+我们都知道，**对于两个向量来说，当他们方向相反时，他们的内积是最小的**，因此当\\(\vec g\\)的方向是\\( \vec{\nabla f(x_k)}\\)的反方向时，上式可以取到最小值，于是就有
 $$x-x_k=- \alpha \nabla f(x_k)$$
 $$x:=x_k- \alpha \nabla f(x_k)$$
 到这一步，是不是看到了熟悉的gradient descent呢，yeah mate！We make it!
@@ -45,7 +47,7 @@ $$f(x)=f(x_k)+ \nabla f(x_k)(x-x_k) + \frac{1}{2}(x-x_k)^T \nabla^2 f(x_k)(x-x_k
 $$ \nabla f(x) = \nabla f(x_k) + (x-x_k) \nabla^2 f(x_k)=0$$
 由于newton's method的原理就是通过\\(\nabla f(x)=0\\)来寻找最小值，**故上式为零的解\\(x\\)其实就是newton's method在\\(k+1\\)次迭代后的新的\\(x\\)值**。其中\\(\nabla f(x_k)\\)是\\(x_k\\)处的一阶导数，\\( \nabla^2 f(x_k)\\)是\\(x_k\\)处的二阶导数Hessian矩阵元素
 
-我们令\\(\nabla f(x_k)=g\\)，\\(\nabla f(x_k)=H\\)，则上式变成
+我们令\\(\nabla f(x_k)=g\\)，\\(\nabla^2 f(x_k)=H\\)，则上式变成
 $$g+H(x-x_k)=0$$
 进一步的
 $$x=x_k-H^{-1}g$$
