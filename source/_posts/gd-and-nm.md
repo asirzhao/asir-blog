@@ -8,13 +8,13 @@ tags:
 categories: machine learning
 ---
 上次我们一起聊到了gradient descent和newton's method，而且我们已经知道了gradient descent和newton's method都是convex optimization的好方法，这次我们就跳出convex optimization，从更大的unconstrained optimization角度来探讨下这两种方法之间的关联和区别。
+<!--more-->
 
 假设我们现有一个的optimization task，要求objective function \\(f(x)\\)的最小值，我们一般有两种方案：
 * 考虑到\\(f(x)\\)的最小值很有可能是全局最小值，那么我们可以通过寻找\\( \nabla f(x)=0\\)的点来确定最小值，这就是**newton's method**的思想
 * 既然我们要寻找最小值，那我们可以顺着一条\\(f(x)\\)逐渐减小的路径，顺着这条路径一直走下去，直到不再变小，这就是**gradient descent**的思想
 
 OK，简单的叙述之后，我们开始正题！
-<!--more-->
 
 ## 泰勒级数(Taylor series)
 首先我们需要回忆一下高等数学中重要的Taylor series，如果\\( f(x)\\)在点\\( x_0\\)的领域内具有\\(n+1\\)阶导数，那么，在该领域内，\\( f(x)\\)可展开成\\(n\\)阶Taylor series，忽略无限大次项的形式就是
@@ -59,9 +59,9 @@ $$x=x_k-H^{-1}g$$
 ![](http://otmy7guvn.bkt.clouddn.com/blog/2/2-1.png) 
 事实上，这两种方法都采用了一种逼近和拟合的思想。假设现在处于迭代\\(k\\)次之后的\\(x_k\\)点，对于objective function，我们用\\(x_k\\)点的Taylor series \\(f(x)\\)来逼近和拟合，当然了，上图我们看到，gradient descent是用一次function而newton's method采用的是二次function，这是二者之间最显著的区别。
 
-对于new's method，在拟合之后，我们通过\\( \nabla f(x)=0\\)求得的\\(x_k\\)点作为此次迭代的结果，下次迭代时候，又在\\(x_k\\)处次进行二次function的拟合，并如此迭代下去。
+对于new's method，在拟合之后，我们通过\\( \nabla f(x)=0\\)求得的\\(x_{k+1}\\)点作为此次迭代的结果，下次迭代时候，又在\\(x_{k+1}\\)处次进行二次function的拟合，并如此迭代下去。
 
-Newton's method采用二次function来拟合，我们可以感性的理解为，newton's method在寻找下降的方向时候，关注的不仅仅是此处objective function value是不是减小，还关注此处value下降的趋势如何，而gradient descent只关心此处function value是不是减小，因此newton's method可以迭代更少次数获得最优解。对于标准二次型的objective function，newton's method甚至可以一次迭代就找到全局最小值。
+Newton's method采用二次function来拟合，我们可以感性的理解为，newton's method在寻找下降的方向时候，关注的不仅仅是此处objective function value是不是减小(一阶value)，还关注此处value下降的趋势如何(二阶value)，而gradient descent只关心此处function value是不是减小，因此newton's method可以迭代更少次数获得最优解。对于标准二次型的objective function，newton's method甚至可以一次迭代就找到全局最小值。
 
 但是值得注意的是，上面所说的标准二次型function，实质上是convex function，在一般的unconstrained optimization中，更多的情况则是non-convex optimization，对于一般的non-convex optimization，newton's method是相对不稳定的，因为我们很难保证Hessian matrix的positive definite。鉴于此，我们会加入步长\\(\lambda\\)限制，防止其一次迭代过大而带来迭代后Hessian matrix negative definite的情况，即
 $$x:=x- \lambda H^{-1} g$$
