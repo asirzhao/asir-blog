@@ -23,7 +23,7 @@ $$f(x)=f(x_0)+ \nabla f(x_0)(x-x_0) + \frac{ \nabla ^2 f(x_0)}{2!}(x-x_0)^2 +...
 
 > In mathematics, a Taylor series is a representation of a function as an infinite sum of terms that are calculated from the values of the function's derivatives at a single point.
 
-事实上，Taylor series所表现的是，对于\\( f(x)\\)在点\\( x_0\\)附近的一个估计，也可以理解为，根据\\( x_0\\)点处的各阶derivatives之和构成一个新的function，这个function就是对\\(f(x)\\)的逼近和拟合，而且这种逼近和拟合，随着Taylor series阶数增加而更接近于真实的]\\(f(x)\\)。如果我们使用0阶Taylor series来逼近的话，那我们就粗暴的认为，\\( f(x)\\)在点\\( x_0\\)附近的值就都是\\(x_0\\)，这当然太粗暴直接了，哈哈。
+事实上，Taylor series所表现的是，对于\\( f(x)\\)在点\\( x_0\\)附近的一个估计，也可以理解为，根据\\( x_0\\)点处的各阶derivatives之和构成一个新的function，这个function就是对\\(f(x)\\)的逼近和拟合，而且这种逼近和拟合，随着Taylor series阶数增加而更接近于真实的\\(f(x)\\)。如果我们使用0阶Taylor series来逼近的话，那我们就粗暴的认为，\\( f(x)\\)在点\\( x_0\\)附近的值就都是\\(x_0\\)，这当然太粗暴直接了，哈哈。
 
 既然这太粗暴了，那么我们就用1st order Taylor series来做一个逼近和估计，这就是gradient descent的思想；如果我们用2nd order Taylor series来估计呢，那就成了newton's method了
 
