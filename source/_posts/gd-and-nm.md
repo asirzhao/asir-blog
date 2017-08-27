@@ -36,7 +36,11 @@ $$f(x)=f(x_k)+ \nabla f(x_k)(x-x_k)$$
 $$f(x_k)-f(x)=- \nabla f(x_k)(x-x_k)$$
 显然，上式应该尽可能的大，即**\\(- \nabla f(x_k)(x-x_k)\\)越大越好**，我们现在把\\((x-x_k)\\)做一个替换，用单位向量\\(\vec g\\)和标量\\( \alpha\\)分别代表方向和大小，现在的任务就变成了
 $$ \min \nabla f(x_k)(x-x_k) = \min( \alpha \vec{\nabla f(x_k)}⋅ \vec g)$$
-我们都知道，**对于两个向量来说，当他们方向相反时，他们的内积是最小的**，因此当\\(\vec g\\)的方向是\\( \vec{\nabla f(x_k)}\\)的反方向时，上式可以取到最小值，于是就有
+我们都知道，**对于两个向量来说，当他们方向相反时，他们的内积是最小的**。
+
+>梯度方向的定义是该点梯度增长最快的方向
+
+因此当\\(\vec g\\)的方向是\\( \vec{\nabla f(x_k)}\\)的反方向时，上式可以取到最小值，于是就有
 $$x-x_k=- \alpha \nabla f(x_k)$$
 $$x:=x_k- \alpha \nabla f(x_k)$$
 到这一步，是不是看到了熟悉的gradient descent呢，yeah mate！We make it!
