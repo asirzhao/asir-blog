@@ -38,6 +38,7 @@ $$J( \theta) = \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2$$
 下面大家来我一起做一个头脑风暴，所谓参数的priori distribution，其实就是用来限制最后optimization结果的一个限定，那么我们其实就是在做一个受限制的的convex optimization，即：
 $$ \theta=argmin \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2$$
 $$ s.t. \sum^{d}_{j=1}| \theta^{(i)}|^p \geq \beta$$
+其中，\\( \beta\\)是ridge或者lasso的最小值。
 那么此时的图就变成了：
 ![](http://otmy7guvn.bkt.clouddn.com/blog/4/4-3.png) 
 我们从图中可以看到，在加入了限制后，最终的optimization不是落在极小值点，而是落在图中所示的位置。从另一个角度来想，regularization item的加入，使得整个cost function在寻找最小值的时候，要均衡的考虑objective function和regularization item的大小.
