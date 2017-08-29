@@ -2,13 +2,14 @@
 
 
 
+  
 
-<html class="theme-next pisces" lang="zh-Hans">
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="">
 
 
 
@@ -20,7 +21,6 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-
 
 
 
@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-1.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-2.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-3.png">
-<meta property="og:updated_time" content="2017-08-27T11:03:01.446Z">
+<meta property="og:updated_time" content="2017-08-28T09:44:13.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入聊聊正则化">
 <meta name="twitter:description" content="最近和优男一起聊到了L1和L2 regularization，期间遇到了很多没有想明白的问题，加上最近工作有些忙，空余时间用来倒腾新到货的小米路由器，只能趁周末自己研究研究，下面和大家分享一下regularization中一些深入的问题。不讨论基础知识，直接上干货。">
@@ -117,11 +117,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.1',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    tabs: ,
-    motion: "",
+    motion: true,
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -154,6 +152,12 @@
 
 
 
+
+
+
+
+
+
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,11 +280,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asir.unbelievable9.info/2017/08/27/ridge-lasso/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T01:55:07-07:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T01:55:07+08:00">
                 2017-08-27
               </time>
             
@@ -366,9 +366,6 @@
       </header>
     
 
-    
-    
-    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -387,7 +384,7 @@
 <h2 id="geometry-of-error-surfaces"><a href="#geometry-of-error-surfaces" class="headerlink" title="geometry of error surfaces"></a>geometry of error surfaces</h2><p>在不考虑参数priori distribution的时候，cost function的形式是</p>
 <script type="math/tex; mode=display">J( \theta) = \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2</script><p>用二维截面图展示就是<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/4/4-2.png" alt=""><br>图中只有objective function，横纵轴是参数\( \theta\)，截取过来的图，所以上面的参数是\(w\)，\(l\)是loss值，箭头指向的点就是cost function的极小点。在不考虑参数priori distribution的时候，这个点就是我们的optimization target.</p>
 <p>下面大家来我一起做一个头脑风暴，所谓参数的priori distribution，其实就是用来限制最后optimization结果的一个限定，那么我们其实就是在做一个受限制的的convex optimization，即：</p>
-<script type="math/tex; mode=display">\theta=argmin \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2</script><script type="math/tex; mode=display">s.t. \sum^{d}_{j=1}| \theta^{(i)}|^p \geq \beta</script><p>那么此时的图就变成了：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/4/4-3.png" alt=""><br>我们从图中可以看到，在加入了限制后，最终的optimization不是落在极小值点，而是落在图中所示的位置。从另一个角度来想，regularization item的加入，使得整个cost function在寻找最小值的时候，要均衡的考虑objective function和regularization item的大小.</p>
+<script type="math/tex; mode=display">\theta=argmin \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2</script><script type="math/tex; mode=display">s.t. \sum^{d}_{j=1}| \theta^{(i)}|^p \geq \beta</script><p>其中，\( \beta\)是ridge或者lasso的最小值。<br>那么此时的图就变成了：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/4/4-3.png" alt=""><br>我们从图中可以看到，在加入了限制后，最终的optimization不是落在极小值点，而是落在图中所示的位置。从另一个角度来想，regularization item的加入，使得整个cost function在寻找最小值的时候，要均衡的考虑objective function和regularization item的大小.</p>
 <p>在这个地方，我和优男讨论的时候有一个地方没有想通，例如使用gradient descent进行optimzation的时候，怎么保证优化可以落到图中的点呢，我是这么考虑的：当加入regularization后，cost function本身就有了变化，随之而来的是gradient也发生了变化，在gradient descent迭代过程中就已经把regularization的影响带了进去，因此在每一次迭代的时候，实际上应该都是按照上式的限制进行优化的。</p>
 <p>当然，上图也可以用来就是为什么lasso可以获得稀疏特征，那就是因为lasso更可能在坐标轴上和objective function产生交点，进而使得一些特征变成0.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
@@ -397,15 +394,27 @@
 
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+        
 
-    
+      
+    </div>
 
-    
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -447,10 +456,6 @@
       
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -521,9 +526,7 @@
 
           
             <div class="site-state-item site-state-posts">
-            
               <a href="/archives/">
-            
                 <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -564,9 +567,7 @@
                   
                     <i class="fa fa-fw fa-github"></i>
                   
-                    
-                      GitHub
-                    
+                  GitHub
                 </a>
               </span>
             
@@ -628,16 +629,19 @@
     <i class="fa fa-fire"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Joe Asir</span>
-
-  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
 
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.1</div>
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
         
@@ -660,12 +664,6 @@
     </span>
   
 </div>
-
-
-
-
-
-
 
 
         
@@ -757,10 +755,6 @@
 
 
 
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
@@ -807,8 +801,6 @@
 
 
   
-
-
 
 
 

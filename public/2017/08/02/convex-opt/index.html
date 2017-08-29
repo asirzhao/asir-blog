@@ -2,13 +2,14 @@
 
 
 
+  
 
-<html class="theme-next pisces" lang="zh-Hans">
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="">
 
 
 
@@ -20,7 +21,6 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-
 
 
 
@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/1/1-3.png">
-<meta property="og:updated_time" content="2017-08-27T06:13:52.945Z">
+<meta property="og:updated_time" content="2017-08-13T03:56:47.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从凸函数到梯度下降和牛顿法">
 <meta name="twitter:description" content="记得我在和优男一起研究logistic regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言  怎么保证logistic regression通过gradient descent找到的是最优解； 为什么logistic regression可以用newton’s method呢？ Newton’s method中Hessian matrix必须positive definite">
@@ -117,11 +117,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.1',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    tabs: ,
-    motion: "",
+    motion: true,
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -154,6 +152,12 @@
 
 
 
+
+
+
+
+
+
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,11 +280,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asir.unbelievable9.info/2017/08/02/convex-opt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T15:53:55-07:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T15:53:55+08:00">
                 2017-08-02
               </time>
             
@@ -366,9 +366,6 @@
       </header>
     
 
-    
-    
-    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -448,15 +445,27 @@
 
       
     </div>
-    
-    
-    
 
-    
+    <div>
+      
+        
 
-    
+      
+    </div>
 
-    
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -500,10 +509,6 @@
       
       
     </footer>
-  </div>
-  
-  
-  
   </article>
 
 
@@ -574,9 +579,7 @@
 
           
             <div class="site-state-item site-state-posts">
-            
               <a href="/archives/">
-            
                 <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -617,9 +620,7 @@
                   
                     <i class="fa fa-fw fa-github"></i>
                   
-                    
-                      GitHub
-                    
+                  GitHub
                 </a>
               </span>
             
@@ -681,16 +682,19 @@
     <i class="fa fa-fire"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Joe Asir</span>
-
-  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
 
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.1</div>
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
         
@@ -713,12 +717,6 @@
     </span>
   
 </div>
-
-
-
-
-
-
 
 
         
@@ -810,10 +808,6 @@
 
 
 
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
@@ -860,8 +854,6 @@
 
 
   
-
-
 
 
 
