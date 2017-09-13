@@ -63,7 +63,7 @@ $$x=x_k-H^{-1}g$$
 ![](http://otmy7guvn.bkt.clouddn.com/blog/2/2-1.png) 
 事实上，这两种方法都采用了一种逼近和拟合的思想。假设现在处于迭代\\(k\\)次之后的\\(x_k\\)点，对于objective function，我们用\\(x_k\\)点的Taylor series \\(f(x)\\)来逼近和拟合，当然了，上图我们看到，gradient descent是用一次function而newton's method采用的是二次function，这是二者之间最显著的区别。
 
-对于new's method，在拟合之后，我们通过\\( \nabla f(x)=0\\)求得的\\(x_{k+1}\\)点作为此次迭代的结果，下次迭代时候，又在\\(x_{k+1}\\)处次进行二次function的拟合，并如此迭代下去。
+对于new's method，在拟合之后，我们通过\\( \nabla f(x)=0\\)求得的\\(x \_{k+1}\\)点作为此次迭代的结果，下次迭代时候，又在\\(x \_{k+1}\\)处次进行二次function的拟合，并如此迭代下去。
 
 Newton's method采用二次function来拟合，我们可以感性的理解为，newton's method在寻找下降的方向时候，关注的不仅仅是此处objective function value是不是减小(一阶value)，还关注此处value下降的趋势如何(二阶value)，而gradient descent只关心此处function value是不是减小，因此newton's method可以迭代更少次数获得最优解。对于标准二次型的objective function，newton's method甚至可以一次迭代就找到全局最小值。
 
