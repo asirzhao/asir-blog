@@ -30,6 +30,7 @@ $$v_t= \beta v_{t-1} + (1- \beta) \theta_t$$
 我们可以看到，起始绿色钱和紫色曲线在最后基本没有差别，几乎重合，但是在曲线开始的时候，绿色曲线比紫色曲线更加逼近真实情况，因此，Ng给我们以下建议：
 * 当我们不关注moving averages initial value大小的时候，我们可以不使用bias correction
 * Bias correction对于initial value效果更好
+
 ## Gradient descent optimization
 ### momentum
 在gradient descent中，我们经常会遇到一种情况，如图所示：
@@ -76,3 +77,4 @@ $$\alpha = \frac{k}{\sqrt{epochNum}}* \alpha_0$$
 ## Reference
 * [Deep learning-Coursera Andrew Ng](https://www.coursera.org/specializations/deep-learning)
 * [Deep learning-网易云课堂 Andrew Ng](https://mooc.study.163.com/course/deeplearning_ai-2001281003#/info)
+* [An overview of gradient descent optimization algorithms ](http://ruder.io/optimizing-gradient-descent/)
