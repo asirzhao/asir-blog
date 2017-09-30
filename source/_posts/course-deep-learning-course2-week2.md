@@ -67,7 +67,7 @@ $$v^{corrected}_{dW}= \frac{v_{dW}}{1- \beta^t_1}, \qquad v^{corrected}_{db}= \f
 $$s^{corrected}_{dW}= \frac{s_{dW}}{1- \beta^t_2}, \qquad s^{corrected}_{db}= \frac{s_{db}}{1- \beta^t_2}$$
 $$W:=W- \alpha \frac{v^{corrected}_{dW}}{ \sqrt{s^{corrected}_{dW}}+ \epsilon}$$
 $$W:=W- \alpha \frac{v^{corrected}_{db}}{ \sqrt{s^{corrected}_{db}}+ \epsilon}$$
-其中，\\(\epsilon\\)是为了防止分母为0的一个item，取值建议为\\(10^{-8}\\)，\\(\beta\_1\\)建议取值0.9，\\(beta\\_2\\)建议取值0.999。
+其中，\\(\epsilon\\)是为了防止分母为0的一个item，取值建议为\\(10^{-8}\\)，\\(\beta\_1\\)建议取值0.9，\\(\beta\_2\\)建议取值0.999。
 ## Learning rate decay
 在gradient descent中，随着迭代的深度，越来越靠近minimum，我们需要更小的learning rate，以避免越过minimum，常用的learning decay方法有：
 $$\alpha = \frac{1}{1+decayRate*epochNum} * \alpha_0$$
