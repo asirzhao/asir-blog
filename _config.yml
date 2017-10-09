@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://asir.unbelievable9.info/
+url: https://joeasir.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -77,11 +77,13 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: rsync
-  host: 45.77.25.230
-  user: root
-  root: /data/wwwroot/asir.unbelievable9.info
-  port: 22
+  type: git
+  #host: 45.77.25.230
+  #user: root
+  #root: /data/wwwroot/asir.unbelievable9.info
+  #port: 22
+  repo: https://github.com/JoeAsir/JoeAsir.github.io
+  branch: master
   delete: true
   verbose: true
   ignore_errors: false
