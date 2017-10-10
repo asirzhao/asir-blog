@@ -50,11 +50,11 @@ Dropout方法的实质是**按比例随机隐藏**掉neural network中layer里�
 除了经典的L1、L2 regularization和dropout方法，还有一些防止over fitting的方法，例如图像处理中，我们可以用data augmentation，旋转，翻转，加噪声等方法。
 
 还有一个early stopping方法，我们都知道，随着training 的epoch增多，模型对training set拟合会越来越好，随之带来的问题就是可能over fitting，我们可以通过early stopping，让模型在没有产生over fitting的时候停下来，效果可能会更好。
-## Exploding/vannishing gradient
+## Exploding/vanishing gradient
 ### 什么是exploding/vanishing gradient
 对于deep learning，曾经最为棘手的问题就是exploding/vanishing gradient，甚至是限制deep learning发展的瓶颈，我们来一起看看。
- 假设我们有一个**比较深**的neural network，假设一共有\\(l\\)层，对应的weights是\\(W^{[1]}\\)到\\(W^{[l]}\\)，bias是\\(b^[1]\\)到\\(b^{[l]}\\)，我们为了计算方便，假设bias均为0，active function为\\(g(z)=z\\)，那么，\\(y\\)就等于
-$$\hat{y}=W^{[l]}W^{[l-1]}W^{l-2} \cdots W^{[3]}W^{[2]}W^{[1]}X$$
+ 假设我们有一个**比较深**的neural network，假设一共有\\(l\\)层，对应的weights是\\(W^{[1]}\\)到\\(W^{[l]}\\)，bias是\\(b^{[1]}\\)到\\(b^{[l]}\\)，我们为了计算方便，假设bias均为0，active function为\\(g(z)=z\\)，那么，\\(y\\)就等于
+$$\hat{y}=W^{[l]}W^{[l-1]}W^{[l-2]} \cdots W^{[3]}W^{[2]}W^{[1]}X$$
 大家感兴趣的话可以验证一下，很简单的。
 
 那么现在问题来了，当\\(l\\)很大的情况下，如果\\(W\\)元素都大于1，那么最后的结果就会非常非常大，甚至到无限大，这种情况叫exploding gradient；相应的，如果\\(W\\)元素都小于1，那么最后的结果就会特别小，甚至为零，这就是vanishing gradient.
