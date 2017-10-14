@@ -46,6 +46,7 @@ Metric无疑是ML task中很重要的环节，通过metric，我们可以评估�
 
 最重要的是，你所构建模型的data，一定和模型应用场景的data在同样的distribution下，Ng给出的guideline是
 > Choose a development set and test set to reflect data you expect to get in  the future and consider important to do well.
+
 ### Size of data set
 传统的ML task中，dataset的分布一般如下图所示：
 ![](http://otmy7guvn.bkt.clouddn.com/blog/9/9-2.png) 
