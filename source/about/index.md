@@ -10,7 +10,7 @@ comments: false
 
 本硕7年一直在[**北京航空航天大学**](http://www.buaa.edu.cn/)蹉跎度过
 
-毕业后有幸加入[**JD.COM**](https://www.jd.com/)，不得不说是一次狗屎运
+毕业后有幸加入[**JD.com**](https://www.jd.com/)，不得不说是一次狗屎运
 
 方向是**Machine learning算法工程师**，喜欢研究算法原理却发现工作中基本用不上，只能在这里独自默默把玩一番
 
