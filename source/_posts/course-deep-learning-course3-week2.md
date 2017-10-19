@@ -56,6 +56,7 @@ DL因为其自身的robust性质，当training set中有少许的，随机产生
 * Accented speech
 * Far from microphone
 * Young children's speech
+
 ...
 针对这些问题，我们该如何构造我们的模型呢，Ng给出了建议
 * Set up dev/test set and metric
