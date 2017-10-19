@@ -88,3 +88,38 @@ DL因为其自身的robust性质，当training set中有少许的，随机产生
 理解一下，首先我们要通过人工的analysis去分析出造成training set和dev set之间distribution不同的原因，比如语音识别中的有无汽车噪声等等；然后我们需要根据这些差别，让training set和dev set更加的相似，甚至相通。
 
 但是要注意的是，我们在这个过程中，要避免出现overfitting的情况出现，例如Ng举出的例子，在识别车内的人声过程中，我们可以通过人工的合成汽车声音与人的声音让training set和dev set更加的相似，但是如果我们的只用一段汽车噪音循环往复的去做合成，例如吧1min的汽车噪声循环的合成到1h的人声中，那结果一定是不尽如人意的，因为出现了overfitting.
+## Transfer learning
+下面我们一起来看看大名鼎鼎的transfer learning，所谓transfer，就是存在一种从A到B的转换，而且这种情况往往是B的数据量很少，需要通过A来做一个pre-training过程。假设我们有如下的neural networks
+![](http://otmy7guvn.bkt.clouddn.com/blog/10/10-3.png) 
+假设这个我们使用这个neural networks训练了一个image recognition模型，在训练完成后，我们将最后的output，以及output对应的的\\(w\\)和\\(b\\)也删除，更换成例如放射数据再进行训练，如下图：
+![](http://otmy7guvn.bkt.clouddn.com/blog/10/10-4.png) 
+我们不仅仅可以把output层更换成一个新的output层，还可以将output层更换成几个新层。我们甚至可以将transfer之前的训练认为是一种pre-training，但是transfer training需要有几个条件：
+* Task A and B have the same input x.
+* You have a lot more data for Task A than Task B.
+* Low level features from A could be helpful for learning B.
+
+## Multi-task learning
+现在假设我们有一个自动驾驶的场景，我们需要从视频中识别行人、车辆、停车标志和红绿灯，按照常理来说，我们可以单独的构建4个模型。但是，这4个模型的特征场景都是很相似的，构建4个模型稍微有一些浪费，于是我们可以把这四个任务合并在一起，这就是Multi-task learning.
+
+在这里我们的标签\\(y\\)，就不再是一个m×1的矩阵了，而是一个m×4的矩阵，对于multi-task来说，在以下情况下是可行的：
+* Training on a set of tasks that could benefit from having shared lower-level features.
+* Usually: Amount of data you have for eachtask is quite similar.
+* Can train a big enough neural network to do well on all the tasks.
+
+## End to end learning
+End to end learning是随着DL兴起后而产生的一种learning方式，在end2end中，我们不再关注一些中间的步骤，例如feature selection或者image processing，我们只是把原始的数据和最后的结果告诉DL，它就可以自主的完成这个任务。
+
+当然end2end 也是有一些优势和劣势的，我们来看一下：
+Pros：
+* Let the data speak.
+* Less hand-desgining of components needed.
+
+Cons:
+* May need large amount of data.
+* Excludes potentially userful hand-designed components.
+
+总之，对于end2end来说，大数据量，一定是最重要的因素，基于这一点，我们才可以摆脱传统的中间步骤，彻底实现end to end learning.
+
+## Reference
+* [Deep learning-Coursera Andrew Ng](https://www.coursera.org/specializations/deep-learning)
+* [Deep learning-网易云课堂 Andrew Ng](https://mooc.study.163.com/course/deeplearning_ai-2001281003#/info)
