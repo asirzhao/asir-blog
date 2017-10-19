@@ -76,3 +76,15 @@ DL因为其自身的robust性质，当training set中有少许的，随机产生
 在整个过程中，dev/test set其实扮演了一个非常重要的角色，它决定了我们的target，也就是整体的优化方向。在这个例子中，我们要优化的方向是app上的图像，而这种data set分割方法和我们的task target并不符合，因此并不优秀。
 
 我们再来看option2，我们将200k的来自网络的图片全部放入training set，然后将10k的app数据，5k放入training set，2.5k作为dev，2.5作为test，这样做的话，dev/test决定的target 和我们的task target是一致的，所以长远来看，虽然option2的training/dev set并不是同一distribution，但是从长远看它的效果还是很不错的。
+### Bias & variance with mismatched data distribution
+在training/dev/test set符合同一distribution的时候，我们通过比较training error和dev error就可以定性是否存在high variance的问题。但是，当training set和dev set不符合同一distribution的时候，这个判断就显得有些困难了。我们应该怎么处理呢？
+
+这时候，我们可以从training set中取出一小部分数据，命名为training-dev set，这部分数据将不再进行training，而是作为评判training效果的一个set，此时我们就有了training error，training-dev error和dev error三个error，再结合human error，training error和training-dev error之间的差值可以反映出模型是否有high bias或者variance，这样可以更科学的来评判模型效果。相应的，training-dev error和dev error相差越多，data mismatch的程度越大。
+### Addressing data mismatch
+我们如何addressing data mismatch呢，首先我们来看看Ng的两条guideline：
+* Carry out manual error analysis to try to understand difference between training and dev/test sets
+* Make training data more similar;  or collect more data similar to dev/test sets
+
+理解一下，首先我们要通过人工的analysis去分析出造成training set和dev set之间distribution不同的原因，比如语音识别中的有无汽车噪声等等；然后我们需要根据这些差别，让training set和dev set更加的相似，甚至相通。
+
+但是要注意的是，我们在这个过程中，要避免出现overfitting的情况出现，例如Ng举出的例子，在识别车内的人声过程中，我们可以通过人工的合成汽车声音与人的声音让training set和dev set更加的相似，但是如果我们的只用一段汽车噪音循环往复的去做合成，例如吧1min的汽车噪声循环的合成到1h的人声中，那结果一定是不尽如人意的，因为出现了overfitting.
