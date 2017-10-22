@@ -1,5 +1,5 @@
 ---
-title: Learning notes-Deep Learning, course2, week3
+title: Learning Notes-Deep Learning, course2, week3
 date: 2017-09-30 15:44:25
 tags: 
 	- hyperparameter

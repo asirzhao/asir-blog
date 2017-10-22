@@ -1,5 +1,5 @@
 ---
-title: Learning notes-Deep Learning, course3, week2
+title: Learning Notes-Deep Learning, course3, week2
 date: 2017-10-18 21:28:12
 tags: 
 	- learning strategy

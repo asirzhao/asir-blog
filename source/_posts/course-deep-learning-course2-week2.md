@@ -1,5 +1,5 @@
 ---
-title: Learning notes-Deep Learning, course2, week2
+title: Learning Notes-Deep Learning, course2, week2
 date: 2017-09-27 21:38:35
 tags:
 	- gradient descent
