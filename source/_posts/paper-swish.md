@@ -29,4 +29,4 @@ Bounded below其实也是一种很好的方法，并且也有activation function
  总而言之，个人感觉swish应该算是一个不错的activation，本人由于时间原因，还没有来得及自己测试它，但是据我所看到的讨论，swish的实际效果貌似不是十分稳定，所以我们可以持保留意见，进一步观察它的表现。
  
 ## Reference
-* [Prajit Ramachandran, Barret Zoph, Quoc V. Le. "Swish：A Self-gated Activation Function", arXiv preprint arXiv:1710.05941, 2017](https://arxiv.org/pdf/1710.05941.pdf)
+* [Ramachandran P, Zoph B, Le Q V. Swish：a Self-Gated Activation Function[J]. arXiv preprint arXiv:1710.05941, 2017.](https://arxiv.org/pdf/1710.05941.pdf)
