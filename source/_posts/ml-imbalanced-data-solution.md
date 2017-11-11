@@ -12,9 +12,10 @@ Hello，大家好，双十一真的很累，一直在加班，忙里偷闲看了
 ## Data level methods
 首先我们来看一看data level methods，这类方法有一个共性，那就是通过改变data的数量来完成对imbalanced data problem的解决。
 ### Oversampling
-Oversampling可以说是最直观的solution之一，它的核心思想是，对于较少一类别的samples，过此重复采样，以此让两种类别的样本接近平衡。但是，对于一个sample多次重复训练，很有可能带来overfitting，因此，简单粗暴的重复采样并不可取。因此，很多改进的版本应运而生：
+Oversampling可以说是最直观的solution之一，它的核心思想是，对于较少一类别的samples，过此重复采样，以此让两种类别的样本接近平衡。**但是，对于一个sample多次重复训练，很有可能带来overfitting**，因此，简单粗暴的重复采样并不可取。因此，很多改进的版本应运而生：
 #### SMOTE
-SMOTE算法是一种经典的oversampling方法，它的主要思想是对较少数目类别的样本，随机抽取\\(m\\)个样本，对于随机抽取出的样本，每个样本选取距离最近的\\(n\\)个样本，在他们的连线上随机选取一个点，作为较少类别的补充样本。
+SMOTE算法是一种经典的oversampling方法，它的主要思想是对较少数目类别的样本，随机抽取\\(m\\)个样本，对于随机抽取出的样本，每个样本选取距离最近的\\(n\\)个样本，在他们的连线上随机选取一个点，作为较少类别的补充样本。假设原样本点为\\(x\\)，被选中的附近的点为\\(x'\\)，则新的样本点为：
+$$x_{new}= x + rand(0,1) \cdot |x-x'|$$
 
 通过这种方式，SMOTE可以对较少类别样本进行扩充，进而实现oversampling，平衡数据分布。
 #### Cluster-base oversampling
@@ -24,7 +25,6 @@ Cluster-based方法的最大特点莫过于最开始对数据进行一个聚类�
 与oversampling相对应的则是undersampling，undersampling的核心思想是对于较多类别的samples抽样，使得两个类别数据趋于相近。但是，随机抽样获得会使得类别丧失很多的信息，甚至导致数据分布发生改变。
 #### One-sided selection
 one-sided selection的主要思想是，为了保证数据整体的分布，我们优先去除靠近边界的样本，这样可以保证较多分类的数据分布。
-#### Data decontamination
 
 ## Classifier level methods
 下面我们来看看通过改变classifier level来解决imbalanced data的方法，这类方法侧重于分类器本身的一些性质而并非两类数据的个数。
@@ -42,3 +42,4 @@ Thresholding方法其实对已经train好的模型的采取的一种方式。相
 
 ## Reference
 * [Buda, Mateusz, Atsuto Maki, and Maciej A. Mazurowski. "A systematic study of the class imbalance problem in convolutional neural networks." arXiv preprint arXiv:1710.05381 (2017).](https://arxiv.org/pdf/1710.05381.pdf)
+* [Chawla, Nitesh V., et al. "SMOTE: synthetic minority over-sampling technique." Journal of artificial intelligence research 16 (2002): 321-357.](https://www.jair.org/media/953/live-953-2037-jair.pdf)
