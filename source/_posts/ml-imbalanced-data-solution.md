@@ -19,7 +19,10 @@ $$x_{new}= x + rand(0,1) \cdot |x-x'|$$
 
 通过这种方式，SMOTE可以对较少类别样本进行扩充，进而实现oversampling，平衡数据分布。
 #### Cluster-base oversampling
-Cluster-based方法的最大特点莫过于最开始对数据进行一个聚类分析，数据会变成数个cluster，然后对于每一个cluster在进行数据的oversampling，这样可以保证oversampling后的数据最大程度上的保持原有的分布。
+Cluster-based方法的最大特点莫过于最开始对数据进行一个聚类分析，数据会变成数个cluster，然后对于每一个cluster在进行数据的oversampling，**同时兼顾类别之间的between-class imbalance，还要考虑到类内部各个cluster的within-class imbalance**.
+> Its idea is to consider not only the between class imbalance (the imbalance occurring between the two classes) but also the with in class imbalance (the imbalance occurring between the sub clusters of each class) and to oversample the data set by rectifying these two types of imbalances simultaneously.
+
+原paper大致叙述了整个流程，首先我们对imbalanced data进行k-means(或者其他算法也可以)聚类，聚成多个cluster之后，我们开始进行oversampling，假设majority class有\\(m\\)个cluster，minority有\\(n\\)个cluster，我们以cluster最大的data数目\\(k\\)为标准，我们先对majority class中所有cluster，都进行oversampling，使得他们的数目都达到\\(k\\)，随后，对于minority中每个cluster进行oversampling，使得每一个cluster数目变成\\(m * k /n\\)，最终实现between-class balance和within-class balance.
 
 ### Undersampling
 与oversampling相对应的则是undersampling，undersampling的核心思想是对于较多类别的samples抽样，使得两个类别数据趋于相近。但是，随机抽样获得会使得类别丧失很多的信息，甚至导致数据分布发生改变。
@@ -43,3 +46,5 @@ Thresholding方法其实对已经train好的模型的采取的一种方式。相
 ## Reference
 * [Buda, Mateusz, Atsuto Maki, and Maciej A. Mazurowski. "A systematic study of the class imbalance problem in convolutional neural networks." arXiv preprint arXiv:1710.05381 (2017).](https://arxiv.org/pdf/1710.05381.pdf)
 * [Chawla, Nitesh V., et al. "SMOTE: synthetic minority over-sampling technique." Journal of artificial intelligence research 16 (2002): 321-357.](https://www.jair.org/media/953/live-953-2037-jair.pdf)
+* [Jo, Taeho, and Nathalie Japkowicz. "Class imbalances versus small disjuncts." ACM Sigkdd Explorations Newsletter 6.1 (2004): 40-49.](http://sci2s.ugr.es/keel/pdf/specific/articulo/jo.pdf)
+* [Richard, Michael D., and Richard P. Lippmann. "Neural network classifiers estimate Bayesian a posteriori probabilities." Neural computation 3.4 (1991): 461-483.](http://www.ee.iisc.ac.in/new/people/faculty/prasantg/downloads/NeuralNetworksPosteriors_Lippmann1991.pdf)
