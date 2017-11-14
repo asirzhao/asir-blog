@@ -98,7 +98,7 @@
 <meta name="description" content="大家好，最近在学习Andrew Ng的Deep learning课程，于是决定写一些learning notes来recap和mark一下学到的知识，避免遗忘。由于该课程的course1比较基础，我个人认为没有mark的必要，所以从course2开始，按照week来mark.">
 <meta name="keywords" content="regularization,gradient descent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learning notes-Deep Learning, course2, week1">
+<meta property="og:title" content="Learning Notes-Deep Learning, course2, week1">
 <meta property="og:url" content="https://joeasir.github.io/2017/09/24/course-deep-learning-course2-week1/index.html">
 <meta property="og:site_name" content="superAsir&#39;s Notes">
 <meta property="og:description" content="大家好，最近在学习Andrew Ng的Deep learning课程，于是决定写一些learning notes来recap和mark一下学到的知识，避免遗忘。由于该课程的course1比较基础，我个人认为没有mark的必要，所以从course2开始，按照week来mark.">
@@ -107,9 +107,9 @@
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/6/6-2.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/6/6-3.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/6/6-6.png">
-<meta property="og:updated_time" content="2017-09-28T03:00:52.139Z">
+<meta property="og:updated_time" content="2017-10-23T01:52:37.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Learning notes-Deep Learning, course2, week1">
+<meta name="twitter:title" content="Learning Notes-Deep Learning, course2, week1">
 <meta name="twitter:description" content="大家好，最近在学习Andrew Ng的Deep learning课程，于是决定写一些learning notes来recap和mark一下学到的知识，避免遗忘。由于该课程的course1比较基础，我个人认为没有mark的必要，所以从course2开始，按照week来mark.">
 <meta name="twitter:image" content="http://otmy7guvn.bkt.clouddn.com/blog/6/6-5.png">
 
@@ -147,7 +147,7 @@
 
 
 
-  <title>Learning notes-Deep Learning, course2, week1 | superAsir's Notes</title>
+  <title>Learning Notes-Deep Learning, course2, week1 | superAsir's Notes</title>
   
 
 
@@ -301,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Learning notes-Deep Learning, course2, week1</h1>
+          <h1 class="post-title" itemprop="name headline">Learning Notes-Deep Learning, course2, week1</h1>
         
 
         <div class="post-meta">
@@ -398,8 +398,8 @@
 <p>但是，dropout和L2 regularization唯一的区别在于，他很难给出一个regularization item，所以你没有办法画出cost function convergence的轨迹。</p>
 <h3 id="Other-methods"><a href="#Other-methods" class="headerlink" title="Other methods"></a>Other methods</h3><p>除了经典的L1、L2 regularization和dropout方法，还有一些防止over fitting的方法，例如图像处理中，我们可以用data augmentation，旋转，翻转，加噪声等方法。</p>
 <p>还有一个early stopping方法，我们都知道，随着training 的epoch增多，模型对training set拟合会越来越好，随之带来的问题就是可能over fitting，我们可以通过early stopping，让模型在没有产生over fitting的时候停下来，效果可能会更好。</p>
-<h2 id="Exploding-vannishing-gradient"><a href="#Exploding-vannishing-gradient" class="headerlink" title="Exploding/vannishing gradient"></a>Exploding/vannishing gradient</h2><h3 id="什么是exploding-vanishing-gradient"><a href="#什么是exploding-vanishing-gradient" class="headerlink" title="什么是exploding/vanishing gradient"></a>什么是exploding/vanishing gradient</h3><p>对于deep learning，曾经最为棘手的问题就是exploding/vanishing gradient，甚至是限制deep learning发展的瓶颈，我们来一起看看。<br> 假设我们有一个<strong>比较深</strong>的neural network，假设一共有\(l\)层，对应的weights是\(W^{[1]}\)到\(W^{[l]}\)，bias是\(b^[1]\)到\(b^{[l]}\)，我们为了计算方便，假设bias均为0，active function为\(g(z)=z\)，那么，\(y\)就等于</p>
-<script type="math/tex; mode=display">\hat{y}=W^{[l]}W^{[l-1]}W^{l-2} \cdots W^{[3]}W^{[2]}W^{[1]}X</script><p>大家感兴趣的话可以验证一下，很简单的。</p>
+<h2 id="Exploding-vanishing-gradient"><a href="#Exploding-vanishing-gradient" class="headerlink" title="Exploding/vanishing gradient"></a>Exploding/vanishing gradient</h2><h3 id="什么是exploding-vanishing-gradient"><a href="#什么是exploding-vanishing-gradient" class="headerlink" title="什么是exploding/vanishing gradient"></a>什么是exploding/vanishing gradient</h3><p>对于deep learning，曾经最为棘手的问题就是exploding/vanishing gradient，甚至是限制deep learning发展的瓶颈，我们来一起看看。<br> 假设我们有一个<strong>比较深</strong>的neural network，假设一共有\(l\)层，对应的weights是\(W^{[1]}\)到\(W^{[l]}\)，bias是\(b^{[1]}\)到\(b^{[l]}\)，我们为了计算方便，假设bias均为0，active function为\(g(z)=z\)，那么，\(y\)就等于</p>
+<script type="math/tex; mode=display">\hat{y}=W^{[l]}W^{[l-1]}W^{[l-2]} \cdots W^{[3]}W^{[2]}W^{[1]}X</script><p>大家感兴趣的话可以验证一下，很简单的。</p>
 <p>那么现在问题来了，当\(l\)很大的情况下，如果\(W\)元素都大于1，那么最后的结果就会非常非常大，甚至到无限大，这种情况叫exploding gradient；相应的，如果\(W\)元素都小于1，那么最后的结果就会特别小，甚至为零，这就是vanishing gradient.</p>
 <h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><p>对于上面的问题，我们一般在weights初始化的时候做一些工作来解决可能出现的exploding or vanishing gradient。我们可以直观的理解一下，对于active function\(g(z)\)，假设bias为零，</p>
 <script type="math/tex; mode=display">z=w_{1}x_1 +w_{2}x_2+ \cdots +w_{n}x_n</script><p>我们要我们可以看到，\(n\)的增大，\(w\)会变小，我们让\(w\)始终保持以0为mean，1为varance的Gaussian distribution下，就可以很好的控制\(w\)的大小，那么我们可以看到，\(var(w)= \frac{1}{n^{l-1}}\)</p>
@@ -461,8 +461,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/27/course-deep-learning-course2-week2/" rel="prev" title="Learning notes-Deep Learning, course2, week2">
-                Learning notes-Deep Learning, course2, week2 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/27/course-deep-learning-course2-week2/" rel="prev" title="Learning Notes-Deep Learning, course2, week2">
+                Learning Notes-Deep Learning, course2, week2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,7 +539,7 @@
                alt="Joe Asir" />
           <p class="site-author-name" itemprop="name">Joe Asir</p>
            
-              <p class="site-description motion-element" itemprop="description">Algorithm engineer in JD.COM, master degree in Beihang University.</p>
+              <p class="site-description motion-element" itemprop="description">Algorithm engineer at JD.com, master's degree at BUAA.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -547,9 +547,9 @@
           
             <div class="site-state-item site-state-posts">
             
-              <a href="/archives/ || archive">
+              <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -571,7 +571,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -636,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-set"><span class="nav-number">1.</span> <span class="nav-text">Data set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-and-variance"><span class="nav-number">2.</span> <span class="nav-text">Bias and variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是bias和variance"><span class="nav-number">2.1.</span> <span class="nav-text">什么是bias和variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularization"><span class="nav-number">3.</span> <span class="nav-text">Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-amp-L2-regularization"><span class="nav-number">3.1.</span> <span class="nav-text">L1&L2 regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-number">3.2.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods"><span class="nav-number">3.3.</span> <span class="nav-text">Other methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploding-vannishing-gradient"><span class="nav-number">4.</span> <span class="nav-text">Exploding/vannishing gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是exploding-vanishing-gradient"><span class="nav-number">4.1.</span> <span class="nav-text">什么是exploding/vanishing gradient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">4.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-checking"><span class="nav-number">5.</span> <span class="nav-text">Gradient checking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-approximation"><span class="nav-number">5.1.</span> <span class="nav-text">Gradient approximation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-checking-notes"><span class="nav-number">5.2.</span> <span class="nav-text">Gradient checking notes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-set"><span class="nav-number">1.</span> <span class="nav-text">Data set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-and-variance"><span class="nav-number">2.</span> <span class="nav-text">Bias and variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是bias和variance"><span class="nav-number">2.1.</span> <span class="nav-text">什么是bias和variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularization"><span class="nav-number">3.</span> <span class="nav-text">Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-amp-L2-regularization"><span class="nav-number">3.1.</span> <span class="nav-text">L1&L2 regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-number">3.2.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods"><span class="nav-number">3.3.</span> <span class="nav-text">Other methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploding-vanishing-gradient"><span class="nav-number">4.</span> <span class="nav-text">Exploding/vanishing gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是exploding-vanishing-gradient"><span class="nav-number">4.1.</span> <span class="nav-text">什么是exploding/vanishing gradient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">4.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-checking"><span class="nav-number">5.</span> <span class="nav-text">Gradient checking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-approximation"><span class="nav-number">5.1.</span> <span class="nav-text">Gradient approximation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-checking-notes"><span class="nav-number">5.2.</span> <span class="nav-text">Gradient checking notes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -802,7 +802,7 @@
         var disqus_config = function () {
           this.page.url = 'https://joeasir.github.io/2017/09/24/course-deep-learning-course2-week1/';
           this.page.identifier = '2017/09/24/course-deep-learning-course2-week1/';
-          this.page.title = 'Learning notes-Deep Learning, course2, week1';
+          this.page.title = 'Learning Notes-Deep Learning, course2, week1';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://supaerasir.disqus.com/embed.js';

@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gradient descent,unconstrained optimization,newton's method," />
+  <meta name="keywords" content="gradient descent,newton's method,unconstrained optimization," />
 
 
 
@@ -96,15 +96,15 @@
 
 
 <meta name="description" content="上次我们一起聊到了gradient descent和newton’s method，而且我们已经知道了gradient descent和newton’s method都是convex optimization的好方法，这次我们就跳出convex optimization，从更大的unconstrained optimization角度来探讨下这两种方法之间的关联和区别。">
-<meta name="keywords" content="gradient descent,unconstrained optimization,newton&#39;s method">
+<meta name="keywords" content="gradient descent,newton&#39;s method,unconstrained optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="再深入聊聊梯度下降和牛顿法">
-<meta property="og:url" content="https://joeasir.github.io/2017/08/11/gd-and-nm/index.html">
+<meta property="og:url" content="https://joeasir.github.io/2017/08/11/ml-gd-and-nm/index.html">
 <meta property="og:site_name" content="superAsir&#39;s Notes">
 <meta property="og:description" content="上次我们一起聊到了gradient descent和newton’s method，而且我们已经知道了gradient descent和newton’s method都是convex optimization的好方法，这次我们就跳出convex optimization，从更大的unconstrained optimization角度来探讨下这两种方法之间的关联和区别。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/2/2-1.png">
-<meta property="og:updated_time" content="2017-09-13T07:30:17.667Z">
+<meta property="og:updated_time" content="2017-11-01T12:44:14.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再深入聊聊梯度下降和牛顿法">
 <meta name="twitter:description" content="上次我们一起聊到了gradient descent和newton’s method，而且我们已经知道了gradient descent和newton’s method都是convex optimization的好方法，这次我们就跳出convex optimization，从更大的unconstrained optimization角度来探讨下这两种方法之间的关联和区别。">
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="https://joeasir.github.io/2017/08/11/gd-and-nm/"/>
+  <link rel="canonical" href="https://joeasir.github.io/2017/08/11/ml-gd-and-nm/"/>
 
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/11/gd-and-nm/">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/11/ml-gd-and-nm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joe Asir">
@@ -440,9 +440,9 @@
           
             <a href="/tags/gradient-descent/" rel="tag"># gradient descent</a>
           
-            <a href="/tags/unconstrained-optimization/" rel="tag"># unconstrained optimization</a>
-          
             <a href="/tags/newton-s-method/" rel="tag"># newton's method</a>
+          
+            <a href="/tags/unconstrained-optimization/" rel="tag"># unconstrained optimization</a>
           
         </div>
       
@@ -455,7 +455,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/02/convex-opt/" rel="next" title="从凸函数到梯度下降和牛顿法">
+              <a href="/2017/08/02/ml-convex-opt/" rel="next" title="从凸函数到梯度下降和牛顿法">
                 <i class="fa fa-chevron-left"></i> 从凸函数到梯度下降和牛顿法
               </a>
             
@@ -543,7 +543,7 @@
                alt="Joe Asir" />
           <p class="site-author-name" itemprop="name">Joe Asir</p>
            
-              <p class="site-description motion-element" itemprop="description">Algorithm engineer in JD.COM, master degree in Beihang University.</p>
+              <p class="site-description motion-element" itemprop="description">Algorithm engineer at JD.com, master's degree at BUAA.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -551,9 +551,9 @@
           
             <div class="site-state-item site-state-posts">
             
-              <a href="/archives/ || archive">
+              <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -575,7 +575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -804,8 +804,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://joeasir.github.io/2017/08/11/gd-and-nm/';
-          this.page.identifier = '2017/08/11/gd-and-nm/';
+          this.page.url = 'https://joeasir.github.io/2017/08/11/ml-gd-and-nm/';
+          this.page.identifier = '2017/08/11/ml-gd-and-nm/';
           this.page.title = '再深入聊聊梯度下降和牛顿法';
         };
         var d = document, s = d.createElement('script');

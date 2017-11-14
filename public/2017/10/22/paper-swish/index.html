@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="regularization,MAP,ridge regression,lasso regression," />
+  <meta name="keywords" content="activtion function," />
 
 
 
@@ -95,22 +95,22 @@
 
 
 
-<meta name="description" content="最近和优男一起聊到了L1和L2 regularization，期间遇到了很多没有想明白的问题，加上最近工作有些忙，空余时间用来倒腾新到货的小米路由器，只能趁周末自己研究研究，下面和大家分享一下regularization中一些深入的问题。不讨论基础知识，直接上干货。">
-<meta name="keywords" content="regularization,MAP,ridge regression,lasso regression">
+<meta name="description" content="Hi all，今天和大家分享一篇比较新的paper，是关于一种新的activation function，关于我们知道的activation function，有sigmoid，tanh，ReLU以及ReLU的一些变种，那我们今天来看看这种新提出的activation function到底有什么特色。">
+<meta name="keywords" content="activtion function">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入聊聊正则化">
-<meta property="og:url" content="https://joeasir.github.io/2017/08/27/ridge-lasso/index.html">
+<meta property="og:title" content="Reading Notes-Swish：A Self-gated Activation Function">
+<meta property="og:url" content="https://joeasir.github.io/2017/10/22/paper-swish/index.html">
 <meta property="og:site_name" content="superAsir&#39;s Notes">
-<meta property="og:description" content="最近和优男一起聊到了L1和L2 regularization，期间遇到了很多没有想明白的问题，加上最近工作有些忙，空余时间用来倒腾新到货的小米路由器，只能趁周末自己研究研究，下面和大家分享一下regularization中一些深入的问题。不讨论基础知识，直接上干货。">
+<meta property="og:description" content="Hi all，今天和大家分享一篇比较新的paper，是关于一种新的activation function，关于我们知道的activation function，有sigmoid，tanh，ReLU以及ReLU的一些变种，那我们今天来看看这种新提出的activation function到底有什么特色。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-1.png">
-<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-2.png">
-<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-3.png">
-<meta property="og:updated_time" content="2017-08-28T09:44:13.916Z">
+<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/11/11-1.png">
+<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/11/11-2.png">
+<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/11/11-3.png">
+<meta property="og:updated_time" content="2017-10-23T01:53:43.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入聊聊正则化">
-<meta name="twitter:description" content="最近和优男一起聊到了L1和L2 regularization，期间遇到了很多没有想明白的问题，加上最近工作有些忙，空余时间用来倒腾新到货的小米路由器，只能趁周末自己研究研究，下面和大家分享一下regularization中一些深入的问题。不讨论基础知识，直接上干货。">
-<meta name="twitter:image" content="http://otmy7guvn.bkt.clouddn.com/blog/4/4-1.png">
+<meta name="twitter:title" content="Reading Notes-Swish：A Self-gated Activation Function">
+<meta name="twitter:description" content="Hi all，今天和大家分享一篇比较新的paper，是关于一种新的activation function，关于我们知道的activation function，有sigmoid，tanh，ReLU以及ReLU的一些变种，那我们今天来看看这种新提出的activation function到底有什么特色。">
+<meta name="twitter:image" content="http://otmy7guvn.bkt.clouddn.com/blog/11/11-1.png">
 
 
 
@@ -140,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://joeasir.github.io/2017/08/27/ridge-lasso/"/>
+  <link rel="canonical" href="https://joeasir.github.io/2017/10/22/paper-swish/"/>
 
 
 
 
 
-  <title>深入聊聊正则化 | superAsir's Notes</title>
+  <title>Reading Notes-Swish：A Self-gated Activation Function | superAsir's Notes</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/27/ridge-lasso/">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/10/22/paper-swish/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joe Asir">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入聊聊正则化</h1>
+          <h1 class="post-title" itemprop="name headline">Reading Notes-Swish：A Self-gated Activation Function</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T01:55:07+08:00">
-                2017-08-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T16:13:30+08:00">
+                2017-10-22
               </time>
             
 
@@ -335,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">machine learning</span>
+                  <a href="/categories/reading-notes/" itemprop="url" rel="index">
+                    <span itemprop="name">reading notes</span>
                   </a>
                 </span>
 
@@ -372,24 +372,18 @@
       
 
       
-        <p>最近和优男一起聊到了L1和L2 regularization，期间遇到了很多没有想明白的问题，加上最近工作有些忙，空余时间用来倒腾新到货的小米路由器，只能趁周末自己研究研究，下面和大家分享一下regularization中一些深入的问题。不讨论基础知识，直接上干货。<br><a id="more"></a></p>
-<h2 id="MAP-and-regularization"><a href="#MAP-and-regularization" class="headerlink" title="MAP and regularization"></a>MAP and regularization</h2><p>我们都知道，当cost function在没有加regularization的时候，我们对参数使用的是<strong>MLE</strong>(Maximum likelihood estimation)，对应频率学派所认为的参数本无分布规律的观点；在Andrew Ng经典的CS229中，这位AI大师曾经提到，regularization其实是对参数的<strong>MAP</strong>(Maximum a posteriori estimation)，是基于贝叶斯学派认为的参数本有<strong>priori distribution</strong>，同时吸纳了MLE的一种中间观点。</p>
-<p>这里的priori distribution，就是根据经验，认为参数应该大致符合某个distribution，这样，最终获得的参数估计结果也会和这个被认为的distribution有一些相近</p>
-<p>而我们所熟知的L1 regularization，其实就是认为参数的priori distribution是<strong>Laplacian distribution</strong>，而L2 regularization，则认为参数的priorit distribution是<strong>Gaussian distribution</strong>，相信大家对Gaussian distribution是很熟悉的，而对于Laplacian distribution，它的分布是</p>
-<script type="math/tex; mode=display">p(x;a)= \frac{a}{2} e^{-a|x|}</script><p>下图就是两者的一个比较：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/4/4-1.png" alt=""><br>在后文中，我们会看到，两种distribution的特点决定了两种regularization的性质。</p>
-<h3 id="Lasso-regression"><a href="#Lasso-regression" class="headerlink" title="Lasso regression"></a>Lasso regression</h3><p>在liner regression中，我们假设参数\( \theta\)服从Laplacian distribution，cost function就成了</p>
-<script type="math/tex; mode=display">J( \theta) = \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})+ \lambda \sum^{d}_{j=1}| \theta^{(i)}|</script><p>上式就是Lasso regression</p>
-<h3 id="Ridge-regression"><a href="#Ridge-regression" class="headerlink" title="Ridge regression"></a>Ridge regression</h3><p>在liner regression中，我们假设参数\( \theta\)服从Gaussian distribution，cost function就成了</p>
-<script type="math/tex; mode=display">J( \theta) = \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})+ \lambda \sum^{d}_{j=1} ( \theta^{(i)})^2</script><p>上式就是Ridge regression或shrinkage</p>
-<h2 id="geometry-of-error-surfaces"><a href="#geometry-of-error-surfaces" class="headerlink" title="geometry of error surfaces"></a>geometry of error surfaces</h2><p>在不考虑参数priori distribution的时候，cost function的形式是</p>
-<script type="math/tex; mode=display">J( \theta) = \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2</script><p>用二维截面图展示就是<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/4/4-2.png" alt=""><br>图中只有objective function，横纵轴是参数\( \theta\)，截取过来的图，所以上面的参数是\(w\)，\(l\)是loss值，箭头指向的点就是cost function的极小点。在不考虑参数priori distribution的时候，这个点就是我们的optimization target.</p>
-<p>下面大家来我一起做一个头脑风暴，所谓参数的priori distribution，其实就是用来限制最后optimization结果的一个限定，那么我们其实就是在做一个受限制的的convex optimization，即：</p>
-<script type="math/tex; mode=display">\theta=argmin \frac{1}{2} \sum^{m}_{i=1} (y^{(i)}- \theta^T x^{(i)})^2</script><script type="math/tex; mode=display">s.t. \sum^{d}_{j=1}| \theta^{(i)}|^p \geq \beta</script><p>其中，\( \beta\)是ridge或者lasso的最小值。<br>那么此时的图就变成了：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/4/4-3.png" alt=""><br>我们从图中可以看到，在加入了限制后，最终的optimization不是落在极小值点，而是落在图中所示的位置。从另一个角度来想，regularization item的加入，使得整个cost function在寻找最小值的时候，要均衡的考虑objective function和regularization item的大小.</p>
-<p>在这个地方，我和优男讨论的时候有一个地方没有想通，例如使用gradient descent进行optimzation的时候，怎么保证优化可以落到图中的点呢，我是这么考虑的：当加入regularization后，cost function本身就有了变化，随之而来的是gradient也发生了变化，在gradient descent迭代过程中就已经把regularization的影响带了进去，因此在每一次迭代的时候，实际上应该都是按照上式的限制进行优化的。</p>
-<p>当然，上图也可以用来就是为什么lasso可以获得稀疏特征，那就是因为lasso更可能在坐标轴上和objective function产生交点，进而使得一些特征变成0.</p>
+        <p>Hi all，今天和大家分享一篇比较新的paper，是关于一种新的activation function，关于我们知道的activation function，有sigmoid，tanh，ReLU以及ReLU的一些变种，那我们今天来看看这种新提出的activation function到底有什么特色。<br><a id="more"></a></p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>首先定义，swish activation function \(f(x)=x \cdot \sigma (x)\)，其中\(\sigma(x)\)是sigmoid function，也就是\( \sigma(x)=1/(1+ e^{-x})\).Swish functin的图像如图所示：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/11/11-1.png" alt=""><br>我们再来看下swish function的1st and 2nd derivatives，<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/11/11-2.png" alt=""><br>下面我们一起来集中看看swish function的优点都有什么，作者给出了以下几点：函数值没有上限，函数值有下限，函数不单调，函数光滑连续，我们一起看看：</p>
+<h3 id="Unbounded-above"><a href="#Unbounded-above" class="headerlink" title="Unbounded above"></a>Unbounded above</h3><p>Unbounded above的实质，是防止activation function在bounded value处发生saturation. bounded above 带来的问题，就是越接近bounded value的时候，function gradient就会越小，逐渐接近0，这就导致gradient descent异常缓慢甚至无法converge。例如sigmoid 和tanh function，他们都是bounded below and above，当我们采用这两种activation function的时候，我们必须谨慎小心的让初始值尽量在function的接近liner的部分来避免上面问题的产生，因此，unbounded above是一个很好的优点，例如ReLU及其变种都采用了这一原则。</p>
+<h3 id="Bounded-below-amp-non-monotonicity"><a href="#Bounded-below-amp-non-monotonicity" class="headerlink" title="Bounded below &amp; non-monotonicity"></a>Bounded below &amp; non-monotonicity</h3><p>Bounded below其实也是一种很好的方法，并且也有activation function已经采用了，采用该方法后，所有负数input都会得到相差无几的activation value，也就是说，-1000和-1的值几乎没有区别，按照author的话来讲，就是我们将</p>
+<blockquote>
+<p>make large negative input “fogotten”</p>
+</blockquote>
+<p>这其实也是regularzation的一种思想，这种方法在ReLU等方法中也有体现，但是，swish可以通过自身的非单调性质，将比较小的negative input仍然以negative value输出，non-monotonicity提供了更好的gradient flow.</p>
+<h3 id="Smothness"><a href="#Smothness" class="headerlink" title="Smothness"></a>Smothness</h3><p>关于smoothness的优点，我们来看一张图：<br> <img src="http://otmy7guvn.bkt.clouddn.com/blog/11/11-3.png" alt=""> </p>
+<p> 总而言之，个人感觉swish应该算是一个不错的activation，本人由于时间原因，还没有来得及自己测试它，但是据我所看到的讨论，swish的实际效果貌似不是十分稳定，所以我们可以持保留意见，进一步观察它的表现。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="https://pdfs.semanticscholar.org/91a9/5626d24c8393e3b784e44f62de201d20dede.pdf" target="_blank" rel="external">CS 195-5: Machine Learning</a></li>
-<li><a href="https://onlinecourses.science.psu.edu/stat857/node/155" target="_blank" rel="external">STAT 897D</a></li>
+<li><a href="https://arxiv.org/pdf/1710.05941.pdf" target="_blank" rel="external">Ramachandran P, Zoph B, Le Q V. Swish：a Self-Gated Activation Function[J]. arXiv preprint arXiv:1710.05941, 2017.</a></li>
 </ul>
 
       
@@ -408,13 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/regularization/" rel="tag"># regularization</a>
-          
-            <a href="/tags/MAP/" rel="tag"># MAP</a>
-          
-            <a href="/tags/ridge-regression/" rel="tag"># ridge regression</a>
-          
-            <a href="/tags/lasso-regression/" rel="tag"># lasso regression</a>
+            <a href="/tags/activtion-function/" rel="tag"># activtion function</a>
           
         </div>
       
@@ -427,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/23/paper-facebook/" rel="next" title="Reading Notes-Practical lessons from predicting clicks on ads at facebook">
-                <i class="fa fa-chevron-left"></i> Reading Notes-Practical lessons from predicting clicks on ads at facebook
+              <a href="/2017/10/18/course-deep-learning-course3-week2/" rel="next" title="Learning Notes-Deep Learning, course3, week2">
+                <i class="fa fa-chevron-left"></i> Learning Notes-Deep Learning, course3, week2
               </a>
             
           </div>
@@ -437,8 +425,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/10/paper-imbalance/" rel="prev" title="Reading Notes-Class Imbalance, Redux">
-                Reading Notes-Class Imbalance, Redux <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/11/ml-imbalanced-data-solution/" rel="prev" title="Imbalanced data 问题总结方法汇总">
+                Imbalanced data 问题总结方法汇总 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -515,7 +503,7 @@
                alt="Joe Asir" />
           <p class="site-author-name" itemprop="name">Joe Asir</p>
            
-              <p class="site-description motion-element" itemprop="description">Algorithm engineer in JD.COM, master degree in Beihang University.</p>
+              <p class="site-description motion-element" itemprop="description">Algorithm engineer at JD.com, master's degree at BUAA.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -523,9 +511,9 @@
           
             <div class="site-state-item site-state-posts">
             
-              <a href="/archives/ || archive">
+              <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -547,7 +535,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -612,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MAP-and-regularization"><span class="nav-number">1.</span> <span class="nav-text">MAP and regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lasso-regression"><span class="nav-number">1.1.</span> <span class="nav-text">Lasso regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ridge-regression"><span class="nav-number">1.2.</span> <span class="nav-text">Ridge regression</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geometry-of-error-surfaces"><span class="nav-number">2.</span> <span class="nav-text">geometry of error surfaces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-number">1.</span> <span class="nav-text">Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unbounded-above"><span class="nav-number">1.1.</span> <span class="nav-text">Unbounded above</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bounded-below-amp-non-monotonicity"><span class="nav-number">1.2.</span> <span class="nav-text">Bounded below & non-monotonicity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smothness"><span class="nav-number">1.3.</span> <span class="nav-text">Smothness</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -776,9 +764,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://joeasir.github.io/2017/08/27/ridge-lasso/';
-          this.page.identifier = '2017/08/27/ridge-lasso/';
-          this.page.title = '深入聊聊正则化';
+          this.page.url = 'https://joeasir.github.io/2017/10/22/paper-swish/';
+          this.page.identifier = '2017/10/22/paper-swish/';
+          this.page.title = 'Reading Notes-Swish：A Self-gated Activation Function';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://supaerasir.disqus.com/embed.js';

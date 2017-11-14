@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="Algorithm engineer in JD.COM, master degree in Beihang University.">
+<meta name="description" content="Algorithm engineer at JD.com, master&apos;s degree at BUAA.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="superAsir&#39;s Notes">
 <meta property="og:url" content="https://joeasir.github.io/index.html">
 <meta property="og:site_name" content="superAsir&#39;s Notes">
-<meta property="og:description" content="Algorithm engineer in JD.COM, master degree in Beihang University.">
+<meta property="og:description" content="Algorithm engineer at JD.com, master&apos;s degree at BUAA.">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="superAsir&#39;s Notes">
-<meta name="twitter:description" content="Algorithm engineer in JD.COM, master degree in Beihang University.">
+<meta name="twitter:description" content="Algorithm engineer at JD.com, master&apos;s degree at BUAA.">
 
 
 
@@ -278,6 +278,593 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/11/11/ml-imbalanced-data-solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joe Asir">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superAsir's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/11/ml-imbalanced-data-solution/" itemprop="url">Imbalanced data 问题总结方法汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-11T23:01:09+08:00">
+                2017-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Hello，大家好，双十一真的很累，一直在加班，忙里偷闲看了<a href="https://arxiv.org/pdf/1710.05381.pdf" target="_blank" rel="external">A systematic study of the class imbalance  problem in convolutional neural networks</a>，感觉paper呈现的研究内容感觉很一般，但是，paper中关于imbalanced data的solution方法倒是写的很不错，也勾起了我对于这一块总结的欲望。之前也写过一篇关于imbalanced data的paper notes，但是对于这一块的具体方法总结还不是很足够，于是用这篇paper为主线好好sum up一计。</p>
+<p>我们来一起看看。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/11/ml-imbalanced-data-solution/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/10/22/paper-swish/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joe Asir">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superAsir's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/22/paper-swish/" itemprop="url">Reading Notes-Swish：A Self-gated Activation Function</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T16:13:30+08:00">
+                2017-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/reading-notes/" itemprop="url" rel="index">
+                    <span itemprop="name">reading notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Hi all，今天和大家分享一篇比较新的paper，是关于一种新的activation function，关于我们知道的activation function，有sigmoid，tanh，ReLU以及ReLU的一些变种，那我们今天来看看这种新提出的activation function到底有什么特色。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/22/paper-swish/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/10/18/course-deep-learning-course3-week2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joe Asir">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superAsir's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/18/course-deep-learning-course3-week2/" itemprop="url">Learning Notes-Deep Learning, course3, week2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T21:28:12+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning-notes/" itemprop="url" rel="index">
+                    <span itemprop="name">learning notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Hi all，course3来到了week2，本周的课程依然主要是关于一些learning strategy，这些方法相当实用。虽然不是什么具体的算法，但都都是Ng在科研和工作中积累下来的宝贵经验，对于实际问题十分有效。</p>
+<p>我们一起来看看。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/18/course-deep-learning-course3-week2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/10/12/course-deep-learning-course3-week1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joe Asir">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superAsir's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/course-deep-learning-course3-week1/" itemprop="url">Learning Notes-Deep Learning, course3, week1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T12:34:05+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning-notes/" itemprop="url" rel="index">
+                    <span itemprop="name">learning notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>课程3主要讲的是deep learning中的一些strategy，这些strategy可以帮助我们快速的分析模型所存在的问题，避免我们的优化方向有偏差而导致的人力以及时间的浪费，这一点对于团队尤其重要。</p>
+<p>我们一起来recap一下week1的课程<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/12/course-deep-learning-course3-week1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/09/30/course-deep-learning-course2-week3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -297,7 +884,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/30/course-deep-learning-course2-week3/" itemprop="url">Learning notes-Deep Learning, course2, week3</a></h1>
+                <a class="post-title-link" href="/2017/09/30/course-deep-learning-course2-week3/" itemprop="url">Learning Notes-Deep Learning, course2, week3</a></h1>
         
 
         <div class="post-meta">
@@ -443,7 +1030,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/27/course-deep-learning-course2-week2/" itemprop="url">Learning notes-Deep Learning, course2, week2</a></h1>
+                <a class="post-title-link" href="/2017/09/27/course-deep-learning-course2-week2/" itemprop="url">Learning Notes-Deep Learning, course2, week2</a></h1>
         
 
         <div class="post-meta">
@@ -589,7 +1176,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/course-deep-learning-course2-week1/" itemprop="url">Learning notes-Deep Learning, course2, week1</a></h1>
+                <a class="post-title-link" href="/2017/09/24/course-deep-learning-course2-week1/" itemprop="url">Learning Notes-Deep Learning, course2, week1</a></h1>
         
 
         <div class="post-meta">
@@ -863,7 +1450,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/27/ridge-lasso/">
+    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/27/ml-ridge-lasso/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joe Asir">
@@ -882,7 +1469,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/27/ridge-lasso/" itemprop="url">深入聊聊正则化</a></h1>
+                <a class="post-title-link" href="/2017/08/27/ml-ridge-lasso/" itemprop="url">深入聊聊正则化</a></h1>
         
 
         <div class="post-meta">
@@ -958,7 +1545,7 @@
           <p>最近和优男一起聊到了L1和L2 regularization，期间遇到了很多没有想明白的问题，加上最近工作有些忙，空余时间用来倒腾新到货的小米路由器，只能趁周末自己研究研究，下面和大家分享一下regularization中一些深入的问题。不讨论基础知识，直接上干货。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/27/ridge-lasso/#more" rel="contents">
+            <a class="btn" href="/2017/08/27/ml-ridge-lasso/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1143,455 +1730,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/11/gd-and-nm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joe Asir">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="superAsir's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/11/gd-and-nm/" itemprop="url">再深入聊聊梯度下降和牛顿法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T17:26:56+08:00">
-                2017-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">machine learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>上次我们一起聊到了gradient descent和newton’s method，而且我们已经知道了gradient descent和newton’s method都是convex optimization的好方法，这次我们就跳出convex optimization，从更大的unconstrained optimization角度来探讨下这两种方法之间的关联和区别。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/11/gd-and-nm/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/08/02/convex-opt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joe Asir">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="superAsir's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/02/convex-opt/" itemprop="url">从凸函数到梯度下降和牛顿法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T15:53:55+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">machine learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>记得我在和优男一起研究logistic regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言</p>
-<ul>
-<li>怎么保证logistic regression通过gradient descent找到的是最优解；</li>
-<li>为什么logistic regression可以用newton’s method呢？</li>
-<li>Newton’s method中Hessian matrix必须positive definite有什么意义呢，log cost function能保证吗？</li>
-</ul>
-<p>这些细节问题，说实话我也没有认真的想过。在夸奖他之余，我们也一起开始了研究，希望从中学习到一些更深层的东西，趁着现在有个blog分享给大家<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/02/convex-opt/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://joeasir.github.io/2017/07/26/hello/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joe Asir">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="superAsir's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/26/hello/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T17:40:40+08:00">
-                2017-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂/" itemprop="url" rel="index">
-                    <span itemprop="name">杂</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>我终于把blog搭建起来了!</strong></p>
-<p>这是一个属于<strong>Asir</strong> 自己的博客,在这里我会写一些技术分享,记录自己平时学到的东西,也会整点吐槽或者鸡汤.总之,有了一个真正的属于自己的天地,可以随便整,这种感觉非常棒.</p>
-<p>其实自己在博客园也尝试过一次,可是体验并不是很理想,在这里我并没有抨击的意思,因为自己搭建起来的成就感那不是一点两点.希望后面可以趁热打铁,开启blog之旅.<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/26/hello/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1627,7 +1772,7 @@
                alt="Joe Asir" />
           <p class="site-author-name" itemprop="name">Joe Asir</p>
            
-              <p class="site-description motion-element" itemprop="description">Algorithm engineer in JD.COM, master degree in Beihang University.</p>
+              <p class="site-description motion-element" itemprop="description">Algorithm engineer at JD.com, master's degree at BUAA.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -1635,9 +1780,9 @@
           
             <div class="site-state-item site-state-posts">
             
-              <a href="/archives/ || archive">
+              <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1659,7 +1804,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
