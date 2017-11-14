@@ -1,5 +1,5 @@
 ---
-title: 关于
+title: About
 date: 2017-07-26 07:25:29
 type: "about"
 comments: false
