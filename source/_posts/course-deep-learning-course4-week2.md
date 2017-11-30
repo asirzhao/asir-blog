@@ -13,7 +13,7 @@ Ng一共给我们带来了3个最为经典的CNN网络，这里我会给出网�
 [Lécun Y, Bottou L, Bengio Y, et al. Gradient-based learning applied to document recognition[J]. Proceedings of the IEEE, 1998, 86(11):2278-2324.](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf)
 ### AlexNet
 ![](http://otmy7guvn.bkt.clouddn.com/blog/14/14-2.png) 
-[Krizhevsky A, Sutskever I, Hinton G E. ImageNet classification with deep convolutional neural networks[J]. Communications of the Acm, 2012, 60(2):2012.](ImageNet classification with deep convolutional neural networks)
+[Krizhevsky A, Sutskever I, Hinton G E. ImageNet classification with deep convolutional neural networks[J]. Communications of the Acm, 2012, 60(2):2012.](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)
 ### VGG-16
 ![](http://otmy7guvn.bkt.clouddn.com/blog/14/14-3.png) 
 [Simonyan K, Zisserman A. Very Deep Convolutional Networks for Large-Scale Image Recognition[J]. Computer Science, 2014.](https://arxiv.org/pdf/1409.1556.pdf)
