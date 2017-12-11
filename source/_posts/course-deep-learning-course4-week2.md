@@ -4,7 +4,7 @@ date: 2017-11-29 16:26:12
 tags: CNN
 categories: learning notes
 ---
-我们继续来看看course4的week2，CNN的知识还是蛮丰富的，本周主要讲了一些景点的CNN结构以及一些computer vision的技巧和知识，一起recap一下。
+我们继续来看看course4的week2，CNN的知识还是蛮丰富的，本周主要讲了一些经典的CNN结构以及一些computer vision的技巧和知识，一起recap一下。
 <!--more-->
 ## Classic Networks
 Ng一共给我们带来了3个最为经典的CNN网络，这里我会给出网络的截图和paper原文，抽空我也会看看原文，希望大家和我一起来看看。
