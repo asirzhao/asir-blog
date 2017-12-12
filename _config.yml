@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://joeasir.github.io/
+url: superAsir.coding.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -82,7 +82,7 @@ deploy:
   #user: root
   #root: /data/wwwroot/asir.unbelievable9.info
   #port: 22
-  repo: https://github.com/JoeAsir/JoeAsir.github.io
+  repo: git@git.coding.net:superAsir/superAsir.coding.me.git
   branch: master
   delete: true
   verbose: true
