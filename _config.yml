@@ -5,14 +5,14 @@
 # Site
 title: superAsir's Notes
 subtitle: Just 4 fun!
-description: Algorithm engineer at JD.com, master's degree at BUAA.
+description: Algorithm engineer at JD.COM, master's degree at BUAA.
 author: Joe Asir
 language: en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: superAsir.coding.me
+url: www.superasir.ml
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,10 +78,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  #host: 45.77.25.230
-  #user: root
-  #root: /data/wwwroot/asir.unbelievable9.info
-  #port: 22
   repo: git@git.coding.net:superAsir/superAsir.coding.me.git
   branch: master
   delete: true
