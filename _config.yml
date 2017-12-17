@@ -74,6 +74,9 @@ pagination_dir: page
 ## Themes: https://hexo.io/next/
 theme: next
 
+sitemap:
+path: sitemap.xml
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
