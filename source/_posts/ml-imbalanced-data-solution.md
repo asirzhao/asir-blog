@@ -43,7 +43,7 @@ Thresholding方法其实对已经train好的模型的采取的一种方式。相
 
 当然，这种方法适合那种极端的imbalanced data，对于一般的情况并不一定很适用。
 
-## Recommdation
+## Recommendation
 Projection:[Imbalanced-learn](https://github.com/scikit-learn-contrib/imbalanced-learn)
 
 ## Reference
