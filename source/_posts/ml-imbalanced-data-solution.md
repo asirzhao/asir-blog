@@ -43,6 +43,9 @@ Thresholding方法其实对已经train好的模型的采取的一种方式。相
 
 当然，这种方法适合那种极端的imbalanced data，对于一般的情况并不一定很适用。
 
+## Recommdation
+Projection:[Imbalanced-learn](https://github.com/scikit-learn-contrib/imbalanced-learn)
+
 ## Reference
 * [Buda, Mateusz, Atsuto Maki, and Maciej A. Mazurowski. "A systematic study of the class imbalance problem in convolutional neural networks." arXiv preprint arXiv:1710.05381 (2017).](https://arxiv.org/pdf/1710.05381.pdf)
 * [Chawla, Nitesh V., et al. "SMOTE: synthetic minority over-sampling technique." Journal of artificial intelligence research 16 (2002): 321-357.](https://www.jair.org/media/953/live-953-2037-jair.pdf)
