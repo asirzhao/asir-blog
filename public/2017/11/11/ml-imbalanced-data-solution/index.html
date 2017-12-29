@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="superAsir&#39;s Notes">
 <meta property="og:description" content="Hello，大家好，双十一真的很累，一直在加班，忙里偷闲看了A systematic study of the class imbalance  problem in convolutional neural networks，感觉paper呈现的研究内容感觉很一般，但是，paper中关于imbalanced data的solution方法倒是写的很不错，也勾起了我对于这一块总结的欲望。之前也写过">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-14T13:40:12.274Z">
+<meta property="og:updated_time" content="2017-12-27T06:55:40.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Imbalanced data 问题总结方法汇总">
 <meta name="twitter:description" content="Hello，大家好，双十一真的很累，一直在加班，忙里偷闲看了A systematic study of the class imbalance  problem in convolutional neural networks，感觉paper呈现的研究内容感觉很一般，但是，paper中关于imbalanced data的solution方法倒是写的很不错，也勾起了我对于这一块总结的欲望。之前也写过">
@@ -116,7 +116,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Muse',
     version: '5.1.2',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -394,6 +394,7 @@
 <p>我们可以通过调整learning rate，加强对cost比较大的samples，并且最终的优化目标从标准的cost function变成misclassification cost，如此就可以解决imbalanced data的问题了</p>
 <h3 id="One-class-classification"><a href="#One-class-classification" class="headerlink" title="One-class classification"></a>One-class classification</h3><p>该方法可以说是换了一种思维看问题，我们不再将classification作为我们的task，而是变成了对于一种异常检测的问题。我们只是着眼于较多samples的类别，认为另一类别的samples是一种异常值。</p>
 <p>当然，这种方法适合那种极端的imbalanced data，对于一般的情况并不一定很适用。</p>
+<h2 id="Recommendation"><a href="#Recommendation" class="headerlink" title="Recommendation"></a>Recommendation</h2><p>Projection:<a href="https://github.com/scikit-learn-contrib/imbalanced-learn" target="_blank" rel="external">Imbalanced-learn</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="https://arxiv.org/pdf/1710.05381.pdf" target="_blank" rel="external">Buda, Mateusz, Atsuto Maki, and Maciej A. Mazurowski. “A systematic study of the class imbalance problem in convolutional neural networks.” arXiv preprint arXiv:1710.05381 (2017).</a></li>
 <li><a href="https://www.jair.org/media/953/live-953-2037-jair.pdf" target="_blank" rel="external">Chawla, Nitesh V., et al. “SMOTE: synthetic minority over-sampling technique.” Journal of artificial intelligence research 16 (2002): 321-357.</a></li>
@@ -651,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-level-methods"><span class="nav-number">1.</span> <span class="nav-text">Data level methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Oversampling"><span class="nav-number">1.1.</span> <span class="nav-text">Oversampling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOTE"><span class="nav-number">1.1.1.</span> <span class="nav-text">SMOTE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cluster-base-oversampling"><span class="nav-number">1.1.2.</span> <span class="nav-text">Cluster-base oversampling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undersampling"><span class="nav-number">1.2.</span> <span class="nav-text">Undersampling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#One-sided-selection"><span class="nav-number">1.2.1.</span> <span class="nav-text">One-sided selection</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classifier-level-methods"><span class="nav-number">2.</span> <span class="nav-text">Classifier level methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thresholding"><span class="nav-number">2.1.</span> <span class="nav-text">Thresholding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-sensitive-learning"><span class="nav-number">2.2.</span> <span class="nav-text">Cost sensitive learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-class-classification"><span class="nav-number">2.3.</span> <span class="nav-text">One-class classification</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-level-methods"><span class="nav-number">1.</span> <span class="nav-text">Data level methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Oversampling"><span class="nav-number">1.1.</span> <span class="nav-text">Oversampling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOTE"><span class="nav-number">1.1.1.</span> <span class="nav-text">SMOTE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cluster-base-oversampling"><span class="nav-number">1.1.2.</span> <span class="nav-text">Cluster-base oversampling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undersampling"><span class="nav-number">1.2.</span> <span class="nav-text">Undersampling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#One-sided-selection"><span class="nav-number">1.2.1.</span> <span class="nav-text">One-sided selection</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classifier-level-methods"><span class="nav-number">2.</span> <span class="nav-text">Classifier level methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thresholding"><span class="nav-number">2.1.</span> <span class="nav-text">Thresholding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-sensitive-learning"><span class="nav-number">2.2.</span> <span class="nav-text">Cost sensitive learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-class-classification"><span class="nav-number">2.3.</span> <span class="nav-text">One-class classification</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recommendation"><span class="nav-number">3.</span> <span class="nav-text">Recommendation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -747,9 +748,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -776,12 +774,6 @@
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
-  
-  <script type="text/javascript" src="/lib/three/three.min.js"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
-
 
   
 
@@ -794,13 +786,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
