@@ -3,117 +3,148 @@
   
   <url>
     <loc>www.superasir.ml/2017/11/11/ml-imbalanced-data-solution/</loc>
+<<<<<<< HEAD
     
     <lastmod>2017-12-19T15:13:18.554Z</lastmod>
+=======
+    
+    <lastmod>2017-12-27T06:55:40.641Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/11/29/course-deep-learning-course4-week2/</loc>
     
-    <lastmod>2017-12-11T14:41:39.792Z</lastmod>
+    <lastmod>2017-12-11T09:22:35.380Z</lastmod>
+>>>>>>> f8d65e4f205f59b3cb8d576143161372f68b3f03
     
   </url>
   
   <url>
+    <loc>www.superasir.ml/2017/11/29/course-deep-learning-course4-week2/</loc>
+    
+<<<<<<< HEAD
+    <lastmod>2017-12-11T14:41:39.792Z</lastmod>
+=======
+    <lastmod>2017-12-11T09:21:58.436Z</lastmod>
+>>>>>>> f8d65e4f205f59b3cb8d576143161372f68b3f03
+    
+  </url>
+  
+  <url>
+<<<<<<< HEAD
     <loc>www.superasir.ml/2017/11/26/course-deep-learning-course4-week1/</loc>
     
     <lastmod>2017-11-27T07:40:20.987Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>www.superasir.ml/about/index.html</loc>
-    
-    <lastmod>2017-11-14T13:40:12.274Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>www.superasir.ml/2017/07/26/other-hello/</loc>
-    
-    <lastmod>2017-11-14T13:40:12.274Z</lastmod>
-    
-  </url>
-  
-  <url>
+=======
     <loc>www.superasir.ml/tags/index.html</loc>
     
-    <lastmod>2017-11-14T13:40:12.274Z</lastmod>
+    <lastmod>2017-11-14T06:46:04.469Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/categories/index.html</loc>
     
-    <lastmod>2017-11-14T13:40:12.274Z</lastmod>
+    <lastmod>2017-11-14T06:44:39.769Z</lastmod>
+>>>>>>> f8d65e4f205f59b3cb8d576143161372f68b3f03
+    
+  </url>
+  
+  <url>
+    <loc>www.superasir.ml/about/index.html</loc>
+    
+    <lastmod>2017-11-14T06:43:22.234Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>www.superasir.ml/2017/08/02/ml-convex-opt/</loc>
+    
+    <lastmod>2017-11-01T12:44:14.897Z</lastmod>
+    
+  </url>
+  
+  <url>
+<<<<<<< HEAD
+    <loc>www.superasir.ml/tags/index.html</loc>
+=======
+    <loc>www.superasir.ml/2017/08/11/ml-gd-and-nm/</loc>
+>>>>>>> f8d65e4f205f59b3cb8d576143161372f68b3f03
+    
+    <lastmod>2017-11-01T12:44:14.897Z</lastmod>
+    
+  </url>
+  
+  <url>
+<<<<<<< HEAD
+    <loc>www.superasir.ml/categories/index.html</loc>
+=======
+    <loc>www.superasir.ml/2017/08/27/ml-ridge-lasso/</loc>
+>>>>>>> f8d65e4f205f59b3cb8d576143161372f68b3f03
+    
+    <lastmod>2017-11-01T12:44:14.897Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/10/22/paper-swish/</loc>
     
-    <lastmod>2017-10-25T15:00:16.593Z</lastmod>
+    <lastmod>2017-10-23T01:53:43.676Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/10/18/course-deep-learning-course3-week2/</loc>
     
-    <lastmod>2017-10-22T09:55:22.354Z</lastmod>
+    <lastmod>2017-10-23T01:52:37.899Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/10/12/course-deep-learning-course3-week1/</loc>
     
-    <lastmod>2017-10-22T09:55:13.990Z</lastmod>
+    <lastmod>2017-10-23T01:52:37.899Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/09/30/course-deep-learning-course2-week3/</loc>
     
-    <lastmod>2017-10-22T09:55:01.371Z</lastmod>
+    <lastmod>2017-10-23T01:52:37.899Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/09/27/course-deep-learning-course2-week2/</loc>
     
-    <lastmod>2017-10-22T09:54:51.259Z</lastmod>
+    <lastmod>2017-10-23T01:52:37.899Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/09/24/course-deep-learning-course2-week1/</loc>
     
-    <lastmod>2017-10-22T09:54:38.611Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>www.superasir.ml/2017/08/11/ml-gd-and-nm/</loc>
-    
-    <lastmod>2017-09-27T13:33:44.063Z</lastmod>
+    <lastmod>2017-10-23T01:52:37.899Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/09/10/paper-imbalance/</loc>
     
-    <lastmod>2017-09-10T08:33:33.050Z</lastmod>
+    <lastmod>2017-09-11T00:55:31.135Z</lastmod>
     
   </url>
   
   <url>
     <loc>www.superasir.ml/2017/08/23/paper-facebook/</loc>
     
-    <lastmod>2017-09-09T16:23:01.646Z</lastmod>
+    <lastmod>2017-09-08T03:52:07.030Z</lastmod>
     
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>www.superasir.ml/2017/08/27/ml-ridge-lasso/</loc>
     
     <lastmod>2017-09-02T11:17:42.936Z</lastmod>
@@ -122,8 +153,11 @@
   
   <url>
     <loc>www.superasir.ml/2017/08/02/ml-convex-opt/</loc>
+=======
+    <loc>www.superasir.ml/2017/07/26/other-hello/</loc>
+>>>>>>> f8d65e4f205f59b3cb8d576143161372f68b3f03
     
-    <lastmod>2017-09-02T11:17:42.936Z</lastmod>
+    <lastmod>2017-08-01T01:51:27.379Z</lastmod>
     
   </url>
   
