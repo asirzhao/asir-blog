@@ -20,8 +20,17 @@ Driver是整个application最核心的部分，他运行的是application的main
 ## Executors
 Executors是Spark application的执行者，他们也是伴随着application的生命周期而存在的，值得注意的是，**Spark job在executors执行失败的情况下依然可以继续进行**。Executors会对具体的tasks的执行结果返回给driver，同时给缓存的RDD提供存储空间。
 
-## Detail
-下面，我们一起看看整个Spark application中，driver和executors的都会起到什么作用。Spark通过spark-submit指令提交application，并且spark-submit为application加载driver并且加载用户指定的main方法。与此同时，driver通过cluster manager申请供executors工作的资源，随后cluster manager根据driver的请求加载executors。然后整个application开始执行，在这个过程中，根据RDD的transformation或者action，driver把这些任务以tasks的形式，源源不断的传送给executors，于是executors不停地进行计算和存储的任务。当driver的main方法执行结束的时候，他会结束掉executors并且释放掉资源。这就是driver-executors的整体工作流程。
+## Spark on Yarn-cluster
+下面，我们一起看看整个Spark application中，driver和executors的都会起到什么作用。我以基于yarn-cluster的YARN的Spark作为例子来简述整个流程，先看一张图：
+![](http://otmy7guvn.bkt.clouddn.com//blog/15/15-2.png) 
+首先我们要明确一些YARN的概念，YARN是与master-slaver的一个Cluster Manager， 在YARN中，RM(ResourseManager)负责整个调度分发，即我们常说的master；而NM(NodeManager)任务分发的接受者，负责执行具体的任务，也就是我们所说的worker。这些概念后续我专门介绍YARN的时候会详细的说明，他们的作用都是实现spark和YARN之间诸如资源申请等操作。
+
+首先Client向ResourceManager发出提交application的请求，ResourseManager会在某一个NodeManager上启动AppManager进程，AppManager会随后启动driver，并将driver申请containers资源的信息发给ResourceManager，申请完成后，ResourceManager将资源分配消息传递给AppManager并由它启动container，每一个container中只运行一个spark executor，由此完成了资源的申请和分配。
+
+然后整个application开始执行，在这个过程中，根据RDD的transformation或者action，driver把这些任务以tasks的形式，源源不断的传送给executors，于是executors不停地进行计算和存储的任务。当driver结束的时候，他会结束掉executors并且释放掉资源。这就是yarn-cluster上spark的整体工作流程。
+
+除了yarn-cluster，还有一种yarn-client的方法，这种方法唯一的区别在于，他的ResourceManager并非运行在某个NodeManager上，而是一直运行在client中。这样的问题就是client一旦关闭，那么整个任务也就随之停止执行。因此相较而言，yarn-cluster更适合线上任务，而yarn-client更适合调试模式。
 
 ## Reference
 * [Karau, Holden, et al. Learning spark: lightning-fast big data analysis. " O'Reilly Media, Inc.", 2015.](http://shop.oreilly.com/product/0636920028512.do)
+* [Spark:Yarn-cluster和Yarn-client区别与联系](https://www.iteblog.com/archives/1223.html)
