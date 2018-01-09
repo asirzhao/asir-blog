@@ -29,7 +29,7 @@ Executors是Spark application的执行者，他们也是伴随着application的�
 
 然后整个application开始执行，在这个过程中，根据RDD的transformation或者action，driver把这些任务以tasks的形式，源源不断的传送给executors，于是executors不停地进行计算和存储的任务。当driver结束的时候，他会结束掉executors并且释放掉资源。这就是yarn-cluster上spark的整体工作流程。
 
-除了yarn-cluster，还有一种yarn-client的方法，这种方法唯一的区别在于，他的ResourceManager并非运行在某个NodeManager上，而是一直运行在client中。这样的问题就是client一旦关闭，那么整个任务也就随之停止执行。因此相较而言，yarn-cluster更适合线上任务，而yarn-client更适合调试模式。
+除了yarn-cluster，还有一种yarn-client的方法，这种方法唯一的区别在于，他的driver并非运行在某个NodeManager上，而是一直运行在client中。这样的问题就是client一旦关闭，那么整个任务也就随之停止执行。因此相较而言，yarn-cluster更适合线上任务，而yarn-client更适合调试模式。
 
 ## Reference
 * [Karau, Holden, et al. Learning spark: lightning-fast big data analysis. " O'Reilly Media, Inc.", 2015.](http://shop.oreilly.com/product/0636920028512.do)
