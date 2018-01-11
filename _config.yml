@@ -74,6 +74,8 @@ pagination_dir: page
 ## Themes: https://hexo.io/next/
 theme: next
 
+google_site_verification: IP_M3isWgLBIJ4pTTdb2ehfLaBuNRIu-dvav8vsoTcI 
+
 sitemap:
 path: sitemap.xml
 
