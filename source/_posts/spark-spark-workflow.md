@@ -1,5 +1,5 @@
 ---
-title: spark工作流程简析
+title: Spark工作流程简析
 date: 2018-01-07 18:44:37
 tags: spark
 categories: spark
@@ -19,6 +19,11 @@ Driver是整个application最核心的部分，他运行的是application的main
 
 ## Executors
 Executors是Spark application的执行者，他们也是伴随着application的生命周期而存在的，值得注意的是，**Spark job在executors执行失败的情况下依然可以继续进行**。Executors会对具体的tasks的执行结果返回给driver，同时给缓存的RDD提供存储空间。
+
+## Some terms
+* Job: Job是executor层面最大的执行单元，job通过RDD的action操作来分割，每一个action操作就会进行一次job的划分；
+* Stage: Stage是包含在job中的执行单元，stage通过RDD的shuffle操作来分割，每进行一次shuffle操作，就会进行一次stage的划分；
+* Task: Task是executor执行中最细的执行单元，task的数目取和parent RDD的partition数目是一一对应的。
 
 ## Spark on Yarn-cluster
 下面，我们一起看看整个Spark application中，driver和executors的都会起到什么作用。我以基于yarn-cluster的YARN的Spark作为例子来简述整个流程，先看一张图：
