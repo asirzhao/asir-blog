@@ -34,7 +34,7 @@ Spark memory主要有两个用途，一是用于spark的shuffle等操作，而�
 
 在spark memory中，还有一个重要的性质，那就是storage 和 execution memory的共享机制，说的简单一些就是，当一边内存空闲而另一方内存紧张的时候，可以借用对方的内存，我们下面看看在内存出现冲突的时候，spark怎么协调：
 * 当storage占用execution memory的时候，发生execution memory使用紧张的情况时，强制将storage占有的内存释放并归还execution，丢失的数据将会后续重新计算；
-*当execution占用storage memory的时候，发生storage memory紧张的情况，被占用的内存不会被强制释放，因为这会带来任务丢失，storage会耐心等待知道execution执行完释放出内存。
+* 当execution占用storage memory的时候，发生storage memory紧张的情况，被占用的内存不会被强制释放，因为这会带来任务丢失，storage会耐心等待知道execution执行完释放出内存。
 
 ## Data Serialization
 在整个spark任务中，数据传输都是经过序列化后(serialization)之后传输的，因此数据的序列化是很重要的，冗余的序列化过程会让整个spark任务变慢，spark提供两种序列化方式：
