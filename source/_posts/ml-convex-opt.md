@@ -21,7 +21,7 @@ categories: machine learning
 OK，我们来一起看看，convex function
 
 对于一维函数 \\(f(x)\\)来说，在定义域内的任意值 \\(a\\)和\\(b\\)，对于任意的 \\( 0 \leq \theta \leq 1\\)，如果满足以下条件，则称为convex function
-$$f(\theta a+(1-\theta b)) \leq \theta f(a) + (1- \theta)f(b)$$
+$$f(\theta a+(1-\theta) b) \leq \theta f(a) + (1- \theta)f(b)$$
 我们再用图片直观的感受一下
 
 ![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png) 
