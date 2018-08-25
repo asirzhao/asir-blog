@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -81,11 +81,13 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gradient descent,convex optimization,newton's method," />
+  <meta name="keywords" content="gradient descent,newton's method,convex optimization," />
 
 
 
 
+
+  <link rel="alternate" href="/atom.xml" title="superAsir's Notes" type="application/atom+xml" />
 
 
 
@@ -98,7 +100,7 @@
 
 
 <meta name="description" content="记得我在和优男一起研究logistic regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言  怎么保证logistic regression通过gradient descent找到的是最优解； 为什么logistic regression可以用newton’s method呢？ Newton’s method中Hessian matrix必须positive definite">
-<meta name="keywords" content="gradient descent,convex optimization,newton&#39;s method">
+<meta name="keywords" content="gradient descent,newton&#39;s method,convex optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从凸函数到梯度下降和牛顿法">
 <meta property="og:url" content="https://www.superasir.ml/2017/08/02/ml-convex-opt/index.html">
@@ -108,7 +110,7 @@
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/1/1-3.png">
-<meta property="og:updated_time" content="2017-09-02T11:17:42.936Z">
+<meta property="og:updated_time" content="2018-08-14T13:58:46.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从凸函数到梯度下降和牛顿法">
 <meta name="twitter:description" content="记得我在和优男一起研究logistic regression的时候，他问了我几个非常尖锐的问题，让我顿时哑口无言  怎么保证logistic regression通过gradient descent找到的是最优解； 为什么logistic regression可以用newton’s method呢？ Newton’s method中Hessian matrix必须positive definite">
@@ -122,7 +124,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.2',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
@@ -148,7 +150,7 @@
 
 
 
-  <title>从凸函数到梯度下降和牛顿法 | superAsir's Notes</title>
+  <title>从凸函数到梯度下降和牛顿法 | superAsir's Notes</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -167,7 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -356,11 +358,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
-            </span>
-          
 
           
 
@@ -389,7 +386,7 @@
 <h2 id="凸函数-Convex-function"><a href="#凸函数-Convex-function" class="headerlink" title="凸函数(Convex function)"></a>凸函数(Convex function)</h2><p>在开始之前，我有一个关于术语的倡议。中文里的“凸函数”，看上去是凹下去的，对应的，中文里的“凹函数”看上去凸起来的，amazing吧？这是有一定历史原因的，感兴趣的朋友可以去查阅下资料，这里我们不再复述。所以为了避免让大家产生误解，我鼓励大家使用英文，<strong>convex function</strong>和<strong>concave function</strong>.这样会避免很多不必要的麻烦。</p>
 <p>OK，我们来一起看看，convex function</p>
 <p>对于一维函数 \(f(x)\)来说，在定义域内的任意值 \(a\)和\(b\)，对于任意的 \( 0 \leq \theta \leq 1\)，如果满足以下条件，则称为convex function</p>
-<script type="math/tex; mode=display">f(\theta a+(1-\theta b)) \leq \theta f(a) + (1- \theta)f(b)</script><p>我们再用图片直观的感受一下</p>
+<script type="math/tex; mode=display">f(\theta a+(1-\theta) b) \leq \theta f(a) + (1- \theta)f(b)</script><p>我们再用图片直观的感受一下</p>
 <p><img src="http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png" alt=""> </p>
 <p>显而易见的是，当公式中等号去掉的时候，函数就是<strong>strictly convex function</strong>.</p>
 <p>Convex function具有一定的性质，我们简单的描述一下。</p>
@@ -468,9 +465,9 @@
           
             <a href="/tags/gradient-descent/" rel="tag"># gradient descent</a>
           
-            <a href="/tags/convex-optimization/" rel="tag"># convex optimization</a>
-          
             <a href="/tags/newton-s-method/" rel="tag"># newton's method</a>
+          
+            <a href="/tags/convex-optimization/" rel="tag"># convex optimization</a>
           
         </div>
       
@@ -531,7 +528,12 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzU3NS8xMDEzMA"></div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -572,7 +574,7 @@
                alt="Joe Asir" />
           <p class="site-author-name" itemprop="name">Joe Asir</p>
            
-              <p class="site-description motion-element" itemprop="description">Algorithm engineer at JD.COM.</p>
+              <p class="site-description motion-element" itemprop="description">The most important ability for a developer may be the ability to KEEP LEARNING.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -612,6 +614,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -751,26 +760,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>访问人数
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>访问总量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
-    </span>
-  
-</div>
-
 
 
 
@@ -873,6 +862,24 @@
 
   
 
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.superasir.ml/2017/08/02/ml-convex-opt/';
+          this.page.identifier = '2017/08/02/ml-convex-opt/';
+          this.page.title = '从凸函数到梯度下降和牛顿法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://supaerasir.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -885,21 +892,6 @@
   
 
 
-
-
-
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
 
 
@@ -940,7 +932,24 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

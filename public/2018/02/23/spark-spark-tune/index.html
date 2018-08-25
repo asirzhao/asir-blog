@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -87,6 +87,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="superAsir's Notes" type="application/atom+xml" />
+
 
 
 
@@ -106,7 +108,7 @@
 <meta property="og:description" content="Hi, all, 最近一直在研究spark tuning方面的问题，深感这是一个经验活，也是一个技术活，查阅和很多资料，在这里mark一下。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/16/16-1.png">
-<meta property="og:updated_time" content="2018-02-23T05:08:20.248Z">
+<meta property="og:updated_time" content="2018-02-23T05:26:20.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark Tuning">
 <meta name="twitter:description" content="Hi, all, 最近一直在研究spark tuning方面的问题，深感这是一个经验活，也是一个技术活，查阅和很多资料，在这里mark一下。">
@@ -120,7 +122,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.2',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
@@ -146,7 +148,7 @@
 
 
 
-  <title>Spark Tuning | superAsir's Notes</title>
+  <title>Spark Tuning | superAsir's Notes</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -165,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -354,11 +356,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
-            </span>
-          
 
           
 
@@ -396,7 +393,8 @@
 <p>Spark memory主要有两个用途，一是用于spark的shuffle等操作，而是用来cache spark中的RDD，因此spark memory也自然而然的分成了两部分，即负责shuffle操作的execution memory和负责cache的storage memory，两者的大小通过spark.memory.storageFraction参数来分割，默认值是0.5。</p>
 <p>在spark memory中，还有一个重要的性质，那就是storage 和 execution memory的共享机制，说的简单一些就是，当一边内存空闲而另一方内存紧张的时候，可以借用对方的内存，我们下面看看在内存出现冲突的时候，spark怎么协调：</p>
 <ul>
-<li>当storage占用execution memory的时候，发生execution memory使用紧张的情况时，强制将storage占有的内存释放并归还execution，丢失的数据将会后续重新计算；<br>*当execution占用storage memory的时候，发生storage memory紧张的情况，被占用的内存不会被强制释放，因为这会带来任务丢失，storage会耐心等待知道execution执行完释放出内存。</li>
+<li>当storage占用execution memory的时候，发生execution memory使用紧张的情况时，强制将storage占有的内存释放并归还execution，丢失的数据将会后续重新计算；</li>
+<li>当execution占用storage memory的时候，发生storage memory紧张的情况，被占用的内存不会被强制释放，因为这会带来任务丢失，storage会耐心等待知道execution执行完释放出内存。</li>
 </ul>
 <h2 id="Data-Serialization"><a href="#Data-Serialization" class="headerlink" title="Data Serialization"></a>Data Serialization</h2><p>在整个spark任务中，数据传输都是经过序列化后(serialization)之后传输的，因此数据的序列化是很重要的，冗余的序列化过程会让整个spark任务变慢，spark提供两种序列化方式：</p>
 <ul>
@@ -484,7 +482,12 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzU3NS8xMDEzMA"></div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -525,7 +528,7 @@
                alt="Joe Asir" />
           <p class="site-author-name" itemprop="name">Joe Asir</p>
            
-              <p class="site-description motion-element" itemprop="description">Algorithm engineer at JD.COM.</p>
+              <p class="site-description motion-element" itemprop="description">The most important ability for a developer may be the ability to KEEP LEARNING.</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -565,6 +568,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -704,26 +714,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>访问人数
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>访问总量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
-    </span>
-  
-</div>
-
 
 
 
@@ -826,6 +816,24 @@
 
   
 
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.superasir.ml/2018/02/23/spark-spark-tune/';
+          this.page.identifier = '2018/02/23/spark-spark-tune/';
+          this.page.title = 'Spark Tuning';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://supaerasir.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -838,21 +846,6 @@
   
 
 
-
-
-
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
 
 
@@ -893,7 +886,24 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

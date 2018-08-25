@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.superasir.ml/2017/08/02/ml-convex-opt/</loc>
+    
+    <lastmod>2018-08-14T13:58:46.980Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.superasir.ml/2018/02/23/spark-spark-tune/</loc>
     
-    <lastmod>2018-02-23T05:08:20.248Z</lastmod>
+    <lastmod>2018-02-23T05:26:20.696Z</lastmod>
     
   </url>
   
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://www.superasir.ml/2017/07/26/other-hello/</loc>
+    <loc>https://www.superasir.ml/categories/index.html</loc>
     
     <lastmod>2017-11-14T13:40:12.274Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.superasir.ml/about/index.html</loc>
+    <loc>https://www.superasir.ml/2017/07/26/other-hello/</loc>
     
     <lastmod>2017-11-14T13:40:12.274Z</lastmod>
     
@@ -58,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://www.superasir.ml/categories/index.html</loc>
+    <loc>https://www.superasir.ml/about/index.html</loc>
     
     <lastmod>2017-11-14T13:40:12.274Z</lastmod>
     
@@ -124,13 +131,6 @@
     <loc>https://www.superasir.ml/2017/08/23/paper-facebook/</loc>
     
     <lastmod>2017-09-09T16:23:01.646Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.superasir.ml/2017/08/02/ml-convex-opt/</loc>
-    
-    <lastmod>2017-09-02T11:17:42.936Z</lastmod>
     
   </url>
   

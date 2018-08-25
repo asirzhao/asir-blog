@@ -5,7 +5,7 @@
 # Site
 title: superAsir's Notes
 subtitle: Just 4 fun!
-description: Algorithm engineer at JD.COM.
+description: The most important ability for a developer may be the ability to KEEP LEARNING.
 author: Joe Asir
 language: en
 timezone:
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/next/
-theme: next
+theme: next 
 
 google_site_verification: IP_M3isWgLBIJ4pTTdb2ehfLaBuNRIu-dvav8vsoTcI 
 
@@ -83,8 +83,9 @@ path: sitemap.xml
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@git.coding.net:superAsir/superAsir.coding.me.git
+  repo: git@github.com:JoeAsir/joeasir.github.io.git
   branch: master
   delete: true
   verbose: true
   ignore_errors: false
+
