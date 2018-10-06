@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="en">
+<html class="has-navbar-fixed-top">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>Learning Notes-Deep Learning, course2, week2 - superAsir&#39;s Notes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="Hard-working developer by day and trouble maker by night.">
 
 
 
@@ -20,366 +18,142 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" href="/favicon.ico">
 
 
-
-  <meta name="google-site-verification" content="IP_M3isWgLBIJ4pTTdb2ehfLaBuNRIu-dvav8vsoTcI" />
-
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
 
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
     
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+    
+    
 
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="gradient descent,moving averages," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="superAsir's Notes" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="大家好，课程来到了第二周，这周主要是一些优化方法，使得整个neural networks可以更快更好的工作，我们一起来recap一下。">
-<meta name="keywords" content="gradient descent,moving averages">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Learning Notes-Deep Learning, course2, week2">
-<meta property="og:url" content="https://www.superasir.ml/2017/09/27/course-deep-learning-course2-week2/index.html">
-<meta property="og:site_name" content="superAsir&#39;s Notes">
-<meta property="og:description" content="大家好，课程来到了第二周，这周主要是一些优化方法，使得整个neural networks可以更快更好的工作，我们一起来recap一下。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/7/7-1.png">
-<meta property="og:image" content="http://otmy7guvn.bkt.clouddn.com/blog/7/7-2.png">
-<meta property="og:updated_time" content="2017-10-22T09:54:51.259Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Learning Notes-Deep Learning, course2, week2">
-<meta name="twitter:description" content="大家好，课程来到了第二周，这周主要是一些优化方法，使得整个neural networks可以更快更好的工作，我们一起来recap一下。">
-<meta name="twitter:image" content="http://otmy7guvn.bkt.clouddn.com/blog/7/7-1.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://www.superasir.ml/2017/09/27/course-deep-learning-course2-week2/"/>
-
-
-
-
-
-  <title>Learning Notes-Deep Learning, course2, week2 | superAsir's Notes</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
-
-
-
-
-
+    
 
 
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
+<body>
     
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">superAsir's Notes</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    <img src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg" alt="" height="28">
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/">Home</a>
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/tags">Tags</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/JoeAsir">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Twitter" href="https://twitter.com/joe_asir">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Mail" href="mailto:joeAsir0560@outlook.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+               
+            
+        </div>
     </div>
-      
-        <p class="site-subtitle">Just 4 fun!</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.superasir.ml/2017/09/27/course-deep-learning-course2-week2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joe Asir">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="superAsir's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Learning Notes-Deep Learning, course2, week2
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2017-09-27T13:38:35.000Z" itemprop="datePublished">Sep 27 2017</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/learning-notes/">learning notes</a>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">Learning Notes-Deep Learning, course2, week2</h1>
+        <span class="column is-narrow">
+            
+            
+            11 minutes read (About 1683 words)
+        </span>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-27T21:38:35+08:00">
-                2017-09-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning-notes/" itemprop="url" rel="index">
-                    <span itemprop="name">learning notes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <p>大家好，课程来到了第二周，这周主要是一些优化方法，使得整个neural networks可以更快更好的工作，我们一起来recap一下。<br><a id="more"></a></p>
 <h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>这一节我就不打算写了，比较基础，其实mini-batch gradient descent是batch gradient和stochastic gradient descent综合后的结果，一方面解决了batch gradient计算量大，容易converge到local minimum的问题，也解决了stochastic gradient descent epoch太多的弊端，是现在gradient descent使用最广泛的方法。</p>
 <p>对于mini-batch gradient descent，Ng建议batch大小取决于数据量多少，在小数据量上完全没有必要做mini-batch，直接使用batch gradient descent就可以，对于大数据量的情况，最好选择2的乘方，如64,128,256,512来作为batch size. 当然，batch size也要满足CPU和GPU的内存大小。</p>
-<h2 id="Exponentially-weighted-averages"><a href="#Exponentially-weighted-averages" class="headerlink" title="Exponentially weighted averages"></a>Exponentially weighted averages</h2><h3 id="Exponentially-weighted-averages-1"><a href="#Exponentially-weighted-averages-1" class="headerlink" title="Exponentially weighted averages"></a>Exponentially weighted averages</h3><p>Exponentially weighted averages，也被称为moving averages，是一种综合历史数据的加权平均方法，课程中Ng用了伦敦一年的气温变化曲线作为例子，对于固有变量\(\theta\)来说，我们要求的平均值\(v\)应该是</p>
-<script type="math/tex; mode=display">v_0 = 0</script><script type="math/tex; mode=display">v_1 = \beta v_0 + (1- \beta) \theta_1</script><script type="math/tex; mode=display">v_2 = \beta v_1 + (1- \beta) \theta_2</script><script type="math/tex; mode=display">v_3= \beta v_2 + (1- \beta) \theta_3</script><script type="math/tex; mode=display">\cdots</script><script type="math/tex; mode=display">v_t= \beta v_{t-1} + (1- \beta) \theta_t</script><p>其中\(\beta\)是一个因子，它决定了moving averages大约向前平均了\(\frac{1}{1- \beta}\)个\(\theta\)值，例如\(\beta = 0.9\)，那么大约向前平均了10个值，并且是向前按指数衰减加权获得的平均值。</p>
+<h2 id="Exponentially-weighted-averages"><a href="#Exponentially-weighted-averages" class="headerlink" title="Exponentially weighted averages"></a>Exponentially weighted averages</h2><h3 id="Exponentially-weighted-averages-1"><a href="#Exponentially-weighted-averages-1" class="headerlink" title="Exponentially weighted averages"></a>Exponentially weighted averages</h3><p>Exponentially weighted averages，也被称为moving averages，是一种综合历史数据的加权平均方法，课程中Ng用了伦敦一年的气温变化曲线作为例子，对于固有变量\(\theta\)来说，我们要求的平均值\(v\)应该是<br>$$v_0 = 0$$<br>$$v_1 = \beta v_0 + (1- \beta) \theta_1 $$<br>$$v_2 = \beta v_1 + (1- \beta) \theta_2$$<br>$$v_3= \beta v_2 + (1- \beta) \theta_3$$<br>$$\cdots$$<br>$$v_t= \beta v_{t-1} + (1- \beta) \theta_t$$<br>其中\(\beta\)是一个因子，它决定了moving averages大约向前平均了\(\frac{1}{1- \beta}\)个\(\theta\)值，例如\(\beta = 0.9\)，那么大约向前平均了10个值，并且是向前按指数衰减加权获得的平均值。</p>
 <h3 id="Bias-correction"><a href="#Bias-correction" class="headerlink" title="Bias correction"></a>Bias correction</h3><p>在exponentially weighted averages中，有一个问题很尖锐，那就是在最初的求解过程中，由于\(v_0=0\)，导致前面的数字结果距离正确结果较小，如下图所示，紫色曲线是获得的结果，而在起始位置的值明显是偏小的。<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/7/7-1.png" alt=""><br>此时，我们引入bias correction，原理也很简单，就是此处我们不使用\(v_t\)作为最终的结果，而是使用\( \frac{v_t}{1- \beta^{t}}\)作为最后的结果，通过bias correction，我们会获得绿色的曲线。</p>
 <p>我们可以看到，起始绿色钱和紫色曲线在最后基本没有差别，几乎重合，但是在曲线开始的时候，绿色曲线比紫色曲线更加逼近真实情况，因此，Ng给我们以下建议：</p>
 <ul>
@@ -387,532 +161,220 @@
 <li>Bias correction对于initial value效果更好</li>
 </ul>
 <h2 id="Gradient-descent-optimization"><a href="#Gradient-descent-optimization" class="headerlink" title="Gradient descent optimization"></a>Gradient descent optimization</h2><h3 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h3><p>在gradient descent中，我们经常会遇到一种情况，如图所示：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/7/7-2.png" alt=""><br>在水平方向上，我们希望更快的下降，而在垂直方向上我们希望更小的下降速率，以避免过多的iteration，针对这种情况，我们讲moving averages的思想带入进来，这就是momentum方法。</p>
-<p>在momentum中，我们的每次迭代中：</p>
-<script type="math/tex; mode=display">v_{dW}= \beta v_{dW}+(1- \beta)dW</script><script type="math/tex; mode=display">v_{db}= \beta v_{db}+(1- \beta)db</script><script type="math/tex; mode=display">W:=W- \alpha v_{dW}</script><script type="math/tex; mode=display">b:=b - \alpha v_{db}</script><p>在很多的文献中，上面的\(1- \beta\)项被省略掉了，这样做只是将等式等量做了缩放，并不影响实际的效果，Ng表示，两种方式的momentum几乎没有差别，大家可以放心使用。</p>
+<p>在momentum中，我们的每次迭代中：<br>$$v_{dW}= \beta v_{dW}+(1- \beta)dW$$<br>$$v_{db}= \beta v_{db}+(1- \beta)db$$<br>$$W:=W- \alpha v_{dW}$$<br>$$b:=b - \alpha v_{db}$$<br>在很多的文献中，上面的\(1- \beta\)项被省略掉了，这样做只是将等式等量做了缩放，并不影响实际的效果，Ng表示，两种方式的momentum几乎没有差别，大家可以放心使用。</p>
 <p>实际上，momentum可以理解为将数次之前迭代过程中的gradient变化也带入到了这次迭代过程中，我个人认为就是带入了一种gradient变化的趋势，这样可以更好的控制gradient descent的方向和大小。例如上图中的纵向方向中，加入momentum后可以轻松的将纵向梯度正负抵消到近似0，这样就可以减少在gradient descent在纵向的反复迭代，因为，那既是无用功，也是我们不愿意看到的情况。</p>
 <p>另外，Ng给我们了一个\(\beta\)的理想取值，既0.9，这个值大约取了前10次迭代结果的moving averages。另外，Ng表示，在momen中很少使用bias correction，因为10次迭代之后，这种问题很快就会消除，而一般的gradient descent，iteration次数远远大于10次。</p>
-<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>除了momentum，还有一些类似的方法，例如大名鼎鼎的RMSprop(root means square prop)，在这个方法中，主要体现了square的应用，我们来看看，在每次的迭代中：</p>
-<script type="math/tex; mode=display">S_{dW}= \beta S_{dW} + (1- \beta)(dW)^2</script><script type="math/tex; mode=display">S_{db}= \beta S_{db}+(1- \beta)(db)^2</script><script type="math/tex; mode=display">W:=W- \alpha \frac{dW}{\sqrt {S_{dW}}+ \epsilon}</script><script type="math/tex; mode=display">b:=b- \alpha \frac{db}{\sqrt {S_{db}} + \epsilon}</script><p>\(\epsilon\)是为了防止分母为0的一个item，取值建议为\(10^{-8}\)</p>
+<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>除了momentum，还有一些类似的方法，例如大名鼎鼎的RMSprop(root means square prop)，在这个方法中，主要体现了square的应用，我们来看看，在每次的迭代中：<br>$$S_{dW}= \beta S_{dW} + (1- \beta)(dW)^2$$<br>$$S_{db}= \beta S_{db}+(1- \beta)(db)^2$$<br>$$W:=W- \alpha \frac{dW}{\sqrt {S_{dW}}+ \epsilon}$$<br>$$b:=b- \alpha \frac{db}{\sqrt {S_{db}} + \epsilon}$$<br>\(\epsilon\)是为了防止分母为0的一个item，取值建议为\(10^{-8}\)</p>
 <p>假设在gradient descent中，\(W\)下降速率太低，也就是\(dW\)太小，那么在RMSprop的迭代中，\(dW\)将会除以一个很小的值\( \sqrt{S_{dW}}\)，也就是\(W\)将会减去一个较大的值，反之亦然。</p>
 <p>通过这种方式，我们缓解了上图所示的情况，改善了gradient descent的合理性，同时可以使用更大的\(\alpha\)去实现更快的gradient descent.</p>
-<h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>我们看到了momentum和RMSprop优化方法的厉害之处，现在Adam方法横空出世，他融合了momentum和RMSprop，他是如何融合的呢，我们把momentum中的\( \beta\)命名为\( \beta_1\)，把RMSprop中的\( \beta\)命名为\( \beta_2\)，在第\(t\)次迭代中：</p>
-<script type="math/tex; mode=display">v_{dW}= \beta_1 v_{dW}+(1- \beta_1)dW, \qquad v_{db}= \beta_1 v_{db}+(1- \beta_1)db</script><script type="math/tex; mode=display">s_{dW}= \beta_2 s_{dW}+(1- \beta_2)(dW)^2, \qquad s_{db}= \beta_2 s_{db}+(1- \beta_2)(db)^2</script><p>加上bias correction后</p>
-<script type="math/tex; mode=display">v^{corrected}_{dW}= \frac{v_{dW}}{1- \beta^t_1}, \qquad v^{corrected}_{db}= \frac{v_{db}}{1- \beta^t_1}</script><script type="math/tex; mode=display">s^{corrected}_{dW}= \frac{s_{dW}}{1- \beta^t_2}, \qquad s^{corrected}_{db}= \frac{s_{db}}{1- \beta^t_2}</script><script type="math/tex; mode=display">W:=W- \alpha \frac{v^{corrected}_{dW}}{ \sqrt{s^{corrected}_{dW}}+ \epsilon}</script><script type="math/tex; mode=display">W:=W- \alpha \frac{v^{corrected}_{db}}{ \sqrt{s^{corrected}_{db}}+ \epsilon}</script><p>其中，\(\epsilon\)是为了防止分母为0的一个item，取值建议为\(10^{-8}\)，\(\beta_1\)建议取值0.9，\(\beta_2\)建议取值0.999。</p>
-<h2 id="Learning-rate-decay"><a href="#Learning-rate-decay" class="headerlink" title="Learning rate decay"></a>Learning rate decay</h2><p>在gradient descent中，随着迭代的深度，越来越靠近minimum，我们需要更小的learning rate，以避免越过minimum，常用的learning decay方法有：</p>
-<script type="math/tex; mode=display">\alpha = \frac{1}{1+decayRate*epochNum} * \alpha_0</script><script type="math/tex; mode=display">\alpha = 0.95^{epochNum} * \alpha_0</script><script type="math/tex; mode=display">\alpha = \frac{k}{\sqrt{epochNum}}* \alpha_0</script><p>这些方法都可以让\(\alpha\)随着迭代次数增加而慢慢变小，可以更好的逼近minimum.</p>
+<h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>我们看到了momentum和RMSprop优化方法的厉害之处，现在Adam方法横空出世，他融合了momentum和RMSprop，他是如何融合的呢，我们把momentum中的\( \beta\)命名为\( \beta_1\)，把RMSprop中的\( \beta\)命名为\( \beta_2\)，在第\(t\)次迭代中：<br>$$v_{dW}= \beta_1 v_{dW}+(1- \beta_1)dW, \qquad v_{db}= \beta_1 v_{db}+(1- \beta_1)db$$<br>$$s_{dW}= \beta_2 s_{dW}+(1- \beta_2)(dW)^2, \qquad s_{db}= \beta_2 s_{db}+(1- \beta_2)(db)^2$$<br>加上bias correction后<br>$$v^{corrected}<em>{dW}= \frac{v</em>{dW}}{1- \beta^t_1}, \qquad v^{corrected}<em>{db}= \frac{v</em>{db}}{1- \beta^t_1}$$<br>$$s^{corrected}<em>{dW}= \frac{s</em>{dW}}{1- \beta^t_2}, \qquad s^{corrected}<em>{db}= \frac{s</em>{db}}{1- \beta^t_2}$$<br>$$W:=W- \alpha \frac{v^{corrected}<em>{dW}}{ \sqrt{s^{corrected}</em>{dW}}+ \epsilon}$$<br>$$W:=W- \alpha \frac{v^{corrected}<em>{db}}{ \sqrt{s^{corrected}</em>{db}}+ \epsilon}$$<br>其中，\(\epsilon\)是为了防止分母为0的一个item，取值建议为\(10^{-8}\)，\(\beta_1\)建议取值0.9，\(\beta_2\)建议取值0.999。</p>
+<h2 id="Learning-rate-decay"><a href="#Learning-rate-decay" class="headerlink" title="Learning rate decay"></a>Learning rate decay</h2><p>在gradient descent中，随着迭代的深度，越来越靠近minimum，我们需要更小的learning rate，以避免越过minimum，常用的learning decay方法有：<br>$$\alpha = \frac{1}{1+decayRate<em>epochNum} </em> \alpha_0$$<br>$$\alpha = 0.95^{epochNum} <em> \alpha_0$$<br>$$\alpha = \frac{k}{\sqrt{epochNum}}</em> \alpha_0$$<br>这些方法都可以让\(\alpha\)随着迭代次数增加而慢慢变小，可以更好的逼近minimum.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="external">Deep learning-Coursera Andrew Ng</a></li>
-<li><a href="https://mooc.study.163.com/course/deeplearning_ai-2001281003#/info" target="_blank" rel="external">Deep learning-网易云课堂 Andrew Ng</a></li>
-<li><a href="http://ruder.io/optimizing-gradient-descent/" target="_blank" rel="external">An overview of gradient descent optimization algorithms </a></li>
+<li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noopener">Deep learning-Coursera Andrew Ng</a></li>
+<li><a href="https://mooc.study.163.com/course/deeplearning_ai-2001281003#/info" target="_blank" rel="noopener">Deep learning-网易云课堂 Andrew Ng</a></li>
+<li><a href="http://ruder.io/optimizing-gradient-descent/" target="_blank" rel="noopener">An overview of gradient descent optimization algorithms </a></li>
 </ul>
 
-      
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/gradient-descent/">#gradient descent</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/moving-averages/">#moving averages</a></span>
+    
     </div>
     
     
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/gradient-descent/" rel="tag"># gradient descent</a>
-          
-            <a href="/tags/moving-averages/" rel="tag"># moving averages</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-              <a href="/2017/09/24/course-deep-learning-course2-week1/" rel="next" title="Learning Notes-Deep Learning, course2, week1">
-                <i class="fa fa-chevron-left"></i> Learning Notes-Deep Learning, course2, week1
-              </a>
+            <a href="/2017/09/30/course-deep-learning-course2-week3/">Learning Notes-Deep Learning, course2, week3</a>
             
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-              <a href="/2017/09/30/course-deep-learning-course2-week3/" rel="prev" title="Learning Notes-Deep Learning, course2, week3">
-                Learning Notes-Deep Learning, course2, week3 <i class="fa fa-chevron-right"></i>
-              </a>
+            <a href="/2017/09/24/course-deep-learning-course2-week1/">Learning Notes-Deep Learning, course2, week1</a>
             
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<div class="addthis_inline_share_toolbox">
-  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a694d4d78479a8b" async = "async" ></script>
-</div>
-
-      
+        </span>
     </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+</article>
+
+
+<div class="sharebox">
     
-  </div>
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a694d4d78479a8b"></script>
 
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg"
-               alt="Joe Asir" />
-          <p class="site-author-name" itemprop="name">Joe Asir</p>
-           
-              <p class="site-description motion-element" itemprop="description">The most important ability for a developer may be the ability to KEEP LEARNING.</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives/">
-            
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">categories</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/JoeAsir" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:joeAsir0560@outlook.com" target="_blank" title="E-Mail">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                    
-                      E-Mail
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://weibo.com/u/2144484004" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                    
-                      Weibo
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/joe_asir" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                    
-                      Twitter
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.quora.com/profile/Joe-Asir" target="_blank" title="Quora">
-                  
-                    <i class="fa fa-fw fa-quora"></i>
-                  
-                    
-                      Quora
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              My friends
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.unbelievable9.info/" title="Unbelievable9" target="_blank">Unbelievable9</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mini-batch-gradient-descent"><span class="nav-number">1.</span> <span class="nav-text">Mini-batch gradient descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exponentially-weighted-averages"><span class="nav-number">2.</span> <span class="nav-text">Exponentially weighted averages</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exponentially-weighted-averages-1"><span class="nav-number">2.1.</span> <span class="nav-text">Exponentially weighted averages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bias-correction"><span class="nav-number">2.2.</span> <span class="nav-text">Bias correction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent-optimization"><span class="nav-number">3.</span> <span class="nav-text">Gradient descent optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#momentum"><span class="nav-number">3.1.</span> <span class="nav-text">momentum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMSprop"><span class="nav-number">3.2.</span> <span class="nav-text">RMSprop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam"><span class="nav-number">3.3.</span> <span class="nav-text">Adam</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-rate-decay"><span class="nav-number">4.</span> <span class="nav-text">Learning rate decay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 &mdash; 
-  <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-fire"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Joe Asir</span>
-
-  
 </div>
 
 
 
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://joeasir.github.io/2017/09/27/course-deep-learning-course2-week2/';
+        this.page.identifier = '2017/09/27/course-deep-learning-course2-week2/';
         
-
-
-
-
-
-
-
+        this.language = 'en';
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://www.superasir.ml/2017/09/27/course-deep-learning-course2-week2/';
-          this.page.identifier = '2017/09/27/course-deep-learning-course2-week2/';
-          this.page.title = 'Learning Notes-Deep Learning, course2, week2';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://supaerasir.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'supaerasir' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
-      </script>
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2018 Joe Asir&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/JoeAsir">
+                    
+                    GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Twitter" href="https://twitter.com/joe_asir">
+                    
+                    Twitter
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                    
+                    Weibo
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+</script>
+
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
     
 
-  
+    
 
 
+<script src="/js/script.js"></script>
 
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
 </script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-
-  
-
-  
-
+<script src="/js/insight.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
 </body>
 </html>

@@ -1,8 +1,8 @@
 ---
 title: Hello World
 date: 2017-07-26 17:40:40
-tags: 抒情一把
-categories: 杂
+tags: life
+categories: others
 ---
 **我终于把blog搭建起来了!**
 

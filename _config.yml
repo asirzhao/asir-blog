@@ -5,14 +5,14 @@
 # Site
 title: superAsir's Notes
 subtitle: Just 4 fun!
-description: The most important ability for a developer may be the ability to KEEP LEARNING.
+description: Hard-working developer by day and trouble maker by night.
 author: Joe Asir
 language: en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://www.superasir.ml/
+url: https://joeasir.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/next/
-theme: next 
+theme: minos 
 
 google_site_verification: IP_M3isWgLBIJ4pTTdb2ehfLaBuNRIu-dvav8vsoTcI 
 
