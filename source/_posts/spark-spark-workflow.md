@@ -10,7 +10,7 @@ Hello，有一个月没写blog了感觉很自责，必须整起来！最近由�
 和hadoop一样，spark也是master-slave机制，Spark通过driver进程，将task分发到多个executors上并发进行计算。整个driver和所有的executors组成了一个spark application，每一个application是运行在cluster manager上的，Spark本身集成了standalone cluster，当然，Spark还可以运行在赫赫有名的YARN和Mesos上。我平时使用的公司集群都是基于YARN cluster manager的，因此本文重点探讨基于YARN的spark。
 
 下图就是spark在cluster manager下的整体工作流程。
-![](http://otmy7guvn.bkt.clouddn.com/blog/15/15-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/15/15-1.png)
 
 ## The Driver
 Driver是整个application最核心的部分，他运行的是application的main方法，它伴随这整个application的生命周期，driver进程的结束就会带来整个application的结束。
@@ -27,7 +27,7 @@ Executors是Spark application的执行者，他们也是伴随着application的�
 
 ## Spark on Yarn-cluster
 下面，我们一起看看整个Spark application中，driver和executors的都会起到什么作用。我以基于yarn-cluster的YARN的Spark作为例子来简述整个流程，先看一张图：
-![](http://otmy7guvn.bkt.clouddn.com//blog/15/15-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/15/15-2.png)
 首先我们要明确一些YARN的概念，YARN是与master-slaver的一个Cluster Manager， 在YARN中，RM(ResourseManager)负责整个调度分发，即我们常说的master；而NM(NodeManager)任务分发的接受者，负责执行具体的任务，也就是我们所说的worker。这些概念后续我专门介绍YARN的时候会详细的说明，他们的作用都是实现spark和YARN之间诸如资源申请等操作。
 
 首先Client向ResourceManager发出提交application的请求，ResourseManager会在某一个NodeManager上启动AppManager进程，AppManager会随后启动driver，并将driver申请containers资源的信息发给ResourceManager，申请完成后，ResourceManager将资源分配消息传递给AppManager并由它启动container，每一个container中只运行一个spark executor，由此完成了资源的申请和分配。

@@ -21,11 +21,11 @@ Testing Set: this data set is used only for testing the final solution in order 
 ## Bias and variance
 ### 什么是bias和variance
 bias & variance是machine learning 领域一个经典的辩证问题，在Ng经典的CS229中就重点的讲述过，具体的定义我不太想给出了，后续有时间可以专门写一篇，后面会给出一些资料链接。我们简单的看一幅图
-![](http://otmy7guvn.bkt.clouddn.com/blog/6/6-5.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/6/6-5.png)
 左图就是一个典型的high bias situation，模型没有办法很好的拟合数据，这也就是我们常说的under fitting，右图则是典型的high variance situation，模型过分的拟合了training set，这就是我们最需要防范的over fitting.当然，中间的则是比较理想的状况。
 ### Solution
 在实际的工作中，我们应该怎么分析自己模型的bias和variance情况呢，Ng给了我们一个流程图，如下：
-![](http://otmy7guvn.bkt.clouddn.com/blog/6/6-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/6/6-2.png)
 首先检验是否存在high bias 情况，具体方法是在training set 和 dev set上计算error，对比training error和dev error，如果两者都很高，那么就是high bias，如果training error很小而dev error很高，那么一定是high variance，如果两者都很大，那么就是最差的情况了既high bias又high variance
 
 对于high bias，我们可以通过更复杂的神经网络、更长的训练时间，更强的网络结构来解决这个问题；
@@ -39,7 +39,7 @@ bias & variance是machine learning 领域一个经典的辩证问题，在Ng经�
 Dropout是neural network中一种经典的regularization方法，经典到什么程度呢，我当年毕设课题中都用到了这个方法，而且效果超赞
 
 Dropout方法的实质是**按比例随机隐藏**掉neural network中layer里的某些units，也就是说，再一次epoch中，只有一部分的units对应的weights和bias会得到更新，而下一次epoch中，则是另一部分units对应的weights和bias得到更新，如下图
-![](http://otmy7guvn.bkt.clouddn.com/blog/6/6-3.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/6/6-3.png)
 那么为什么Dropout可以实现regularization效果呢，Ng告诉我们：
 > Intuition:Can't rely on any one feature, so have to spread out weights
 
@@ -67,7 +67,7 @@ $$z=w_{1}x_1 +w_{2}x_2+ \cdots +w_{n}x_n$$
 ## Gradient checking
 ### Gradient approximation
 在调试neural network的时候，我们会经常做gradient check的工作，以确定整个network正常的运行，Ng在这里建议我们使用双边逼近的方法去做gradient check，这里我不做太多描述，主要上一张图：
-![](http://otmy7guvn.bkt.clouddn.com/blog/6/6-6.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/6/6-6.png)
 通常来说，双边逼近的方法获得结果更加准确。
 ### Gradient checking notes
 > 1. Don't use in training-only to debug(too slow)

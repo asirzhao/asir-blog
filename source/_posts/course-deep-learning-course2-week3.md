@@ -50,9 +50,9 @@ $$z^{[l]}=w^{[l]}a^{[l-1]}+b^{[l]}$$
 什么是covariate shift？简单的理解，就是模型需要随着样本的变化而变化，Ng举的例子就很直观，在猫脸试验中，假设training set里都是黑猫，这样获得的模型，对于花猫识别就是不适用的，这就叫covariate shift. 其实，batch norm可以改善neural networks效果的原因，就可以理解为solve covariate shift的过程。
 
 OK，我们来详细看看原因，假设我们有一个如图的neural networks：
-![](http://otmy7guvn.bkt.clouddn.com/blog/8/8-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/8/8-1.png)
 在标示出的位置，有parameter\\(w^{[3]}\\)和\\(b^{[3]}\\)，如果我们盖住前面的部分，那么我们将获得如图的neural networks
-![](http://otmy7guvn.bkt.clouddn.com/blog/8/8-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/8/8-2.png)
 对于neural networks来说，相当于获得了黑箱输出的\\(a^{[2]}\\)，而\\(a^{[2]}\\)的值其实并不是是固定的，每一次iteration后都有不一样的\\(a^{[2]}\\)，这就产生了covariate shift问题。
 
 但是，batch norm可以将\\(a^{[2]}\\)的期望和方差限制到\\(\beta\\)和\\(gamma\\)控制的范围内，以此**极大限度**的缓解了covariate shift现象。

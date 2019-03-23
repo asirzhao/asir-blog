@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-<title>Catalyst Optimiation in Spark SQL - superAsir&#39;s Notes</title>
+<title>Catalyst Optimization in Spark SQL - superAsir&#39;s Notes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//use.fontawesome.com/releases/v5.0.11/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -55,7 +55,7 @@
             <a class="navbar-item navbar-logo" href="/">
                 
                     
-                    <img src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg" alt="" height="28">
+                    <img src="https://github.com/JoeAsir/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
                     
                 
             </a>
@@ -75,9 +75,6 @@
                href="/archives">Archives</a>
             
             <a class="navbar-item "
-               href="/tags">Tags</a>
-            
-            <a class="navbar-item "
                href="/categories">Categories</a>
             
             <a class="navbar-item "
@@ -92,6 +89,60 @@
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                
+                
+                    
+                    
+                    <a class="navbar-item" href="#Trees-And-Rules">1&nbsp;&nbsp;<b>Trees And Rules</b></a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Trees">1.1&nbsp;&nbsp;Trees</a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Rules">1.2&nbsp;&nbsp;Rules</a>
+                
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Catalyst">2&nbsp;&nbsp;<b>Catalyst</b></a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Parser">2.1&nbsp;&nbsp;Parser</a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Analysis">2.2&nbsp;&nbsp;Analysis</a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Logcial-Optimization">2.3&nbsp;&nbsp;Logcial Optimization</a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Physical-Planning">2.4&nbsp;&nbsp;Physical Planning</a>
+                
+                    
+                    
+                    <a class="navbar-item" href="#Code-Generation">2.5&nbsp;&nbsp;Code Generation</a>
+                
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#References">3&nbsp;&nbsp;<b>References</b></a>
+                
+                </div>
+            </div>
+            
             
             <a class="navbar-item" title="GitHub" href="https://github.com/JoeAsir">
                 
@@ -105,15 +156,21 @@
                 
             </a>
                
-            <a class="navbar-item" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <a class="navbar-item" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                 
                 <i class="fab fa-weibo"></i>
                 
             </a>
                
-            <a class="navbar-item" title="Mail" href="mailto:joeAsir0560@outlook.com">
+            <a class="navbar-item" title="Best Fellow" href="https://www.unbelievable9.info/">
                 
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-user-astronaut"></i>
                 
             </a>
                
@@ -127,7 +184,7 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            Catalyst Optimiation in Spark SQL
+            Catalyst Optimization in Spark SQL
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
@@ -144,32 +201,32 @@
         <span class="column is-narrow">
             
             
-            7 minutes read (About 1097 words)
+            7 minutes read (About 1106 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="http://otmy7guvn.bkt.clouddn.com/blog/background/app-applications-apps.jpg" alt=""><br>Spark SQL is one of the most important components of Apache Spark and has become the fundation of Structure Streaming, ML Pipeline, GraphFrames and so on since Spark 2.0. Also, Spark SQL provides SQL queries and DataFrame/Dataset API, both of which are optimized by Catalyst. Let’s talk about Catalyst today.<br>Catalyst Optimizer is a great optimization framework to improve Spark SQL performance, especially query capabilities of Spark SQL and it is written by functional programming construct in Scala. RBO(Rule Based Optimization) and CBO(Cost Based Optimization) are the optimization principles of Catalyst. The concept of Catalyst is familiar to many other query optimizers, so understanding Catalyst may help you learn the working pipeline of other query optimizers.<br><a id="more"></a></p>
+        <p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/background/app-applications-apps.jpg" alt=""><br>Spark SQL is one of the most important components of Apache Spark and has become the fundation of Structure Streaming, ML Pipeline, GraphFrames and so on since Spark 2.0. Also, Spark SQL provides SQL queries and DataFrame/Dataset API, both of which are optimized by Catalyst. Let’s talk about Catalyst today.<br><a id="more"></a><br>Catalyst Optimizer is a great optimization framework to improve Spark SQL performance, especially query capabilities of Spark SQL and it is written by functional programming construct in Scala. RBO(Rule Based Optimization) and CBO(Cost Based Optimization) are the optimization principles of Catalyst. The concept of Catalyst is familiar to many other query optimizers, so understanding Catalyst may help you learn the working pipeline of other query optimizers.</p>
 <h2 id="Trees-And-Rules"><a href="#Trees-And-Rules" class="headerlink" title="Trees And Rules"></a>Trees And Rules</h2><p>We will have a quick review of trees and rules. You can learn more about them by the references. </p>
 <h3 id="Trees"><a href="#Trees" class="headerlink" title="Trees"></a>Trees</h3><p>The tree is the basic datatype in Catalyst, which is consisted of node objects. Each node has a node type, and some children, which could be none. Let’s have an example, the tree for expression x+(1+2) could be translated in Scala as:</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/18/18-3.png" alt=""><br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-type">Add</span>(<span class="hljs-type">Attribute</span>(x),<span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(<span class="hljs-number">1</span>),<span class="hljs-type">Literal</span>(<span class="hljs-number">2</span>)))</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-3.png" alt=""><br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-type">Add</span>(<span class="hljs-type">Attribute</span>(x),<span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(<span class="hljs-number">1</span>),<span class="hljs-type">Literal</span>(<span class="hljs-number">2</span>)))</span><br></pre></td></tr></table></figure></p>
 <p>Actually, most of the SQL query optimization, like Catalyst, would transform the SQL to a huge tree structure as the first step of the optimization. Tree structure could be modified, tailored and optimized easily, also it represents the query plan briefly. What’s more, the data can be thrown to every node of the tree by the query plan iteratively. That’s why tree datatype is used and introduced firstly in Catalyst.</p>
 <h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>Trees can be manipulated by the rules. The optimization can be treated as some transformations from one tree to another under some rules we provide. With the help of rules, we can run arbitrary code and many other operations on the input tree. And the Catalyst will know which part of the tree that rules could match or apply, and will automatically skip over the tree that does not match. The rules are all applied by Scala case class, in other words, one rule can match multiple patterns. Let’s see an example.<br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tree.transform &#123;</span><br><span class="line">  <span class="hljs-keyword">case</span> <span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(c1),<span class="hljs-type">Literal</span>(c2)) =&gt; <span class="hljs-type">Literal</span>(c1+c2)</span><br><span class="line">  <span class="hljs-keyword">case</span> <span class="hljs-type">Add</span>(left, <span class="hljs-type">Literal</span>(<span class="hljs-number">0</span>)) =&gt; left</span><br><span class="line">  <span class="hljs-keyword">case</span> <span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(<span class="hljs-number">0</span>), right) =&gt; right</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Catalyst"><a href="#Catalyst" class="headerlink" title="Catalyst"></a>Catalyst</h2><p>From this section, we will know how Catalyst optimizes Spark SQL, which might improve your understanding of how Spark SQL works and how to manipulate it better. The figure below presents the workflow of Spark SQL, and the Analysis, Logical Optimization and Physical Planning are all working under the Catalyst, and we will go over one by one.</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/18/18-2.png" alt=""></p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-2.png" alt=""></p>
 <h3 id="Parser"><a href="#Parser" class="headerlink" title="Parser"></a>Parser</h3><p>The first stage in the figure above is called Parser. Despite not a part of Catalyst, Parser is also very crucial in the whole optimization. Spark SQL transform SQL queries to an AST(Abstract Syntax Tree), also called Unresolved Logical Plan in Catalyst,  by ANTLR, which is also used in the Hive, presto and so on. However, DataFrame/Dataset object can be transformed to Unresolved Logical Plan by the API.</p>
 <h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Returned by the Parser, Unresolved Logical Plan contains many unresolved attribute reference of relation. For example, you have no idea whether the column name provided is correct or type of the column, either. Spark SQL use Catalyst and Catalog object that tracks the data all the time to resolve the attributes. Looking up relations by name from Catalog, mapping all the named attributes to the input, checking the attributes which match to the same value and giving the unique ID and pushing the type information of the attributes, the Unresolved Logical Plan is transformed to Logical Plan by Catalyst.</p>
 <h3 id="Logcial-Optimization"><a href="#Logcial-Optimization" class="headerlink" title="Logcial Optimization"></a>Logcial Optimization</h3><p>Logical Optimization is mainly based on the rules, which is also called RBO(Rules Based Optimization). Lots of rules are provided in this step to accomplish RBO, including constant folding, predicate pushdown, project pruning and so on. As results, the Logical Plan is returned by Logical Optimization from Unresolved Logical Plan. Some figures below describe these ROB mentioned.<br><strong>Predicate pushdown</strong> can reduce the computation of join operation by filtering unnecessary data before join.</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/18/18-4.png" alt=""><br><strong>Constant folding</strong> avoids calculating the same operation between constants for each record.</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/18/18-5.png" alt=""><br><strong>Column Pruning</strong> makes Spark SQL only load data which would be used in the table.</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/18/18-6.png" alt=""></p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-4.png" alt=""><br><strong>Constant folding</strong> avoids calculating the same operation between constants for each record.</p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-5.png" alt=""><br><strong>Column Pruning</strong> makes Spark SQL only load data which would be used in the table.</p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-6.png" alt=""></p>
 <h3 id="Physical-Planning"><a href="#Physical-Planning" class="headerlink" title="Physical Planning"></a>Physical Planning</h3><p>Since we get the Logical Plan, Spark still doesn’t know how to execute the Logical Plan. Transformed from Logical Plan by Physical Planning, Physical Plan would guide the Spark on how to handle the data. In Physical Planning, several Physical Plans are generated from Logical Plan, using physical operator matches the Spark execution engine. Using CBO(Cost Based Optimization), Catalyst will select the best performance one as the Physical Plan. However, the CBO is now only used for join algorithms selection. Also, RBO is used in Physical Planning to pipelining projections or filters into single Spark <em>map()</em> transformation.</p>
 <h3 id="Code-Generation"><a href="#Code-Generation" class="headerlink" title="Code Generation"></a>Code Generation</h3><p>Getting the Physical Plan from the Physical Planning stage, Spark will translate the AST into Java bytecode to run on each machine. Thanks to quasiquotes, a greate feature of Scala, ASTs would be built by Scala language based on the Physical Plan. And the AST will be send to Scala Compile at runtime to generate<br>ava bytecode. </p>
 <blockquote>
 <p>We use Catalyst to transform a tree representing an expression in SQL to an AST for Scala code to evaluate that expression, and then compile and run the generated code.</p>
 </blockquote>
-<p>Code Generation is actually not a part of Catalyst and I just learn little about quasiquotes. I present the offical doucument at the reference section, which may help you read more.</p>
+<p>In Spark 2.x, the WholeStageCodeGen has been used in code generation stage, you can read more from <a href="https://joeasir.github.io/2018/11/14/spark-second-generation-tungsten-in-spark">here</a>.</p>
 <p>At last, if you want to see the Logical Plan and Physical Plan of your own Spark SQL, you may do as follows:<br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// for Logical Plan</span></span><br><span class="line">spark.sql(<span class="hljs-string">"your SQL"</span>).queryExecution</span><br><span class="line"><span class="hljs-comment">// for Physical Plan</span></span><br><span class="line">spark.sql(<span class="hljs-string">"your SQL"</span>).explain</span><br></pre></td></tr></table></figure></p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html" target="_blank" rel="noopener">Deep Dive into Spark SQL’s Catalyst Optimizer</a></li>
@@ -189,7 +246,9 @@
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2018/10/13/spark-sumup-part-2/">Spark Tips Sum-up Part-2</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
@@ -242,7 +301,7 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2018 Joe Asir&nbsp;
+                &copy; 2019 Joe Asir&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
@@ -267,7 +326,14 @@
                 </a>
                 
                     
-                <a class="column is-narrow has-text-black" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                <a class="column is-narrow has-text-black" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                    
+                    Instagram
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                     
                     Weibo
                     

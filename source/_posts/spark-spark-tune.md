@@ -21,7 +21,7 @@ Resource allocation是spark中一个非常重要的环节，给予一个applicat
 
 ## Memory Mangement
 关于spark中的memory management，我们先来看一张图：
-![](http://otmy7guvn.bkt.clouddn.com/blog/16/16-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/16/16-1.png)
 在图中我们可以看到，spark把memory分成了三部分，即spark memory、user memory和reserved memory，我们顺次来看看：
 ### Reserved Memory
 所谓reserved memory，它就是系统预留下的一部分memory，用于存储spark的内部对象，默认大小为300m，绝大部分情况下，我们都不会修改这些参数。值得注意的是，当executor被分配的memory小于1.5倍的reserved memory时，将会抛出“please use larger heap size”的错误。

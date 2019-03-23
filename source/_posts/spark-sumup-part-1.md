@@ -1,10 +1,11 @@
 ---
-title: Spark Tips Sum-Up Part-1
+title: Spark Tips Sum-up Part-1
 date: 2018-09-15 22:15:40
 tags: spark
 categories: spark
+toc: ture
 ---
-![](http://otmy7guvn.bkt.clouddn.com/blog/background/blurred-background-close-up-coffee-cup.jpg)
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/background/blurred-background-close-up-coffee-cup.jpg)
 This article is about things I learned about Apache Spark recently. I've been struggling with Spark tuning for more than one month, including shuffle tuning, GC time tuning and so on. Honestly speaking, Apache Spark is just like an untamed horse, it could be a beauty if you tune it well while a nightmare if not. So let me show you some tips I've learned from my work. This article is part 1 and here we go.
 <!--more-->
 ## RDD vs DataFrame Partition Number in Shuffle 

@@ -3,8 +3,9 @@ title: From Spark RDD to DataFrame/Dataset
 date: 2018-09-22 16:49:15
 tags: spark
 categories: spark
+toc: true
 ---
-![](http://otmy7guvn.bkt.clouddn.com/blog/background/blur-close-up-code.jpg)
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/background/blur-close-up-code.jpg)
 This article presents the relationship between Spark RDD, DataFrame and Dataset, and talks about both the advantages and disadvantages of them. RDD is the fundamental API since the inception of Spark and DataFrame/Dataset API is also pretty popular since Spark 2.0. What's the differences between them and how to decide which API to be imported, let's have a quick look.
 <!--more-->
 ## RDD
@@ -25,7 +26,7 @@ DataFrame/Dataset, unlike RDD, in high-level API dealing with structured data. D
 There are several benefits of DataFrame/Dataset API. I just want to talk about two of them, which I think are pretty awesome.
 ### Static-typing and runtime type-safety
 DataFrame/Dataset presents static-typing and runtime type-safety. You may have a spelling error when you are typing a SQL such as typing *form* rather than *from*, and you would not find the syntax errors until the runtime, however, you will catch these errors at compile time in the DataFrame/Dataset API. Also, as for some analysis errors, the column you queried is not in the schema for example, you can catch these errors when compiling in Dataset while until running in SQL and DataFrame.
-![](http://otmy7guvn.bkt.clouddn.com/blog/17/17-1.png)
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/17/17-1.png)
 ### Nice performance
 DataFrame/Dataset API can make the execution more intelligent and efficient. You are telling Spark how-to-do a operation when using RDD, while what-to-do using DataFrame/Dataset. Let's have a look at the example.
 ```scala

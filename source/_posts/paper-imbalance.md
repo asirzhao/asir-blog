@@ -13,7 +13,7 @@ categories: reading notes
 <!--more-->
 ## Notes
 我们假设有positive和negative两类sample，其中positive samples符合\\(P(x)\\)的Guassian分布，negative samples符合\\(G(x)\\)的Guassian分布，分类平面将空间划分成positive region\\(\cal R^{+} \_{w}\\)和negative region\\(\cal R^{-} \_{w}\\)，如下图所示：
-![](http://otmy7guvn.bkt.clouddn.com/blog/5/5-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/5/5-1.png)
 图中\\(w^{ \*}\\)是理想的分割平面，\\(w^{ \*}\\) 应该是使loss最小的取值，即
 $$w^{*}= \arg\underset{w}{\min} \cal L^{*}(w)$$
 对于loss值，其实就是分类中被错分的fn(false negative)和fp(false positive)的期望值，显然，通过minimun该loss得到的会是图中的\\(w^{*}\\)，因为这个分类平面所带来的error明显是最少的。
@@ -29,9 +29,9 @@ OK，既然不等价，那么问题就来了，paper上说，通过最小化全�
 到了这里，paper大概介绍了undersampling的裨益，undersampling的核心其实就是消除前面提到的比例\\(\pi\\)，让它趋近于0.5后，分类平面\\(\hat w\\)就会趋近于理想分类平面\\(w^{*}\\)。
 
 这里，作者提出了一个bagging方法，就是多次做undersampling，最后最结果做bagging可以获得更好的效果，如下图
-![](http://otmy7guvn.bkt.clouddn.com/blog/5/5-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/5/5-2.png)
 paper还对比了其他的方法，比如Weighted Empirical Cost Minimization(如weighted SVM)和SMOTE方法效果不如bagging undersampling，我上一幅图说明下SMOTE的缺点，更多细节，大家可以详细看看paper，如图：
-![](http://otmy7guvn.bkt.clouddn.com/blog/5/5-3.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/5/5-3.png)
 SMOTE方法是随机选择方向生成新的sample，但是如果新的sample产生了图中位置，则效果不会很好。
 
 OK，今天就这么多，记得看明白了中间的推导一起分享啊！

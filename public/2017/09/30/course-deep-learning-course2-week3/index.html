@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//use.fontawesome.com/releases/v5.0.11/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -55,7 +55,7 @@
             <a class="navbar-item navbar-logo" href="/">
                 
                     
-                    <img src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg" alt="" height="28">
+                    <img src="https://github.com/JoeAsir/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
                     
                 
             </a>
@@ -73,9 +73,6 @@
             
             <a class="navbar-item "
                href="/archives">Archives</a>
-            
-            <a class="navbar-item "
-               href="/tags">Tags</a>
             
             <a class="navbar-item "
                href="/categories">Categories</a>
@@ -105,15 +102,21 @@
                 
             </a>
                
-            <a class="navbar-item" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <a class="navbar-item" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                 
                 <i class="fab fa-weibo"></i>
                 
             </a>
                
-            <a class="navbar-item" title="Mail" href="mailto:joeAsir0560@outlook.com">
+            <a class="navbar-item" title="Best Fellow" href="https://www.unbelievable9.info/">
                 
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-user-astronaut"></i>
                 
             </a>
                
@@ -144,7 +147,7 @@
         <span class="column is-narrow">
             
             
-            9 minutes read (About 1359 words)
+            9 minutes read (About 1363 words)
         </span>
         
     </div>
@@ -167,7 +170,7 @@
 <p>在整个过程中，一共有四个parameters，分别是\(w^{[l]}\)，\(b^{[l]}\)，\( \beta^{[l]}\)，\( \gamma^{[l]}\)，我们都知道：<br>$$z^{[l]}=w^{[l]}a^{[l-1]}+b^{[l]}$$<br>但是，我们在做batch normal的时候，首先会把\(z^{[l]}\)映射到期望为1方差为0的Gaussian distribution上，这就意味着\(b^{[l]}\)是可以忽略掉的，因为即使保留，在batch normal的时候也会被减去，因此，我们的parameter只有三个，即：\(w^{[l]}\)，\( \beta^{[l]}\)，\( \gamma^{[l]}\)</p>
 <p>在backforward的时候，我们和普通的neural networks一样，只是可以不用再去计算\(db\)</p>
 <h3 id="Solve-covariate-shift"><a href="#Solve-covariate-shift" class="headerlink" title="Solve covariate shift"></a>Solve covariate shift</h3><p>什么是covariate shift？简单的理解，就是模型需要随着样本的变化而变化，Ng举的例子就很直观，在猫脸试验中，假设training set里都是黑猫，这样获得的模型，对于花猫识别就是不适用的，这就叫covariate shift. 其实，batch norm可以改善neural networks效果的原因，就可以理解为solve covariate shift的过程。</p>
-<p>OK，我们来详细看看原因，假设我们有一个如图的neural networks：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/8/8-1.png" alt=""><br>在标示出的位置，有parameter\(w^{[3]}\)和\(b^{[3]}\)，如果我们盖住前面的部分，那么我们将获得如图的neural networks<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/8/8-2.png" alt=""><br>对于neural networks来说，相当于获得了黑箱输出的\(a^{[2]}\)，而\(a^{[2]}\)的值其实并不是是固定的，每一次iteration后都有不一样的\(a^{[2]}\)，这就产生了covariate shift问题。</p>
+<p>OK，我们来详细看看原因，假设我们有一个如图的neural networks：<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/8/8-1.png" alt=""><br>在标示出的位置，有parameter\(w^{[3]}\)和\(b^{[3]}\)，如果我们盖住前面的部分，那么我们将获得如图的neural networks<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/8/8-2.png" alt=""><br>对于neural networks来说，相当于获得了黑箱输出的\(a^{[2]}\)，而\(a^{[2]}\)的值其实并不是是固定的，每一次iteration后都有不一样的\(a^{[2]}\)，这就产生了covariate shift问题。</p>
 <p>但是，batch norm可以将\(a^{[2]}\)的期望和方差限制到\(\beta\)和\(gamma\)控制的范围内，以此<strong>极大限度</strong>的缓解了covariate shift现象。</p>
 <p>另外，batch norm还可以有一些regularization的作用，由于每次mini-batch gradient descent中batch norm作用的sample不一样，类似于dropout的效果，会给对应layer加入一些噪声，以此产生一些regularization的效果。但是，我们一般不会把batch norm列入regularization范畴内。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
@@ -245,7 +248,7 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2018 Joe Asir&nbsp;
+                &copy; 2019 Joe Asir&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
@@ -270,7 +273,14 @@
                 </a>
                 
                     
-                <a class="column is-narrow has-text-black" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                <a class="column is-narrow has-text-black" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                    
+                    Instagram
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                     
                     Weibo
                     

@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//use.fontawesome.com/releases/v5.0.11/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -55,7 +55,7 @@
             <a class="navbar-item navbar-logo" href="/">
                 
                     
-                    <img src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg" alt="" height="28">
+                    <img src="https://github.com/JoeAsir/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
                     
                 
             </a>
@@ -73,9 +73,6 @@
             
             <a class="navbar-item "
                href="/archives">Archives</a>
-            
-            <a class="navbar-item "
-               href="/tags">Tags</a>
             
             <a class="navbar-item "
                href="/categories">Categories</a>
@@ -105,15 +102,21 @@
                 
             </a>
                
-            <a class="navbar-item" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <a class="navbar-item" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                 
                 <i class="fab fa-weibo"></i>
                 
             </a>
                
-            <a class="navbar-item" title="Mail" href="mailto:joeAsir0560@outlook.com">
+            <a class="navbar-item" title="Best Fellow" href="https://www.unbelievable9.info/">
                 
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-user-astronaut"></i>
                 
             </a>
                
@@ -144,7 +147,7 @@
         <span class="column is-narrow">
             
             
-            14 minutes read (About 2142 words)
+            14 minutes read (About 2148 words)
         </span>
         
     </div>
@@ -160,11 +163,10 @@
 <h2 id="凸函数-Convex-function"><a href="#凸函数-Convex-function" class="headerlink" title="凸函数(Convex function)"></a>凸函数(Convex function)</h2><p>在开始之前，我有一个关于术语的倡议。中文里的“凸函数”，看上去是凹下去的，对应的，中文里的“凹函数”看上去凸起来的，amazing吧？这是有一定历史原因的，感兴趣的朋友可以去查阅下资料，这里我们不再复述。所以为了避免让大家产生误解，我鼓励大家使用英文，<strong>convex function</strong>和<strong>concave function</strong>.这样会避免很多不必要的麻烦。</p>
 <p>OK，我们来一起看看，convex function</p>
 <p>对于一维函数 \(f(x)\)来说，在定义域内的任意值 \(a\)和\(b\)，对于任意的 \( 0 \leq \theta \leq 1\)，如果满足以下条件，则称为convex function<br>$$f(\theta a+(1-\theta) b) \leq \theta f(a) + (1- \theta)f(b)$$<br>我们再用图片直观的感受一下</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png" alt=""> </p>
-<p>显而易见的是，当公式中等号去掉的时候，函数就是<strong>strictly convex function</strong>.</p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/1/1-1.png" alt=""><br>显而易见的是，当公式中等号去掉的时候，函数就是<strong>strictly convex function</strong>.</p>
 <p>Convex function具有一定的性质，我们简单的描述一下。</p>
 <h3 id="First-order-condition"><a href="#First-order-condition" class="headerlink" title="First order condition"></a>First order condition</h3><p>对于 function \(f\)，在定义域内<strong>一阶可导</strong>，且导数为<br>$$     \nabla f=( \frac{\partial f(x)}{x_1}, \frac{\partial f(x)}{x_2},…,  \frac{\partial f(x)}{x_n})$$<br>那么 \(f\)是convex function的<strong>充要条件</strong>是：对于定义域内任意 \(x\) 和 \(y\)<br>$$ f(y) \geq f(x) + \nabla f(x)^T (y - x)$$<br>OK，再来张图片直观感受一下：</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png" alt=""> </p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/1/1-2.png" alt=""></p>
 <p>其实简单的来讲，就是对于convex function \(f\)，它的函数值永远大于等于切线上的值！</p>
 <h3 id="Second-order-condition"><a href="#Second-order-condition" class="headerlink" title="Second order condition"></a>Second order condition</h3><p>对于 function \(f\)，在定义域内<strong>二阶可导</strong>，且 \(n\) 维方阵Hessian matrix的元素为<br>$$ \nabla ^2 f(x) = \frac{ \partial ^2 f(x)}{ \partial x_i \partial x_j}, \quad i,j = 1,2,…,n$$<br>当且仅当Hessian matrix positive semi-defnite的时候，\(f\) 是convex function。以上互为<strong>充要条件</strong>。这里的证明我不想展开讲，在后面我会给出reference链接。</p>
 <hr>
@@ -189,7 +191,7 @@
 <p>Gradien descent算法本身并不能保证获得全局最小值，只有在objective function是convex function的时候才可以保证</p>
 </blockquote>
 <p>下图可以看出，右边的object function是non-convex function，因而很容易陷入到局部最小值无法自拔，而左边的objective function是一个标准的convex function，在gradient descent参数合理的前提下，可以逼近全局最优。</p>
-<p><img src="http://otmy7guvn.bkt.clouddn.com/blog/1/1-3.png" alt=""> </p>
+<p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/1/1-3.png" alt=""></p>
 <p>当然，gradien descent的一些改进方法，例如stochastic gradient descent在解决non-convex optimization上有一些帮助，但是我们在这里不做讨论，后面有时间我会专门再写。</p>
 <p>由此，我们可以得出，gradient descent不仅仅是minimize liner regression的一个很好的方法，也是convex optimization的一种理想方法</p>
 <h2 id="牛顿法-Newton’s-method"><a href="#牛顿法-Newton’s-method" class="headerlink" title="牛顿法(Newton’s method)"></a>牛顿法(Newton’s method)</h2><p>Newton’s method 这块内容，我们将会用logistic regression作为例子。同样，我们先来关注下log cost function，这里，<strong>我们取label为-1和+1</strong>，因为这样得到的cost function比0,1下的计算更加简单<br>$$J( \omega)= - \frac{1}{m} \sum_{i=1} ^{m} log(1+e^{-y^{(i)} \omega^T x^{(i)}})$$<br>这里我们采用了-1和+1作为标签值，和大多数教材中不一样，大家可以下来自己推导一下\(J( \omega)\)，这种写法广泛的应用在了比较logistic regression和SVM两大分类器的文献中，希望大家熟知。</p>
@@ -284,7 +286,7 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2018 Joe Asir&nbsp;
+                &copy; 2019 Joe Asir&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
@@ -309,7 +311,14 @@
                 </a>
                 
                     
-                <a class="column is-narrow has-text-black" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                <a class="column is-narrow has-text-black" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                    
+                    Instagram
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                     
                     Weibo
                     

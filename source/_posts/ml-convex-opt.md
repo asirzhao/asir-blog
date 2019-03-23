@@ -24,8 +24,7 @@ OK，我们来一起看看，convex function
 $$f(\theta a+(1-\theta) b) \leq \theta f(a) + (1- \theta)f(b)$$
 我们再用图片直观的感受一下
 
-![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-1.png) 
-
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/1/1-1.png)
 显而易见的是，当公式中等号去掉的时候，函数就是**strictly convex function**.
 
 Convex function具有一定的性质，我们简单的描述一下。
@@ -37,7 +36,7 @@ $$ 	\nabla f=( \frac{\partial f(x)}{x_1}, \frac{\partial f(x)}{x_2},...,  \frac{
 $$ f(y) \geq f(x) + \nabla f(x)^T (y - x)$$
 OK，再来张图片直观感受一下：
 
-![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/1/1-2.png)
 
 其实简单的来讲，就是对于convex function \\(f\\)，它的函数值永远大于等于切线上的值！
 
@@ -75,7 +74,7 @@ $$J( \theta)= \frac{1}{2} \sum_{i=1} ^m (h_ \theta (x ^{(i)})-y^{(i)})^2, \quad 
 
 下图可以看出，右边的object function是non-convex function，因而很容易陷入到局部最小值无法自拔，而左边的objective function是一个标准的convex function，在gradient descent参数合理的前提下，可以逼近全局最优。
 
-![](http://otmy7guvn.bkt.clouddn.com/blog/1/1-3.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/1/1-3.png)
 
 当然，gradien descent的一些改进方法，例如stochastic gradient descent在解决non-convex optimization上有一些帮助，但是我们在这里不做讨论，后面有时间我会专门再写。
 

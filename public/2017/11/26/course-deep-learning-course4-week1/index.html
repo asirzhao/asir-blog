@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//use.fontawesome.com/releases/v5.0.11/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -55,7 +55,7 @@
             <a class="navbar-item navbar-logo" href="/">
                 
                     
-                    <img src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg" alt="" height="28">
+                    <img src="https://github.com/JoeAsir/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
                     
                 
             </a>
@@ -73,9 +73,6 @@
             
             <a class="navbar-item "
                href="/archives">Archives</a>
-            
-            <a class="navbar-item "
-               href="/tags">Tags</a>
             
             <a class="navbar-item "
                href="/categories">Categories</a>
@@ -105,15 +102,21 @@
                 
             </a>
                
-            <a class="navbar-item" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <a class="navbar-item" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                 
                 <i class="fab fa-weibo"></i>
                 
             </a>
                
-            <a class="navbar-item" title="Mail" href="mailto:joeAsir0560@outlook.com">
+            <a class="navbar-item" title="Best Fellow" href="https://www.unbelievable9.info/">
                 
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-user-astronaut"></i>
                 
             </a>
                
@@ -144,7 +147,7 @@
         <span class="column is-narrow">
             
             
-            10 minutes read (About 1427 words)
+            10 minutes read (About 1435 words)
         </span>
         
     </div>
@@ -157,12 +160,12 @@
 <p>在这里Ng引入了两个概念，valid和same convolutions，所谓valid convolution，就是没有padding 的convolution；所谓same convolution，就是输入输出的尺寸完全一样。</p>
 <h3 id="Stride"><a href="#Stride" class="headerlink" title="Stride"></a>Stride</h3><p>继padding之后，还有一个很重要的参数，就是步长stride，步长stride决定了filter做convolution时候的步长，如果stride=1，那么filter就会挨着计算，如果stride=2，那么就会跳跃这进行计算。</p>
 <p>总结一下，假设原image尺寸是\(n *n\)，convolution filter尺寸是\(f *f\)，padding值是\(p\)，stride值是\(s\)那么最终的结果image尺寸应该是\( ( \frac {n+2p-f}{s}+1) *( \frac {n+2p-f}{s}+1)\)，如果除不尽的话，我们选择向下取整，也就是不足以做convolution的区域，我们选择放弃。</p>
-<p>##Convolution over Volume<br>对于一般的图像处理，我们使用的都是RGB图像，我们都知道，RGB图像有三个channel，这种情况下，convolution应该如何做，我们来看下面的图：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/13/13-1.png" alt=""><br>假设我们的图像是6×6×3，也就是hight×width×channel(depth)，因此对应的filter也要有3的channel(depth)，最后可以得到一个4×4的结果。</p>
-<p>当然，我们可以采用不止一个filter，如图<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/13/13-2.png" alt=""><br>我们加入了两个不同的filter，他们的大小都是3×3×3，于是最终的结果就是4×4×2，请注意：结果的channel数目取决于filter的个数，而和输入的channel没有任何关系。</p>
-<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><h3 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h3><p>下面我们来看看CNN网络中的一个layer的工作原理是什么，首先来看截图：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/13/13-3.png" alt=""><br>这张图十分复杂，我们一起仔细看看这张图，对于一个6×6×3的RGB图像，我们用了两个3×3×3的filter，我们可以把输入image看做\(x\)，也就是\(a ^{[0]}\)，filter看做\(w ^{[1]}\)，得到的结果就是\(w ^{[1]}a ^{[0]}\)，我们再加上一个bias项\(b^{[1]}\)，那么就获得了一个liner output\(w ^{[1]}a ^{[0]}+b^{[1]}\)，我们再使用一个non-liner function例如ReLU，如此获得一个4×4×2的output。如此就是CNN的一个layer.</p>
+<p>##Convolution over Volume<br>对于一般的图像处理，我们使用的都是RGB图像，我们都知道，RGB图像有三个channel，这种情况下，convolution应该如何做，我们来看下面的图：<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/13/13-1.png" alt=""><br>假设我们的图像是6×6×3，也就是hight×width×channel(depth)，因此对应的filter也要有3的channel(depth)，最后可以得到一个4×4的结果。</p>
+<p>当然，我们可以采用不止一个filter，如图<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/13/13-2.png" alt=""><br>我们加入了两个不同的filter，他们的大小都是3×3×3，于是最终的结果就是4×4×2，请注意：结果的channel数目取决于filter的个数，而和输入的channel没有任何关系。</p>
+<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><h3 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h3><p>下面我们来看看CNN网络中的一个layer的工作原理是什么，首先来看截图：<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/13/13-3.png" alt=""><br>这张图十分复杂，我们一起仔细看看这张图，对于一个6×6×3的RGB图像，我们用了两个3×3×3的filter，我们可以把输入image看做\(x\)，也就是\(a ^{[0]}\)，filter看做\(w ^{[1]}\)，得到的结果就是\(w ^{[1]}a ^{[0]}\)，我们再加上一个bias项\(b^{[1]}\)，那么就获得了一个liner output\(w ^{[1]}a ^{[0]}+b^{[1]}\)，我们再使用一个non-liner function例如ReLU，如此获得一个4×4×2的output。如此就是CNN的一个layer.</p>
 <p>如此我们可以看到，CNN和之前的DNN实质上都存在一种liner function到non-liner function的转化，通过non-liner function去classify线性不可分的data，另外，在CNN中，每一个filter就可以获得一个不同的feature，多个filter可以让我们从多个角度去classify data.</p>
 <p>另外，相比较于fully connected 的DNN，CNN所需要的parameters也少了很多，这一点值得我们注意。</p>
-<h3 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h3><p>Pooling原理还是很简单的，我们来看一张图：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/13/13-4.png" alt=""><br>首先我们来看看max pooling，如图，我们取filter尺寸\(f=2\)，stride大小\(s=2\)，对于一个filter中的元素，我们取max作为输出；相对应的，如果我们取average，那么就成了average pooling，pooling中的hyperparameter只有filter尺寸\(f\)和stride大小\(s\)，值得注意的是，pooling过程中不存在学习过程，no parameters to learn!</p>
+<h3 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h3><p>Pooling原理还是很简单的，我们来看一张图：<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/13/13-4.png" alt=""><br>首先我们来看看max pooling，如图，我们取filter尺寸\(f=2\)，stride大小\(s=2\)，对于一个filter中的元素，我们取max作为输出；相对应的，如果我们取average，那么就成了average pooling，pooling中的hyperparameter只有filter尺寸\(f\)和stride大小\(s\)，值得注意的是，pooling过程中不存在学习过程，no parameters to learn!</p>
 <h3 id="Fully-Connected-layer"><a href="#Fully-Connected-layer" class="headerlink" title="Fully Connected layer"></a>Fully Connected layer</h3><p>Fully connected layer在CNN其实很简单，我们只需要将input展开，按照DNN的方法进行fully connected就可以了。</p>
 <p>一般情况下，我们认为有prameter变化的才算一层，因此我们不认为pooling是一个layer，我们举个一个最简单的CNN做例子：CONV-POOL-CONV-POOL-FC-FC-Softmax，我们这就是一个简单的5层的CNN，在下周的课程中我们可以看到一些经典的CNN框架，这里就不再复述。</p>
 <h2 id="Why-Convolutions"><a href="#Why-Convolutions" class="headerlink" title="Why Convolutions"></a>Why Convolutions</h2><p>关于这个问题，Ng给出了两个意见，我们一起看看：</p>
@@ -240,7 +243,7 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2018 Joe Asir&nbsp;
+                &copy; 2019 Joe Asir&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
@@ -265,7 +268,14 @@
                 </a>
                 
                     
-                <a class="column is-narrow has-text-black" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                <a class="column is-narrow has-text-black" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                    
+                    Instagram
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                     
                     Weibo
                     

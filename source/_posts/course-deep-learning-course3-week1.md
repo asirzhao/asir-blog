@@ -38,7 +38,7 @@ Metric无疑是ML task中很重要的环节，通过metric，我们可以评估�
 但是metric指标琳郎满目，例如对于两个模型，模型A的precision高于B的，但是A的recall又低于B，这时候就不太好评价两个模型，在这种情况下，我们需要采用单一的数字评价指标，例如我们可以用F1-score来进行评估，single number evaluation metric是我们做metrics时一定要注意的
 ### Satisficing   and optimizing
 在某些情况下，例如我们不仅仅要求模型的指标，还对其他的，例如模型时间会有要求，如果一个模型有很高的模型accuracy，但是却很耗费时间，那是我们不能接受的，如下图例子：
-![](http://otmy7guvn.bkt.clouddn.com/blog/9/9-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/9/9-1.png)
 图中的accuracy是optimizing metric，通常更高的accuracy就代表这classifier更加的优秀；但是，这里还有一个必须低于100ms 的running time作为satisficing metric，通常来说，如果我们有\\(N\\)个metrics，那么我们的optimizing metric必须只有一个，剩下的\\(N-1\\)metrics 都是satisficing metrics，只要以threshold形式进行限定就可以了。
 ## Data set
 ### Distributions
@@ -49,9 +49,9 @@ Metric无疑是ML task中很重要的环节，通过metric，我们可以评估�
 
 ### Size of data set
 传统的ML task中，dataset的分布一般如下图所示：
-![](http://otmy7guvn.bkt.clouddn.com/blog/9/9-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/9/9-2.png)
 但是在big data时代，一般采用下图：
-![](http://otmy7guvn.bkt.clouddn.com/blog/9/9-3.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/9/9-3.png)
 Ng同样给出了guideline：
 * Set uop the size of test set to give a high confidence in the overall performance of the system.
 * Test set helps evaluate the proformance of the final classifier which could be less than 30% of the whole data set
@@ -77,7 +77,7 @@ $$Error = \frac{1}{ \sum w^{(i)}} \sum^{m_{dev}}_{i=1} w^{(i)} \mathcal \{ \hat{
 这样就把两种不同的问题区分开了。
 ## Improve model performance
 模型performance的提升是模型的核心问题，我们如何确定模型调整的大体方向，Ng给出了如下的图
-![](http://otmy7guvn.bkt.clouddn.com/blog/9/9-4.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/9/9-4.png)
 我们默认human-level是很接近理论误差，也就是Bayes error，我们需要比较human-level，training error和dev error这三者之间的关系，human-level和training error之间的差值更大的话，我们就需要去减小bias，反之，我们需要去减少variance，具体的方法，还是我们之前的老套路。
 
 ## Reference

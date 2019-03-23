@@ -24,7 +24,7 @@ $$v_t= \beta v_{t-1} + (1- \beta) \theta_t$$
 其中\\(\beta\\)是一个因子，它决定了moving averages大约向前平均了\\(\frac{1}{1- \beta}\\)个\\(\theta\\)值，例如\\(\beta = 0.9\\)，那么大约向前平均了10个值，并且是向前按指数衰减加权获得的平均值。
 ### Bias correction
 在exponentially weighted averages中，有一个问题很尖锐，那就是在最初的求解过程中，由于\\(v_0=0\\)，导致前面的数字结果距离正确结果较小，如下图所示，紫色曲线是获得的结果，而在起始位置的值明显是偏小的。
-![](http://otmy7guvn.bkt.clouddn.com/blog/7/7-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/7/7-1.png)
 此时，我们引入bias correction，原理也很简单，就是此处我们不使用\\(v_t\\)作为最终的结果，而是使用\\( \frac{v_t}{1- \beta^{t}}\\)作为最后的结果，通过bias correction，我们会获得绿色的曲线。
 
 我们可以看到，起始绿色钱和紫色曲线在最后基本没有差别，几乎重合，但是在曲线开始的时候，绿色曲线比紫色曲线更加逼近真实情况，因此，Ng给我们以下建议：
@@ -34,7 +34,7 @@ $$v_t= \beta v_{t-1} + (1- \beta) \theta_t$$
 ## Gradient descent optimization
 ### momentum
 在gradient descent中，我们经常会遇到一种情况，如图所示：
-![](http://otmy7guvn.bkt.clouddn.com/blog/7/7-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/7/7-2.png)
 在水平方向上，我们希望更快的下降，而在垂直方向上我们希望更小的下降速率，以避免过多的iteration，针对这种情况，我们讲moving averages的思想带入进来，这就是momentum方法。
 
 在momentum中，我们的每次迭代中：

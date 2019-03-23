@@ -17,7 +17,7 @@ OK，今天我们来review一篇经典的paper，这篇paper是3年前facebook�
 但是传统的lr也有着本身的缺憾，lr本身就是liner分类器，对于线性不可分的features效果不是很理想。同时在对于连续feature离散化的时候，效果很大程度依赖于离散分桶的人为经验。
 
 该paper提出了一种依靠gbt进行feature transform的方法，不多说废话，我们直接上图
-![](http://otmy7guvn.bkt.clouddn.com/blog/3/3-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/3/3-1.png)
 这就是这篇paper最最最核心的部分了。
 
 > Input features are transformed by means of boosted decision trees.The output of each individual tree is treated as a categorical input feature to a sparse linear classifier. Boosted decision trees prove to be very powerful feature transforms.

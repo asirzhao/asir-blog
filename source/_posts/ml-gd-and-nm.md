@@ -60,7 +60,7 @@ $$x=x_k-H^{-1}g$$
 想象一下，如果Hessian是negative definite的话，参数更新的方向就成了和\\(g\\)相同的方向，newton's method将会发散，这一点，也是newton's method的缺点。在objective function是non-convex function的情况下，如果第\\(k\\)次迭代获得的\\(x_k\\)处的Hessian matrix negative definite，那么newton's method将会发散，从而导致不收敛。当然，为了解决这种问题，后续有改进的BFGS等方法，我们在这里暂时不详细讨论。
 ## Sum up
 下面我们再来总结性质的对比一下两种方法，来看一张图
-![](http://otmy7guvn.bkt.clouddn.com/blog/2/2-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/2/2-1.png)
 事实上，这两种方法都采用了一种逼近和拟合的思想。假设现在处于迭代\\(k\\)次之后的\\(x_k\\)点，对于objective function，我们用\\(x_k\\)点的Taylor series \\(f(x)\\)来逼近和拟合，当然了，上图我们看到，gradient descent是用一次function而newton's method采用的是二次function，这是二者之间最显著的区别。
 
 对于new's method，在拟合之后，我们通过\\( \nabla f(x)=0\\)求得的\\(x \_{k+1}\\)点作为此次迭代的结果，下次迭代时候，又在\\(x \_{k+1}\\)处次进行二次function的拟合，并如此迭代下去。

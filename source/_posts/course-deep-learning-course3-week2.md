@@ -21,7 +21,7 @@ Hi all，course3来到了week2，本周的课程依然主要是关于一些learn
 * 提升模糊图像被误分的问题
 
 可是由于我们精力和时间都有限，需要找出误分最主要的问题，因此我们要做的，是把所有错分的图像罗列出来，或者随机抽样一定的图像，分析每种错误它有多少，占错分图像多少比例。我们来看截图
-![](http://otmy7guvn.bkt.clouddn.com/blog/10/10-1.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/10/10-1.png)
 每一个错分的图像都会进行标签化的统计，最后通过统计每一个标签，找出影响错分最严重的因素，作为我们的改进方向。
 ### Clean up incorrectly labeled data
 在常见的错误中，错误的label是一种很常见的问题，这种问题往往来自于标注时候，错误的label会对training造成误导。
@@ -33,7 +33,7 @@ Hi all，course3来到了week2，本周的课程依然主要是关于一些learn
 DL因为其自身的robust性质，当training set中有少许的，随机产生的incorrectly labeled data时，效果并不会有多差，我们完全不需要去管他。但是，当这incorrectly labeled data很多时就不行了，因为它们带来的是systematic errors，极端的想，如果把所有的白狗都错误的标注成了猫，那么这个cat recognition系统一定不会好，因为它一定会把白色的狗判断成为猫。
 
 再来看看dev/test set中的incorrectly labeled data，对于这个问题，我们要做的是，评估incorrectly labeled data对dev error带来了多少贡献，解决的过程也是类似的，来看截图：
-![](http://otmy7guvn.bkt.clouddn.com/blog/10/10-2.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/10/10-2.png)
 我们把incorrectly labeled也作为一个要素或标签，放在错分图像分析的过程中，
 看看最终的统计结果，再决定incorrectly labeled data是不是影响dev error的主要原因，是否值得我们去fix it up.
 
@@ -91,9 +91,9 @@ DL因为其自身的robust性质，当training set中有少许的，随机产生
 但是要注意的是，我们在这个过程中，要避免出现overfitting的情况出现，例如Ng举出的例子，在识别车内的人声过程中，我们可以通过人工的合成汽车声音与人的声音让training set和dev set更加的相似，但是如果我们的只用一段汽车噪音循环往复的去做合成，例如吧1min的汽车噪声循环的合成到1h的人声中，那结果一定是不尽如人意的，因为出现了overfitting.
 ## Transfer learning
 下面我们一起来看看大名鼎鼎的transfer learning，所谓transfer，就是存在一种从A到B的转换，而且这种情况往往是B的数据量很少，需要通过A来做一个pre-training过程。假设我们有如下的neural networks
-![](http://otmy7guvn.bkt.clouddn.com/blog/10/10-3.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/10/10-3.png)
 假设这个我们使用这个neural networks训练了一个image recognition模型，在训练完成后，我们将最后的output，以及output对应的的\\(w\\)和\\(b\\)也删除，更换成例如放射数据再进行训练，如下图：
-![](http://otmy7guvn.bkt.clouddn.com/blog/10/10-4.png) 
+![](https://github.com/JoeAsir/blog-image/raw/master/blog/10/10-4.png)
 我们不仅仅可以把output层更换成一个新的output层，还可以将output层更换成几个新层。我们甚至可以将transfer之前的训练认为是一种pre-training，但是transfer training需要有几个条件：
 * Task A and B have the same input x.
 * You have a lot more data for Task A than Task B.

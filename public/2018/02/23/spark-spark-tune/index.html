@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//use.fontawesome.com/releases/v5.0.11/js/all.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -55,7 +55,7 @@
             <a class="navbar-item navbar-logo" href="/">
                 
                     
-                    <img src="http://otmy7guvn.bkt.clouddn.com/Pink_Floyd_-_Division_Bell.jpg" alt="" height="28">
+                    <img src="https://github.com/JoeAsir/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
                     
                 
             </a>
@@ -73,9 +73,6 @@
             
             <a class="navbar-item "
                href="/archives">Archives</a>
-            
-            <a class="navbar-item "
-               href="/tags">Tags</a>
             
             <a class="navbar-item "
                href="/categories">Categories</a>
@@ -105,15 +102,21 @@
                 
             </a>
                
-            <a class="navbar-item" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+            <a class="navbar-item" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                 
                 <i class="fab fa-weibo"></i>
                 
             </a>
                
-            <a class="navbar-item" title="Mail" href="mailto:joeAsir0560@outlook.com">
+            <a class="navbar-item" title="Best Fellow" href="https://www.unbelievable9.info/">
                 
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-user-astronaut"></i>
                 
             </a>
                
@@ -144,7 +147,7 @@
         <span class="column is-narrow">
             
             
-            10 minutes read (About 1436 words)
+            10 minutes read (About 1438 words)
         </span>
         
     </div>
@@ -162,7 +165,7 @@
 <li>由于HDFS在并行读写的时候存在一些瓶颈，因此每一个executor中最好不要超过5个并行任务，即cores数不要超过5个，有实验可以证明，spark在多executor少core的配置下执行效率更高；</li>
 <li>相反的，对于executor来说，过分少的core，例如1个，将会使得executors数目变多，例如某个broadcast过程，需要传播到所有的executors上，那么过分多的executors会降低执行的效率。</li>
 </ul>
-<h2 id="Memory-Mangement"><a href="#Memory-Mangement" class="headerlink" title="Memory Mangement"></a>Memory Mangement</h2><p>关于spark中的memory management，我们先来看一张图：<br><img src="http://otmy7guvn.bkt.clouddn.com/blog/16/16-1.png" alt=""><br>在图中我们可以看到，spark把memory分成了三部分，即spark memory、user memory和reserved memory，我们顺次来看看：</p>
+<h2 id="Memory-Mangement"><a href="#Memory-Mangement" class="headerlink" title="Memory Mangement"></a>Memory Mangement</h2><p>关于spark中的memory management，我们先来看一张图：<br><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/16/16-1.png" alt=""><br>在图中我们可以看到，spark把memory分成了三部分，即spark memory、user memory和reserved memory，我们顺次来看看：</p>
 <h3 id="Reserved-Memory"><a href="#Reserved-Memory" class="headerlink" title="Reserved Memory"></a>Reserved Memory</h3><p>所谓reserved memory，它就是系统预留下的一部分memory，用于存储spark的内部对象，默认大小为300m，绝大部分情况下，我们都不会修改这些参数。值得注意的是，当executor被分配的memory小于1.5倍的reserved memory时，将会抛出“please use larger heap size”的错误。</p>
 <h3 id="User-Memory"><a href="#User-Memory" class="headerlink" title="User Memory"></a>User Memory</h3><p>User memory用于储存spark的transfermation的一些信息，比如RDD之间的依赖信息等等，这部分内存默认大小为(Java Heap - 300M)*0.25，其中的300M其实就是上面提到的reserved memory.具体的大小要依赖于spark.memory.fraction参数，这个参数决定了user 和 下面要讲到的spark memory的分配比例。</p>
 <h3 id="Spark-Memory"><a href="#Spark-Memory" class="headerlink" title="Spark Memory"></a>Spark Memory</h3><p>上文已经到了，spark memory主要是spark自己使用的memory部分，这部分的大小依赖于spark.memory.fraction参数，即(Java Heap - 300M)*spark.memory.fraction，其中fraction的default为0.75。</p>
@@ -198,7 +201,7 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2018/09/15/spark-sumup-part-1/">Spark Tips Sum-Up Part-1</a>
+            <a href="/2018/09/15/spark-sumup-part-1/">Spark Tips Sum-up Part-1</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
@@ -251,7 +254,7 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2018 Joe Asir&nbsp;
+                &copy; 2019 Joe Asir&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
@@ -276,7 +279,14 @@
                 </a>
                 
                     
-                <a class="column is-narrow has-text-black" title="Weibo" href="https://www.weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
+                <a class="column is-narrow has-text-black" title="Instagram" href="https://www.instagram.com/zhaoyao0560/">
+                    
+                    Instagram
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="Weibo" href="https://weibo.com/2144484004/profile?topnav=1&amp;wvr=6&amp;is_all=1">
                     
                     Weibo
                     
