@@ -1,6 +1,6 @@
 ---
 title: Arvo, Parquet and ORC
-date: 2019-06-05 16:34:37
+date: 2019-05-05 16:34:37
 tags: 
     - hdfs
     - hive
@@ -10,6 +10,7 @@ toc: true
 ![](https://github.com/JoeAsir/blog-image/raw/master/blog/background/architecture-body-of-water-buildings-2255985.jpg)
 Dealing with HIVE is one of my daily work with which I read data from and write back to the HDFS. There are many storage formats in HIVE, such as textFile, Avro,  and so on. Today we will talk about three popular formats that are widely use in HIVE world, also in Spark and even the entire distributed file system world. Not talking about some classical formats like textFile , SequenceFile, RCFile, doesn't mean that they are not important or good enough, so you'd better have some look at them to help you make sense of the storage formats in HIVE.
 <!--more-->
+## Formats Categories
 ### Row Formats & Columnar Formats
 Row formats and Columnar formats are two methods of seriallizing and storing a table in Database. And the following figure presents the difference of data stored in Row formats and in Columnar fromats.
 ![](https://github.com/JoeAsir/blog-image/raw/master/blog/22/22-1.png)

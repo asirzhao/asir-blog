@@ -1,6 +1,6 @@
 ---
 title: HDFS Architecture
-date: 2019-05-28 18:25:30
+date: 2019-04-28 18:25:30
 tags: 
     - hdfs
     - hadoop

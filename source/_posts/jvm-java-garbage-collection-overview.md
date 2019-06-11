@@ -1,6 +1,6 @@
 ---
 title: Java Garbage Collection Overview
-date: 2019-04-26 16:35:08
+date: 2019-02-26 16:35:08
 tags: jvm
 categories: jvm
 toc: true
