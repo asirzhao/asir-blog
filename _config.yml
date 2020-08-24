@@ -6,13 +6,13 @@
 title: superAsir's Notes
 subtitle: Just 4 fun!
 description: Hard-working developer by day and trouble maker by night.
-author: Joe Asir
+author: Asir Zhao
 language: en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://joeasir.github.io/
+url: https://asirzhao.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -83,7 +83,7 @@ path: sitemap.xml
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:JoeAsir/joeasir.github.io.git
+  repo: git@github.com:asirzhao/asirzhao.github.io.git
   branch: master
   delete: true
   verbose: true

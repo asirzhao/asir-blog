@@ -55,7 +55,7 @@
             <a class="navbar-item navbar-logo" href="/">
                 
                     
-                    <img src="https://github.com/JoeAsir/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
+                    <img src="https://github.com/asirzhao/blog-image/raw/master/blog/other/profile.jpeg" alt="" height="28">
                     
                 
             </a>
@@ -144,13 +144,13 @@
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/JoeAsir">
+            <a class="navbar-item" title="GitHub" href="https://github.com/asirzhao">
                 
                 <i class="fab fa-github"></i>
                 
             </a>
                
-            <a class="navbar-item" title="Twitter" href="https://twitter.com/joe_asir">
+            <a class="navbar-item" title="Twitter" href="https://twitter.com/asir_zhao">
                 
                 <i class="fab fa-twitter"></i>
                 
@@ -171,6 +171,12 @@
             <a class="navbar-item" title="Best Fellow" href="https://www.unbelievable9.info/">
                 
                 <i class="fas fa-user-astronaut"></i>
+                
+            </a>
+               
+            <a class="navbar-item" title="Little Bro" href="https://yuwillrun.github.io/">
+                
+                <i class="fas fa-user-graduate"></i>
                 
             </a>
                
@@ -201,7 +207,7 @@
         <span class="column is-narrow">
             
             
-            7 minutes read (About 1106 words)
+            8 minutes read (About 1256 words)
         </span>
         
     </div>
@@ -213,20 +219,23 @@
 <p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-3.png" alt=""><br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-type">Add</span>(<span class="hljs-type">Attribute</span>(x),<span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(<span class="hljs-number">1</span>),<span class="hljs-type">Literal</span>(<span class="hljs-number">2</span>)))</span><br></pre></td></tr></table></figure></p>
 <p>Actually, most of the SQL query optimization, like Catalyst, would transform the SQL to a huge tree structure as the first step of the optimization. Tree structure could be modified, tailored and optimized easily, also it represents the query plan briefly. What’s more, the data can be thrown to every node of the tree by the query plan iteratively. That’s why tree datatype is used and introduced firstly in Catalyst.</p>
 <h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>Trees can be manipulated by the rules. The optimization can be treated as some transformations from one tree to another under some rules we provide. With the help of rules, we can run arbitrary code and many other operations on the input tree. And the Catalyst will know which part of the tree that rules could match or apply, and will automatically skip over the tree that does not match. The rules are all applied by Scala case class, in other words, one rule can match multiple patterns. Let’s see an example.<br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tree.transform &#123;</span><br><span class="line">  <span class="hljs-keyword">case</span> <span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(c1),<span class="hljs-type">Literal</span>(c2)) =&gt; <span class="hljs-type">Literal</span>(c1+c2)</span><br><span class="line">  <span class="hljs-keyword">case</span> <span class="hljs-type">Add</span>(left, <span class="hljs-type">Literal</span>(<span class="hljs-number">0</span>)) =&gt; left</span><br><span class="line">  <span class="hljs-keyword">case</span> <span class="hljs-type">Add</span>(<span class="hljs-type">Literal</span>(<span class="hljs-number">0</span>), right) =&gt; right</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Catalyst"><a href="#Catalyst" class="headerlink" title="Catalyst"></a>Catalyst</h2><p>From this section, we will know how Catalyst optimizes Spark SQL, which might improve your understanding of how Spark SQL works and how to manipulate it better. The figure below presents the workflow of Spark SQL, and the Analysis, Logical Optimization and Physical Planning are all working under the Catalyst, and we will go over one by one.</p>
+<h2 id="Catalyst"><a href="#Catalyst" class="headerlink" title="Catalyst"></a>Catalyst</h2><p>From this section, we will know how Catalyst optimizes Spark SQL, which might improve your understanding of how Spark SQL works and how to manipulate it better. There are four plan through the Catalyst, which are Parsed(Unresolved) Logical Plan, Analyzed Logical Plan, Optimized Logical Plan and Physical Plan. You can find all the four plans in your Spark UI. The figure below presents the workflow of Spark SQL, and the Analysis, Logical Optimization and Physical Planning are all working under the Catalyst, and we will go over one by one.</p>
 <p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-2.png" alt=""></p>
-<h3 id="Parser"><a href="#Parser" class="headerlink" title="Parser"></a>Parser</h3><p>The first stage in the figure above is called Parser. Despite not a part of Catalyst, Parser is also very crucial in the whole optimization. Spark SQL transform SQL queries to an AST(Abstract Syntax Tree), also called Unresolved Logical Plan in Catalyst,  by ANTLR, which is also used in the Hive, presto and so on. However, DataFrame/Dataset object can be transformed to Unresolved Logical Plan by the API.</p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Returned by the Parser, Unresolved Logical Plan contains many unresolved attribute reference of relation. For example, you have no idea whether the column name provided is correct or type of the column, either. Spark SQL use Catalyst and Catalog object that tracks the data all the time to resolve the attributes. Looking up relations by name from Catalog, mapping all the named attributes to the input, checking the attributes which match to the same value and giving the unique ID and pushing the type information of the attributes, the Unresolved Logical Plan is transformed to Logical Plan by Catalyst.</p>
-<h3 id="Logcial-Optimization"><a href="#Logcial-Optimization" class="headerlink" title="Logcial Optimization"></a>Logcial Optimization</h3><p>Logical Optimization is mainly based on the rules, which is also called RBO(Rules Based Optimization). Lots of rules are provided in this step to accomplish RBO, including constant folding, predicate pushdown, project pruning and so on. As results, the Logical Plan is returned by Logical Optimization from Unresolved Logical Plan. Some figures below describe these ROB mentioned.<br><strong>Predicate pushdown</strong> can reduce the computation of join operation by filtering unnecessary data before join.</p>
+<h3 id="Parser"><a href="#Parser" class="headerlink" title="Parser"></a>Parser</h3><p>The first stage in the figure above is called Parser. Despite not a part of Catalyst, Parser is also very crucial in the whole optimization. Spark SQL transform SQL queries to an <a href="http://ns.inria.fr/ast/sql/index.html" target="_blank" rel="noopener">AST</a>(Abstract Syntax Tree), also called Parsed Logical Plan in Catalyst,  by <a href="https://www.antlr.org/" target="_blank" rel="noopener">ANTLR</a>, which is also used in the Hive, presto and so on. However, DataFrame/Dataset object can be transformed to Parsed Logical Plan by the API.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Returned by the Parser, Parsed Logical Plan contains many unresolved attribute reference of relation. For example, you have no idea whether the column name provided is correct or type of the column, either. Spark SQL use Catalyst and Catalog object that tracks the data all the time to resolve the attributes. Looking up relations by name from Catalog, mapping all the named attributes to the input, checking the attributes which match to the same value and giving the unique ID and pushing the type information of the attributes, the Parsed Logical Plan is transformed to Analyzed Logical Plan by Catalyst.</p>
+<blockquote>
+<p>Catalogs are named collections of schemas in an SQL-environment. An SQL-environment contains zero or more catalogs. A catalog contains one or more schemas, but always contains a schema named INFORMATION_SCHEMA that contains the views and domains of the Information Schema.</p>
+</blockquote>
+<h3 id="Logcial-Optimization"><a href="#Logcial-Optimization" class="headerlink" title="Logcial Optimization"></a>Logcial Optimization</h3><p>Logical Optimization is mainly based on the rules, which is also called RBO(Rules Based Optimization). Lots of rules are provided in this step to accomplish RBO, including constant folding, predicate pushdown, project pruning and so on. As results, the Optimized Logical Plan is returned by Logical Optimization from Analyzed Logical Plan. Some figures below describe these ROB mentioned.<br><strong>Predicate pushdown</strong> can reduce the computation of join operation by filtering unnecessary data before join.</p>
 <p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-4.png" alt=""><br><strong>Constant folding</strong> avoids calculating the same operation between constants for each record.</p>
 <p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-5.png" alt=""><br><strong>Column Pruning</strong> makes Spark SQL only load data which would be used in the table.</p>
 <p><img src="https://github.com/JoeAsir/blog-image/raw/master/blog/18/18-6.png" alt=""></p>
-<h3 id="Physical-Planning"><a href="#Physical-Planning" class="headerlink" title="Physical Planning"></a>Physical Planning</h3><p>Since we get the Logical Plan, Spark still doesn’t know how to execute the Logical Plan. Transformed from Logical Plan by Physical Planning, Physical Plan would guide the Spark on how to handle the data. In Physical Planning, several Physical Plans are generated from Logical Plan, using physical operator matches the Spark execution engine. Using CBO(Cost Based Optimization), Catalyst will select the best performance one as the Physical Plan. However, the CBO is now only used for join algorithms selection. Also, RBO is used in Physical Planning to pipelining projections or filters into single Spark <em>map()</em> transformation.</p>
+<h3 id="Physical-Planning"><a href="#Physical-Planning" class="headerlink" title="Physical Planning"></a>Physical Planning</h3><p>Since we get the Optimized Logical Plan, Spark still doesn’t know how to execute the it. For instance, Spark knows that there is a join operation, while whether sortMerge Join or Hash Shuffle Join should be invoked. So all the operation would be mapped into a real exection through <a href="https://github.com/apache/spark/blob/v2.3.2/sql/core/src/main/scala/org/apache/spark/sql/execution/SparkStrategies.scala" target="_blank" rel="noopener">SparkStrategy</a>. Transformed from Opktimized Logical Plan by Physical Planning, Physical Plan would guide the Spark on how to handle the data. In Physical Planning, several Physical Plans are generated from Logical Plan, using physical operator matches the Spark execution engine. Using CBO(Cost Based Optimization), Catalyst will select the best performance one as the Physical Plan. However, the CBO is now only used for join and aggregation algorithms selection. Also, CBO is used in Physical Planning to pipelining projections or filters into single Spark <em>map()</em> transformation. What’s more, all</p>
 <h3 id="Code-Generation"><a href="#Code-Generation" class="headerlink" title="Code Generation"></a>Code Generation</h3><p>Getting the Physical Plan from the Physical Planning stage, Spark will translate the AST into Java bytecode to run on each machine. Thanks to quasiquotes, a greate feature of Scala, ASTs would be built by Scala language based on the Physical Plan. And the AST will be send to Scala Compile at runtime to generate<br>ava bytecode. </p>
 <blockquote>
 <p>We use Catalyst to transform a tree representing an expression in SQL to an AST for Scala code to evaluate that expression, and then compile and run the generated code.</p>
 </blockquote>
-<p>In Spark 2.x, the WholeStageCodeGen has been used in code generation stage, you can read more from <a href="https://joeasir.github.io/2018/11/14/spark-second-generation-tungsten-in-spark">here</a>.</p>
+<p>In Spark 2.x, the WholeStageCodeGen has been used in code generation stage, you can read more from <a href="https://joeasir.github.io/2018/11/14/spark-second-generation-tungsten-in-spark" target="_blank" rel="noopener">here</a>.</p>
 <p>At last, if you want to see the Logical Plan and Physical Plan of your own Spark SQL, you may do as follows:<br><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// for Logical Plan</span></span><br><span class="line">spark.sql(<span class="hljs-string">"your SQL"</span>).queryExecution</span><br><span class="line"><span class="hljs-comment">// for Physical Plan</span></span><br><span class="line">spark.sql(<span class="hljs-string">"your SQL"</span>).explain</span><br></pre></td></tr></table></figure></p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html" target="_blank" rel="noopener">Deep Dive into Spark SQL’s Catalyst Optimizer</a></li>
@@ -275,7 +284,7 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://joeasir.github.io/2018/09/25/spark-catalyst-optimization/';
+        this.page.url = 'https://asirzhao.github.io/2018/09/25/spark-catalyst-optimization/';
         this.page.identifier = '2018/09/25/spark-catalyst-optimization/';
         
         this.language = 'en';
@@ -301,7 +310,7 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 Joe Asir&nbsp;
+                &copy; 2020 Asir Zhao&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
                         href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
@@ -312,14 +321,14 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/JoeAsir">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asirzhao">
                     
                     GitHub
                     
                 </a>
                 
                     
-                <a class="column is-narrow has-text-black" title="Twitter" href="https://twitter.com/joe_asir">
+                <a class="column is-narrow has-text-black" title="Twitter" href="https://twitter.com/asir_zhao">
                     
                     Twitter
                     
